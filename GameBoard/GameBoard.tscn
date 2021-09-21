@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Maze/Maze.tscn" type="PackedScene" id=1]
 [ext_resource path="res://GameBoard/GameBoard.gd" type="Script" id=2]
 [ext_resource path="res://MapPieces/test_walls/floor_material.tres" type="Material" id=3]
 [ext_resource path="res://MapPieces/test_walls/1_2.tscn" type="PackedScene" id=4]
+[ext_resource path="res://FPS_controller_3.3/FPS.tscn" type="PackedScene" id=5]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 1, 1, 1 )
@@ -18,23 +19,35 @@ border_width_bottom = 1
 [sub_resource type="DynamicFont" id=3]
 
 [sub_resource type="ProceduralSky" id=4]
+sky_top_color = Color( 0.211765, 0.313726, 0.552941, 1 )
+sky_horizon_color = Color( 0.545098, 0.686275, 0.811765, 1 )
+ground_bottom_color = Color( 0.545098, 0.686275, 0.811765, 1 )
+ground_horizon_color = Color( 0.545098, 0.686275, 0.811765, 1 )
+sun_longitude = -47.37
 
 [sub_resource type="Environment" id=5]
-background_mode = 1
+background_mode = 2
 background_sky = SubResource( 4 )
-ambient_light_color = Color( 0.717647, 0.717647, 0.717647, 1 )
+ambient_light_color = Color( 0.501961, 0.501961, 0.501961, 1 )
+ambient_light_energy = 1.4
+ambient_light_sky_contribution = 0.2
+fog_enabled = true
 fog_depth_begin = 43.0
 fog_depth_curve = 2.92817
 tonemap_mode = 3
-tonemap_white = 1.5
+tonemap_exposure = 1.91
+tonemap_white = 16.0
 ss_reflections_enabled = true
 ssao_enabled = true
+ssao_intensity = 0.5
 dof_blur_far_enabled = true
 dof_blur_far_distance = 17.09
 dof_blur_far_transition = 16.26
-glow_bloom = 0.16
+glow_enabled = true
+glow_intensity = 0.08
+glow_bloom = 0.12
 adjustment_enabled = true
-adjustment_contrast = 1.13
+adjustment_contrast = 1.26
 
 [node name="GameBoard" type="Spatial"]
 script = ExtResource( 2 )
@@ -42,13 +55,10 @@ script = ExtResource( 2 )
 [node name="Maze" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, -2 )
 
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 8, 9 )
-
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( 0.5, 0.612373, -0.612373, 0, 0.707107, 0.707107, 0.866025, -0.353553, 0.353553, -18, 13, 6 )
-light_energy = 0.61
-light_indirect_energy = 3.84
+transform = Transform( -0.707107, 0.40558, -0.579228, 0, 0.819152, 0.573577, 0.707107, 0.40558, -0.579228, -18, 13, 6 )
+light_energy = 0.74
+light_indirect_energy = 1.65
 light_bake_mode = 0
 shadow_enabled = true
 
@@ -90,6 +100,8 @@ __meta__ = {
 }
 
 [node name="CSGBox" type="CSGBox" parent="."]
+layers = 2
+use_collision = true
 width = 374.0
 depth = 366.0
 material = ExtResource( 3 )
@@ -103,3 +115,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 1, -12 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 5 )
+
+[node name="FPS" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )

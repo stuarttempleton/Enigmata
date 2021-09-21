@@ -1,9 +1,10 @@
 [gd_resource type="SpatialMaterial" load_steps=2 format=2]
 
-[ext_resource path="res://Textures/kenney_prototypetextures/PNG/Dark/texture_05.png" type="Texture" id=1]
+[ext_resource path="res://Textures/kenney_prototypetextures/PNG/Dark/texture_04.png" type="Texture" id=1]
 
 [resource]
 flags_world_triplanar = true
+albedo_color = Color( 0.639216, 0.639216, 0.639216, 1 )
 albedo_texture = ExtResource( 1 )
 uv1_scale = Vector3( 0.5, 0.5, 0.5 )
 uv1_triplanar = true
