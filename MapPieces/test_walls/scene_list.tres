@@ -1,0 +1,55 @@
+[gd_resource type="Resource" load_steps=18 format=2]
+
+[ext_resource path="res://addons/scene_map/scene_palette.gd" type="Script" id=1]
+[ext_resource path="res://MapPieces/test_walls/1_11.tscn" type="PackedScene" id=2]
+[ext_resource path="res://MapPieces/test_walls/1_7.tscn" type="PackedScene" id=3]
+[ext_resource path="res://MapPieces/test_walls/1_13.tscn" type="PackedScene" id=4]
+[ext_resource path="res://MapPieces/test_walls/1_14.tscn" type="PackedScene" id=5]
+[ext_resource path="res://MapPieces/test_walls/1_10.tscn" type="PackedScene" id=6]
+[ext_resource path="res://MapPieces/test_walls/1_12.tscn" type="PackedScene" id=7]
+[ext_resource path="res://MapPieces/test_walls/1_8.tscn" type="PackedScene" id=8]
+[ext_resource path="res://MapPieces/test_walls/1_15.tscn" type="PackedScene" id=9]
+[ext_resource path="res://MapPieces/test_walls/1_6.tscn" type="PackedScene" id=10]
+[ext_resource path="res://MapPieces/test_walls/1_9.tscn" type="PackedScene" id=11]
+[ext_resource path="res://MapPieces/test_walls/1_4.tscn" type="PackedScene" id=12]
+[ext_resource path="res://MapPieces/test_walls/1_5.tscn" type="PackedScene" id=13]
+[ext_resource path="res://MapPieces/test_walls/1_1.tscn" type="PackedScene" id=14]
+[ext_resource path="res://MapPieces/test_walls/1_2.tscn" type="PackedScene" id=15]
+[ext_resource path="res://MapPieces/test_walls/1_3.tscn" type="PackedScene" id=16]
+[ext_resource path="res://MapPieces/test_walls/1_0.tscn" type="PackedScene" id=17]
+
+[resource]
+resource_name = "ScenePalette"
+script = ExtResource( 1 )
+items/0/name = "0"
+items/0/scene = ExtResource( 17 )
+items/1/name = ""
+items/1/scene = ExtResource( 14 )
+items/2/name = ""
+items/2/scene = ExtResource( 15 )
+items/3/name = ""
+items/3/scene = ExtResource( 16 )
+items/4/name = ""
+items/4/scene = ExtResource( 12 )
+items/5/name = ""
+items/5/scene = ExtResource( 13 )
+items/6/name = ""
+items/6/scene = ExtResource( 10 )
+items/7/name = ""
+items/7/scene = ExtResource( 3 )
+items/8/name = ""
+items/8/scene = ExtResource( 8 )
+items/9/name = ""
+items/9/scene = ExtResource( 11 )
+items/10/name = ""
+items/10/scene = ExtResource( 6 )
+items/11/name = ""
+items/11/scene = ExtResource( 2 )
+items/12/name = ""
+items/12/scene = ExtResource( 7 )
+items/13/name = ""
+items/13/scene = ExtResource( 4 )
+items/14/name = ""
+items/14/scene = ExtResource( 5 )
+items/15/name = ""
+items/15/scene = ExtResource( 9 )

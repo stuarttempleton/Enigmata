@@ -1,0 +1,43 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Spatial",
+"class": "SceneMap",
+"language": "GDScript",
+"path": "res://addons/scene_map/scene_map.gd"
+}, {
+"base": "Resource",
+"class": "ScenePalette",
+"language": "GDScript",
+"path": "res://addons/scene_map/scene_palette.gd"
+} ]
+_global_script_class_icons={
+"SceneMap": "res://addons/scene_map/scene_map.svg",
+"ScenePalette": "res://addons/scene_map/scene_palette.svg"
+}
+
+[application]
+
+config/name="Enigmata"
+run/main_scene="res://GameBoard/GameBoard.tscn"
+config/icon="res://icon.png"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/scene_map/plugin.cfg" )
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"

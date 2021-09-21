@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://MapPieces/test_walls/wall_material.tres" type="Material" id=2]
+
+[node name="1_0" type="Spatial"]
+
+[node name="Wall_E" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 1, 0 )
+use_collision = true
+width = 0.5
+depth = 4.0
+material = ExtResource( 2 )
+
+[node name="Wall_SW" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 1, 1.75 )
+use_collision = true
+width = 0.5
+depth = 0.5
+material = ExtResource( 2 )
+
+[node name="Wall_NW" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 1, -1.75 )
+use_collision = true
+width = 0.5
+depth = 0.5
+material = ExtResource( 2 )
