@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Maze/Maze.tscn" type="PackedScene" id=1]
 [ext_resource path="res://GameBoard/GameBoard.gd" type="Script" id=2]
@@ -6,52 +6,24 @@
 [ext_resource path="res://MapPieces/test_walls/1_2.tscn" type="PackedScene" id=4]
 [ext_resource path="res://FPS_controller_3.3/FPS.tscn" type="PackedScene" id=5]
 [ext_resource path="res://GameBoard/FPS_Counter.gd" type="Script" id=6]
+[ext_resource path="res://Sky.tscn" type="PackedScene" id=7]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 1, 1, 1 )
 
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id=6]
 bg_color = Color( 0, 0, 0, 1 )
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 
-[sub_resource type="DynamicFont" id=3]
-
-[sub_resource type="ProceduralSky" id=4]
-sky_top_color = Color( 0.211765, 0.313726, 0.552941, 1 )
-sky_horizon_color = Color( 0.545098, 0.686275, 0.811765, 1 )
-ground_bottom_color = Color( 0.545098, 0.686275, 0.811765, 1 )
-ground_horizon_color = Color( 0.545098, 0.686275, 0.811765, 1 )
-sun_longitude = -47.37
-
-[sub_resource type="Environment" id=5]
-background_mode = 2
-background_sky = SubResource( 4 )
-ambient_light_color = Color( 0.501961, 0.501961, 0.501961, 1 )
-ambient_light_energy = 1.4
-ambient_light_sky_contribution = 0.2
-fog_enabled = true
-fog_depth_begin = 43.0
-fog_depth_curve = 2.92817
-tonemap_mode = 3
-tonemap_exposure = 1.91
-tonemap_white = 16.0
-ss_reflections_enabled = true
-ssao_enabled = true
-ssao_intensity = 0.5
-dof_blur_far_enabled = true
-dof_blur_far_distance = 17.09
-dof_blur_far_transition = 16.26
-glow_enabled = true
-glow_intensity = 0.08
-glow_bloom = 0.12
-adjustment_enabled = true
-adjustment_contrast = 1.26
+[sub_resource type="DynamicFont" id=7]
 
 [node name="GameBoard" type="Spatial"]
 script = ExtResource( 2 )
+
+[node name="Sky" parent="." instance=ExtResource( 7 )]
 
 [node name="Loading" type="ColorRect" parent="."]
 visible = false
@@ -81,8 +53,8 @@ margin_top = 344.0
 margin_right = 640.0
 margin_bottom = 352.0
 custom_styles/fg = SubResource( 1 )
-custom_styles/bg = SubResource( 2 )
-custom_fonts/font = SubResource( 3 )
+custom_styles/bg = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 0, 0, 0, 0 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 0 )
 max_value = 1.0
@@ -90,15 +62,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 5 )
-
 [node name="GIProbe" type="GIProbe" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11, 0 )
 extents = Vector3( 195, 65, 184 )
-
-[node name="Maze" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -2 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( -0.707107, 0.40558, -0.579228, 0, 0.819152, 0.573577, 0.707107, 0.40558, -0.579228, -18, 13, 6 )
@@ -106,6 +72,9 @@ light_energy = 0.74
 light_indirect_energy = 1.65
 light_bake_mode = 0
 shadow_enabled = true
+
+[node name="Maze" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -2 )
 
 [node name="Floor" type="CSGBox" parent="."]
 layers = 2
@@ -118,7 +87,7 @@ material = ExtResource( 3 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 1, -12 )
 
 [node name="FPS" parent="." instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
+transform = Transform( 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 14, 1, -12 )
 
 [node name="FPS_Counter" type="Label" parent="."]
 visible = false

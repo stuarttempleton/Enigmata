@@ -1,7 +1,7 @@
 extends Spatial
 
 func _ready():
-	GenerateMaze(5,0,5,$Maze.EASY)
+	GenerateMaze(10,0,10,$Maze.EASY)
 
 func GenerateMaze(x = 11, y = 0, z = 11, difficulty = $Maze.MEDIUM):
 	$Maze.connect("maze_generated", self, "ShushLoading")
@@ -13,7 +13,7 @@ func GenerateMaze(x = 11, y = 0, z = 11, difficulty = $Maze.MEDIUM):
 	
 	#start at top left corner
 	$FPS.transform.origin = $Maze/SceneMap.to_global(util_get_node_from_p(Vector3(0,0,0)).transform.origin)
-	
+	print("Start position: ", $FPS.transform.origin)
 	#start at random tile
 	#$FPS.transform.origin += $Maze/SceneMap.to_global(util_get_random_node().transform.origin)
 	
