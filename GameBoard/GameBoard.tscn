@@ -1,8 +1,7 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Maze/Maze.tscn" type="PackedScene" id=1]
 [ext_resource path="res://GameBoard/GameBoard.gd" type="Script" id=2]
-[ext_resource path="res://shaders/water.gdshader" type="Shader" id=3]
 [ext_resource path="res://Boxes/BoxReceiver.tscn" type="PackedScene" id=4]
 [ext_resource path="res://GameBoard/FPS_Counter.gd" type="Script" id=6]
 [ext_resource path="res://Sky.tscn" type="PackedScene" id=7]
@@ -19,50 +18,6 @@ border_width_right = 1
 border_width_bottom = 1
 
 [sub_resource type="DynamicFont" id=3]
-
-[sub_resource type="OpenSimplexNoise" id=4]
-
-[sub_resource type="NoiseTexture" id=5]
-width = 2048
-height = 2048
-seamless = true
-noise = SubResource( 4 )
-
-[sub_resource type="OpenSimplexNoise" id=6]
-
-[sub_resource type="NoiseTexture" id=7]
-width = 2048
-height = 2048
-seamless = true
-noise = SubResource( 6 )
-
-[sub_resource type="OpenSimplexNoise" id=8]
-
-[sub_resource type="NoiseTexture" id=9]
-width = 2048
-height = 2048
-seamless = true
-as_normalmap = true
-noise = SubResource( 8 )
-
-[sub_resource type="ShaderMaterial" id=10]
-shader = ExtResource( 3 )
-shader_param/speed = 0.001
-shader_param/color = Color( 0, 0.482353, 0.670588, 0.909804 )
-shader_param/edge_color = Color( 1, 1, 1, 1 )
-shader_param/edge_scale = 1.0
-shader_param/near = 2.0
-shader_param/far = 100.0
-shader_param/wave_strengh = Vector2( 0.001, 0.001 )
-shader_param/wave_frequency = Vector2( 12, 12 )
-shader_param/time_factor = Vector2( 1, 2 )
-shader_param/noise1 = SubResource( 5 )
-shader_param/noise2 = SubResource( 7 )
-shader_param/normalmap = SubResource( 9 )
-
-[sub_resource type="PlaneMesh" id=11]
-material = SubResource( 10 )
-size = Vector2( 200, 200 )
 
 [node name="GameBoard" type="Spatial"]
 script = ExtResource( 2 )
@@ -122,9 +77,6 @@ light_indirect_energy = 1.65
 light_bake_mode = 0
 shadow_enabled = true
 
-[node name="PlayerSpawnPoint" type="Spatial" parent="."]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -5 )
-
 [node name="Liminalum" parent="." instance=ExtResource( 11 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0 )
 
@@ -148,12 +100,6 @@ script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="MeshInstance" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0 )
-visible = false
-mesh = SubResource( 11 )
-material/0 = null
 
 [node name="BoxReceiver" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 6 )

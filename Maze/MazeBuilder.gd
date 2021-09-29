@@ -62,8 +62,8 @@ func GenerateMaze(settings = {"dimensions": Vector3(20,0,20), "difficulty": MEDI
 	print( "Seed: ", maze_seed)
 	#seed(maze_seed)
 	
-	access_points.entry = Vector3(0,0,0)
-	access_points.exit = Vector3(dimensions.x - 1,0,dimensions.z - 1)
+	access_points.entry = Vector3(1,0,0)
+	access_points.exit = Vector3(dimensions.x - 2,0,dimensions.z - 1)
 	
 	make_maze()
 
@@ -157,9 +157,11 @@ func erase_walls():
 
 func DestroyChildIfExists(node, child):
 	if node.has_node(child):
+		print("Destroying: ", child)
 		node.get_node(child).queue_free()
 
 func DestroyEdgeWallsOfTile(tile):
+	print("Destroying tile: ", tile)
 	var node = util_get_node_from_p(tile)
 	
 	#Remove east/west walls

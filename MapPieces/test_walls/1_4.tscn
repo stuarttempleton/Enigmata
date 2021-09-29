@@ -1,26 +1,15 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://MapPieces/test_walls/wall_material.tres" type="Material" id=2]
+[ext_resource path="res://MapPieces/test_walls/Wall_base.tscn" type="PackedScene" id=1]
+[ext_resource path="res://MapPieces/test_walls/Wall_corner.tscn" type="PackedScene" id=2]
 
-[node name="1_0" type="Spatial"]
+[node name="1_4" type="Spatial"]
 
-[node name="Wall_S" type="CSGBox" parent="."]
+[node name="Wall_S" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1.75 )
-use_collision = true
-width = 4.0
-depth = 0.5
-material = ExtResource( 2 )
 
-[node name="Wall_NW" type="CSGBox" parent="."]
+[node name="Wall_NW" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 1, -1.75 )
-use_collision = true
-width = 0.5
-depth = 0.5
-material = ExtResource( 2 )
 
-[node name="Wall_NE" type="CSGBox" parent="."]
+[node name="Wall_NE" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 1, -1.75 )
-use_collision = true
-width = 0.5
-depth = 0.5
-material = ExtResource( 2 )

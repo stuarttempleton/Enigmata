@@ -16,12 +16,12 @@ func _ready():
 		GameController.MODE.PLAYER_DESKTOP, GameController.MODE.PLAYER_VR:
 			FPC =  load(FirstPersonControllerPath).instance()
 			add_child(FPC)
-			FPC.transform.origin = $PlayerSpawnPoint.transform.origin
-			FPC.rotation = $PlayerSpawnPoint.rotation
+			FPC.transform.origin = $Liminalum.GetSpawnPoint()
+			FPC.rotation = $Liminalum.GetSpawnRotation()
 		GameController.MODE.VIEWER:
 			VIEWER = load(ViewerCameraRigPath).instance()
 			add_child(VIEWER)
-			VIEWER.transform.origin = $PlayerSpawnPoint.transform.origin
+			VIEWER.transform.origin = $Liminalum.GetSpawnPoint()
 	
 	GenerateMaze({
 				"dimensions": Vector3(5,0,5), 
@@ -34,14 +34,19 @@ func GenerateMaze(settings = {"dimensions": Vector3(11,0,11), "difficulty": $Maz
 	$Maze.connect("maze_progress", self, "LoadingProgress")
 	$Loading.visible = true
 	$Maze.GenerateMaze( settings )
+		
+	$Liminalum.transform.origin += $Maze.access_points["entry"] * $Maze/SceneMap.cell_size
+	$"Liminalum-ENDPOINT".transform.origin += $Maze.access_points["exit"] * $Maze/SceneMap.cell_size
 	
 	if VIEWER:
 		VIEWER.transform.origin = $Maze/SceneMap.to_global($Maze.GetMidPoint())
 		VIEWER.transform.origin += Vector3(0,settings.dimensions.z * 4,0) #pull back y to fit z in frame
 		VIEWER.MaxCameraZoom = settings.dimensions.z * 5
 		VIEWER.Zoom(VIEWER.MaxCameraZoom)
-	
-	$"Liminalum-ENDPOINT".transform.origin += $Maze.access_points["exit"] * $Maze/SceneMap.cell_size
+	elif FPC:
+		FPC.transform.origin = $Liminalum.GetSpawnPoint() #$PlayerSpawnPoint.transform.origin
+		FPC.rotation = $Liminalum.GetSpawnRotation()
+		
 	#center
 	#$Maze/SceneMap.to_global($Maze.GetMidPoint())
 	

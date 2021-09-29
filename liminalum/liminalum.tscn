@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://shaders/water.gdshader" type="Shader" id=1]
 [ext_resource path="res://MapPieces/test_walls/brick_floor.tres" type="Material" id=2]
+[ext_resource path="res://liminalum/liminalum.gd" type="Script" id=3]
 [ext_resource path="res://MapPieces/test_walls/wall_material.tres" type="Material" id=4]
 [ext_resource path="res://MapPieces/test_walls/plaster_top_material.tres" type="Material" id=5]
 [ext_resource path="res://MapPieces/test_walls/white_plaster_top_material.tres" type="Material" id=6]
@@ -49,6 +50,7 @@ size = Vector2( 3.75, 2.75 )
 extents = Vector3( 1, 1, 2 )
 
 [node name="Liminalum" type="Spatial"]
+script = ExtResource( 3 )
 
 [node name="Floor" type="CSGBox" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -1 )
@@ -134,14 +136,14 @@ depth = 1.0
 material = ExtResource( 4 )
 
 [node name="CSGBox20" type="CSGBox" parent="Walls"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 21.5, 0, 2 )
-width = 12.0
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18.75, 0, 2 )
+width = 6.51
 depth = 1.0
 material = ExtResource( 4 )
 
 [node name="CSGBox21" type="CSGBox" parent="Walls"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18.75, 0, -2 )
-width = 6.5
+width = 6.51
 depth = 1.0
 material = ExtResource( 4 )
 
@@ -252,3 +254,6 @@ shape = SubResource( 9 )
 [node name="CollisionShape2" type="CollisionShape" parent="StepRamp"]
 transform = Transform( -0.263772, 0.0952753, -8.74228e-08, 0.142913, 0.175848, 0, 2.30597e-08, -8.32923e-09, -1, 4.16927, -0.0707449, -1 )
 shape = SubResource( 9 )
+
+[node name="PlayerSpawnPoint" type="Spatial" parent="."]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4, 0, 0 )
