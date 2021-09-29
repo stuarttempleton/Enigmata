@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Items/gold_plaster_cube.tres" type="Material" id=1]
+[ext_resource path="res://Items/box.gd" type="Script" id=2]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.25, 0.25, 0.25 )
+
+[node name="Gold Box" type="Spatial"]
+
+[node name="RigidBody" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
+script = ExtResource( 2 )
+box_type = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="RigidBody"]
+shape = SubResource( 1 )
+
+[node name="CSGBox" type="CSGBox" parent="RigidBody"]
+width = 0.5
+height = 0.5
+depth = 0.5
+material = ExtResource( 1 )

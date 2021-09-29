@@ -1,29 +1,77 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Maze/Maze.tscn" type="PackedScene" id=1]
 [ext_resource path="res://GameBoard/GameBoard.gd" type="Script" id=2]
-[ext_resource path="res://MapPieces/test_walls/floor_material.tres" type="Material" id=3]
-[ext_resource path="res://MapPieces/test_walls/1_2.tscn" type="PackedScene" id=4]
-[ext_resource path="res://FPS_controller_3.3/FPS.tscn" type="PackedScene" id=5]
+[ext_resource path="res://shaders/water.gdshader" type="Shader" id=3]
+[ext_resource path="res://Boxes/BoxReceiver.tscn" type="PackedScene" id=4]
 [ext_resource path="res://GameBoard/FPS_Counter.gd" type="Script" id=6]
 [ext_resource path="res://Sky.tscn" type="PackedScene" id=7]
+[ext_resource path="res://liminalum/liminalum.tscn" type="PackedScene" id=11]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 1, 1, 1 )
 
-[sub_resource type="StyleBoxFlat" id=6]
+[sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0, 0, 0, 1 )
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=3]
+
+[sub_resource type="OpenSimplexNoise" id=4]
+
+[sub_resource type="NoiseTexture" id=5]
+width = 2048
+height = 2048
+seamless = true
+noise = SubResource( 4 )
+
+[sub_resource type="OpenSimplexNoise" id=6]
+
+[sub_resource type="NoiseTexture" id=7]
+width = 2048
+height = 2048
+seamless = true
+noise = SubResource( 6 )
+
+[sub_resource type="OpenSimplexNoise" id=8]
+
+[sub_resource type="NoiseTexture" id=9]
+width = 2048
+height = 2048
+seamless = true
+as_normalmap = true
+noise = SubResource( 8 )
+
+[sub_resource type="ShaderMaterial" id=10]
+shader = ExtResource( 3 )
+shader_param/speed = 0.001
+shader_param/color = Color( 0, 0.482353, 0.670588, 0.909804 )
+shader_param/edge_color = Color( 1, 1, 1, 1 )
+shader_param/edge_scale = 1.0
+shader_param/near = 2.0
+shader_param/far = 100.0
+shader_param/wave_strengh = Vector2( 0.001, 0.001 )
+shader_param/wave_frequency = Vector2( 12, 12 )
+shader_param/time_factor = Vector2( 1, 2 )
+shader_param/noise1 = SubResource( 5 )
+shader_param/noise2 = SubResource( 7 )
+shader_param/normalmap = SubResource( 9 )
+
+[sub_resource type="PlaneMesh" id=11]
+material = SubResource( 10 )
+size = Vector2( 200, 200 )
 
 [node name="GameBoard" type="Spatial"]
 script = ExtResource( 2 )
 
 [node name="Sky" parent="." instance=ExtResource( 7 )]
+hours = 11
+minutes = 1
+seconds = 2
+time_of_day_setup = 0.459062
 
 [node name="Loading" type="ColorRect" parent="."]
 visible = false
@@ -53,8 +101,8 @@ margin_top = 344.0
 margin_right = 640.0
 margin_bottom = 352.0
 custom_styles/fg = SubResource( 1 )
-custom_styles/bg = SubResource( 6 )
-custom_fonts/font = SubResource( 7 )
+custom_styles/bg = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 0 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 0 )
 max_value = 1.0
@@ -68,26 +116,23 @@ extents = Vector3( 195, 65, 184 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( -0.707107, 0.40558, -0.579228, 0, 0.819152, 0.573577, 0.707107, 0.40558, -0.579228, -18, 13, 6 )
+visible = false
 light_energy = 0.74
 light_indirect_energy = 1.65
 light_bake_mode = 0
 shadow_enabled = true
 
+[node name="PlayerSpawnPoint" type="Spatial" parent="."]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -5 )
+
+[node name="Liminalum" parent="." instance=ExtResource( 11 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0 )
+
+[node name="Liminalum-ENDPOINT" parent="." instance=ExtResource( 11 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 0, 32 )
+
 [node name="Maze" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -2 )
-
-[node name="Floor" type="CSGBox" parent="."]
-layers = 2
-use_collision = true
-width = 374.0
-depth = 366.0
-material = ExtResource( 3 )
-
-[node name="1_0" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 1, -12 )
-
-[node name="FPS" parent="." instance=ExtResource( 5 )]
-transform = Transform( 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 14, 1, -12 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 14 )
 
 [node name="FPS_Counter" type="Label" parent="."]
 visible = false
@@ -103,3 +148,13 @@ script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0 )
+visible = false
+mesh = SubResource( 11 )
+material/0 = null
+
+[node name="BoxReceiver" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 6 )
+AcceptsBox = 0

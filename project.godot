@@ -27,8 +27,14 @@ _global_script_class_icons={
 [application]
 
 config/name="Enigmata"
-run/main_scene="res://GameBoard/GameBoard.tscn"
+run/main_scene="res://TitleScene/Title.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Boxes="*res://Boxes/Boxes.tscn"
+GameController="*res://GameController/GameController.tscn"
+SceneChanger="*res://SceneChanger/SceneChanger.tscn"
 
 [editor_plugins]
 

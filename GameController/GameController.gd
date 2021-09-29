@@ -1,16 +1,53 @@
 extends Node
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+enum MODE { PLAYER_VR, PLAYER_DESKTOP, VIEWER }
+var mode = MODE.VIEWER
+var map_code = ""#"TESTMAZE"
+var main_seed = 0#map_code.hash()
+var default_code_length = 4
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+var score = 0
+var completion_score = 100
 
+func _init():
+	if main_seed == 0:
+		randomize()
+		SetCode(create_map_code())
+		
+	for arg in OS.get_cmdline_args():
+		print("Arg: ", arg)
+		var param = arg.split("=")
+		match param[0]:
+			"--mode":
+				match param[1]:
+					"desktop":
+						mode = MODE.PLAYER_DESKTOP
+					"vr":
+						mode = MODE.PLAYER_VR
+					"viewer":
+						mode = MODE.VIEWER
+					_:
+						mode = MODE.PLAYER_DESKTOP
+			"--seed":
+				main_seed = param[1].to_int()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func SetCode(_code):
+	map_code = _code
+	main_seed = hash(map_code.replace(" ", ""))
+
+func ChangeGameMode(_mode):
+	mode = _mode
+
+func create_map_code():
+	var characters = 'abcdefghjkmnopqrstuvwxyz'.to_upper()
+	var code: String
+	for i in range(default_code_length):
+		code += characters[randi()% len(characters)]
+	code += " " + String(1000 + randi()% 8999)
+	return code
+	
+func CheckWinState():
+	return completion_score == score
+

@@ -23,11 +23,15 @@ const EASY = 0.2
 const MEDIUM = 0.1
 const HARD = 0.0
 
+var access_points = {"entry":Vector3(0,0,0),"exit":Vector3(0,0,0)}
+
 signal maze_generated
 signal maze_progress
 var idle_sp = 20 #number of loops before yield
 var total_actions = 0
 var completed_actions = 0
+
+var RNG = RandomNumberGenerator.new()
 
 func _ready():
 	pass # Replace with function body.
@@ -46,14 +50,20 @@ func check_neighbors(cell, unvisited):
 	return list
 
 
-func GenerateMaze(_dimensions = Vector3(20,0,20), _seed = 0, _difficulty = MEDIUM):
+func GenerateMaze(settings = {"dimensions": Vector3(20,0,20), "difficulty": MEDIUM, "seed": GameController.main_seed}):
 	Map.visible = false
-	dimensions = _dimensions
-	remove_walls = _difficulty
+	dimensions = settings.dimensions
+	remove_walls = settings.difficulty
 	randomize()
-	maze_seed = _seed if _seed > 0 else randi()
+	maze_seed = settings.seed if settings.seed != 0 else randi()
+	RNG = RandomNumberGenerator.new()
+	RNG.seed = maze_seed
+	
 	print( "Seed: ", maze_seed)
-	seed(maze_seed)
+	#seed(maze_seed)
+	
+	access_points.entry = Vector3(0,0,0)
+	access_points.exit = Vector3(dimensions.x - 1,0,dimensions.z - 1)
 	
 	make_maze()
 
@@ -85,7 +95,7 @@ func make_maze():
 	while unvisited:
 		var neighbors = check_neighbors(current, unvisited)
 		if neighbors.size() > 0:
-			var next = neighbors[randi() % neighbors.size()]
+			var next = neighbors[RNG.randi() % neighbors.size()]
 			stack.append(current)
 			# remove walls from *both* cells
 			var dir = next - current
@@ -105,10 +115,6 @@ func make_maze():
 			yield(get_tree(), 'idle_frame')
 		else:
 			idle_ct += 1
-	
-	print("base maze generated")
-	print("Total actions: ", total_actions)
-	print("Completed actions: ", completed_actions)
 	erase_walls()
 
 
@@ -118,12 +124,12 @@ func erase_walls():
 	
 	# randomly remove a number of the map's walls
 	for i in range(int(dimensions.x * dimensions.z * remove_walls)):
-		var x = int(rand_range(1, dimensions.x - 1))
-		var y = int(rand_range(0, dimensions.y)) #1 here  will skip your exterior layers including floor
-		var z = int(rand_range(1, dimensions.z - 1))
+		var x = int(RNG.randf_range(1, dimensions.x - 1))
+		var y = int(RNG.randf_range(0, dimensions.y)) #1 here  will skip your exterior layers including floor
+		var z = int(RNG.randf_range(1, dimensions.z - 1))
 		var cell = Vector3(x, y, z)
 		# pick random neighbor
-		var neighbor = cell_walls.keys()[randi() % cell_walls.size()]
+		var neighbor = cell_walls.keys()[RNG.randi() % cell_walls.size()]
 		# if there's a wall between them, remove it
 		if Map.get_cell_item_id(cell) & cell_walls[neighbor]:
 			var walls = Map.get_cell_item_id(cell) - cell_walls[neighbor]
@@ -137,9 +143,149 @@ func erase_walls():
 			yield(get_tree(), 'idle_frame')
 		else:
 			idle_ct += 1
-		
-	print("wall manipulation applied")
-	print("maze generation complete")
-	emit_signal("maze_generated")
+	
+	$Floor.width = dimensions.x * $SceneMap.cell_size.x
+	$Floor.depth = dimensions.z * $SceneMap.cell_size.z
+	$Floor.transform.origin = GetMidPoint()
+	$Floor.transform.origin.y = -0.25
+	
+	DestroyEdgeWallsOfTile(access_points["entry"])
+	DestroyEdgeWallsOfTile(access_points["exit"])
+	
+	emit_signal("maze_generated", maze_seed)
 	Map.visible = true
 
+func DestroyChildIfExists(node, child):
+	if node.has_node(child):
+		node.get_node(child).queue_free()
+
+func DestroyEdgeWallsOfTile(tile):
+	var node = util_get_node_from_p(tile)
+	
+	#Remove east/west walls
+	if tile.x == 0 :
+		DestroyChildIfExists(node, "Wall_W")
+	elif tile.x == dimensions.x - 1 :
+		DestroyChildIfExists(node, "Wall_E")
+		
+	#Remove ceiling/floor tiles
+	if tile.y == 0 :
+		DestroyChildIfExists(node, "FLOOR")
+	elif tile.y == dimensions.y - 1 :
+		DestroyChildIfExists(node, "CEILING")
+		
+	#Remove north/south walls
+	if tile.z == 0 :
+		DestroyChildIfExists(node, "Wall_N")
+	elif tile.z == dimensions.z - 1 :
+		DestroyChildIfExists(node, "Wall_S")
+
+
+###################################
+#
+# TESTS
+#
+###################################
+
+func GameboardUtilTests():
+	TestPieceFromLocal(GetMidPoint())  
+	TestPieceFromLocal(Vector3(0,0,0))  
+	TestPieceFromPalette(Vector3(3,0,2))  
+	TestPieceFromWorld($SceneMap.to_global(GetMidPoint()))
+
+func TestPieceFromWorld(coord):
+	print("TESTING WORLD LOOK UP")
+	var Piece = util_get_node_from_w(coord)
+	print("Piece ID: ", Piece.transform.origin)
+	print("Piece Name: ", Piece.name)
+	
+	var Piece2 = util_get_node_from_w($SceneMap.to_global(Piece.transform.origin))
+	print("Piece ID: ", Piece2.transform.origin)
+	print("Piece Name: ", Piece2.name)
+	
+	if (Piece.transform.origin == Piece2.transform.origin):
+		print("***SUCCESS***")
+		return true
+	else:
+		print("***FAILURE***")
+		return false
+
+func TestPieceFromPalette(coord):
+	print("TESTING PALETTE LOOK UP")
+	var Piece = util_get_node_from_p(coord)
+	print("Piece ID: ", Piece.transform.origin)
+	print("Piece Name: ", Piece.name)
+	
+	var Piece2 = util_get_node_from_p(util_convert_l_to_p_coord(Piece.transform.origin))
+	print("Piece ID: ", Piece2.transform.origin)
+	print("Piece Name: ", Piece2.name)
+	
+	if (Piece.transform.origin == Piece2.transform.origin):
+		print("***SUCCESS***")
+		return true
+	else:
+		print("***FAILURE***")
+		return false
+
+
+func TestPieceFromLocal(coord):
+	print("TESTING LOCAL LOOK UP")
+	var Piece = util_get_node_from_l(coord)
+	print("Piece ID: ", Piece.transform.origin)
+	print("Piece Name: ", Piece.name)
+	
+	var Piece2 = util_get_node_from_l(Piece.transform.origin)
+	print("Piece ID: ", Piece2.transform.origin)
+	print("Piece Name: ", Piece2.name)
+	
+	if (Piece.transform.origin == Piece2.transform.origin):
+		print("***SUCCESS***")
+		return true
+	else:
+		print("***FAILURE***")
+		return false
+
+
+
+func util_get_random_node(rng = false):
+	if !rng:
+		rng = RandomNumberGenerator.new()
+		rng.seed = maze_seed
+	var item = $SceneMap.cell_map.values()[rng.randi() % $SceneMap.cell_map.values().size()]
+	return $SceneMap.get_node(item.path)
+
+func util_get_node_from_p(p_coordinate):
+	var item = $SceneMap.cell_map.get(p_coordinate)
+	return $SceneMap.get_node(item.path)
+
+func util_get_node_from_l(l_coordinate):
+	return util_get_node_from_p(util_convert_l_to_p_coord(l_coordinate))
+
+func util_get_node_from_w( w_coordinate ):
+	var p_coordinate = util_convert_w_to_p_coord(w_coordinate)
+	var item = util_get_node_from_p(p_coordinate)
+	return item
+
+
+
+
+func util_convert_p_to_w_coord( p_coordinate ):
+	var w_coordinate = p_coordinate * $SceneMap.cell_size
+	if $SceneMap.cell_center_x:
+		w_coordinate.x += $SceneMap.cell_size.x / 2;
+	if $SceneMap.cell_center_y:
+		w_coordinate.y += $SceneMap.cell_size.y / 2;
+	if $SceneMap.cell_center_z:
+		w_coordinate.z += $SceneMap.cell_size.z / 2;
+	return w_coordinate
+
+func util_convert_w_to_p_coord( w_coordinate ):
+	var p_coordinate = util_convert_l_to_p_coord($SceneMap.to_local(w_coordinate))
+	return p_coordinate
+
+func util_convert_l_to_p_coord(l_coordinate):
+	var p_coordinate = l_coordinate
+	p_coordinate.x = int(p_coordinate.x / $SceneMap.cell_size.x)
+	p_coordinate.y = int(p_coordinate.y / $SceneMap.cell_size.y)
+	p_coordinate.z = int(p_coordinate.z / $SceneMap.cell_size.z)
+	return p_coordinate

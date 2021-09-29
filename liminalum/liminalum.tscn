@@ -1,0 +1,254 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://shaders/water.gdshader" type="Shader" id=1]
+[ext_resource path="res://MapPieces/test_walls/brick_floor.tres" type="Material" id=2]
+[ext_resource path="res://MapPieces/test_walls/wall_material.tres" type="Material" id=4]
+[ext_resource path="res://MapPieces/test_walls/plaster_top_material.tres" type="Material" id=5]
+[ext_resource path="res://MapPieces/test_walls/white_plaster_top_material.tres" type="Material" id=6]
+[ext_resource path="res://MapPieces/test_walls/l_blue_plaster_top_material.tres" type="Material" id=7]
+
+[sub_resource type="OpenSimplexNoise" id=1]
+
+[sub_resource type="NoiseTexture" id=2]
+seamless = true
+noise = SubResource( 1 )
+
+[sub_resource type="OpenSimplexNoise" id=3]
+
+[sub_resource type="NoiseTexture" id=4]
+seamless = true
+noise = SubResource( 3 )
+
+[sub_resource type="OpenSimplexNoise" id=5]
+
+[sub_resource type="NoiseTexture" id=6]
+seamless = true
+as_normalmap = true
+noise = SubResource( 5 )
+
+[sub_resource type="ShaderMaterial" id=7]
+shader = ExtResource( 1 )
+shader_param/speed = 0.015
+shader_param/color = Color( 0.156863, 0.466667, 0.698039, 0.596078 )
+shader_param/edge_color = Color( 0.509804, 0.658824, 0.729412, 1 )
+shader_param/edge_scale = 0.3
+shader_param/near = 1.0
+shader_param/far = 200.0
+shader_param/wave_strengh = Vector2( 0.001, 0.001 )
+shader_param/wave_frequency = Vector2( 12, 12 )
+shader_param/time_factor = Vector2( 0.5, 1 )
+shader_param/noise1 = SubResource( 2 )
+shader_param/noise2 = SubResource( 4 )
+shader_param/normalmap = SubResource( 6 )
+
+[sub_resource type="PlaneMesh" id=8]
+material = SubResource( 7 )
+size = Vector2( 3.75, 2.75 )
+
+[sub_resource type="BoxShape" id=9]
+extents = Vector3( 1, 1, 2 )
+
+[node name="Liminalum" type="Spatial"]
+
+[node name="Floor" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -1 )
+use_collision = true
+width = 16.0
+height = 1.0
+depth = 12.0
+material = ExtResource( 2 )
+
+[node name="CSGBox" type="CSGBox" parent="Floor"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 0 )
+height = 1.0
+depth = 4.0
+material = ExtResource( 2 )
+
+[node name="CSGBox2" type="CSGBox" parent="Floor"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0.25, 0 )
+width = 4.0
+height = 1.0
+depth = 4.0
+material = ExtResource( 2 )
+
+[node name="Walls" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -1 )
+use_collision = true
+width = 1.0
+height = 1.0
+depth = 12.0
+material = ExtResource( 4 )
+
+[node name="CSGBox" type="CSGBox" parent="Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 6 )
+height = 4.0
+material = ExtResource( 4 )
+
+[node name="CSGBox2" type="CSGBox" parent="Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, -6 )
+height = 4.0
+material = ExtResource( 4 )
+
+[node name="CSGBox3" type="CSGBox" parent="Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 1, -6 )
+height = 4.0
+material = ExtResource( 4 )
+
+[node name="CSGBox4" type="CSGBox" parent="Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 1, 6 )
+height = 4.0
+material = ExtResource( 4 )
+
+[node name="CSGBox8" type="CSGBox" parent="Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 3, 6 )
+height = 1.0
+material = ExtResource( 5 )
+
+[node name="CSGBox9" type="CSGBox" parent="Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 3, -6 )
+height = 1.0
+material = ExtResource( 5 )
+
+[node name="CSGBox10" type="CSGBox" parent="Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 3, -6 )
+height = 1.0
+material = ExtResource( 5 )
+
+[node name="CSGBox11" type="CSGBox" parent="Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 3, 6 )
+height = 1.0
+material = ExtResource( 5 )
+
+[node name="CSGBox7" type="CSGBox" parent="Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 0 )
+width = 1.0
+height = 1.0
+depth = 10.0
+material = ExtResource( 4 )
+
+[node name="CSGBox5" type="CSGBox" parent="Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 6 )
+width = 14.0
+height = 1.0
+depth = 1.0
+material = ExtResource( 4 )
+
+[node name="CSGBox20" type="CSGBox" parent="Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 21.5, 0, 2 )
+width = 12.0
+depth = 1.0
+material = ExtResource( 4 )
+
+[node name="CSGBox21" type="CSGBox" parent="Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18.75, 0, -2 )
+width = 6.5
+depth = 1.0
+material = ExtResource( 4 )
+
+[node name="CSGBox6" type="CSGBox" parent="Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -6 )
+width = 14.0
+height = 1.0
+depth = 1.0
+material = ExtResource( 4 )
+
+[node name="CSGBox12" type="CSGBox" parent="Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 3.5, 0 )
+width = 1.0
+height = 0.5
+depth = 12.0
+material = ExtResource( 4 )
+
+[node name="CSGBox22" type="CSGBox" parent="Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 4, 0 )
+width = 1.0
+height = 0.5
+depth = 12.0
+material = ExtResource( 4 )
+
+[node name="CSGBox13" type="CSGBox" parent="Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 3.5, 0 )
+width = 1.0
+height = 0.5
+depth = 12.0
+material = ExtResource( 4 )
+
+[node name="CSGBox14" type="CSGBox" parent="Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.25, 4, 6 )
+width = 20.0
+height = 1.0
+depth = 0.5
+material = ExtResource( 5 )
+
+[node name="CSGBox15" type="CSGBox" parent="Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.25, 4, -6 )
+width = 20.0
+height = 1.0
+depth = 0.5
+material = ExtResource( 5 )
+
+[node name="CSGBox16" type="CSGBox" parent="Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.25, 4, 3 )
+width = 22.0
+height = 1.0
+depth = 0.5
+material = ExtResource( 5 )
+
+[node name="CSGBox17" type="CSGBox" parent="Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.25, 4, -3 )
+width = 22.0
+height = 1.0
+depth = 0.5
+material = ExtResource( 5 )
+
+[node name="CSGBox18" type="CSGBox" parent="Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.25, 4, 0 )
+width = 24.0
+height = 1.0
+depth = 0.5
+material = ExtResource( 5 )
+
+[node name="CSGBox19" type="CSGBox" parent="Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 0 )
+operation = 2
+width = 6.0
+depth = 4.0
+material = ExtResource( 4 )
+
+[node name="CenterPiece" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, -1 )
+use_collision = true
+width = 4.0
+height = 0.5
+depth = 3.0
+material = ExtResource( 6 )
+
+[node name="CSGBox" type="CSGBox" parent="CenterPiece"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
+operation = 2
+width = 3.75
+height = 1.0
+depth = 2.5
+material = ExtResource( 6 )
+
+[node name="CSGBox2" type="CSGBox" parent="CenterPiece"]
+width = 4.0
+height = 0.002
+depth = 3.0
+material = ExtResource( 7 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, -1 )
+mesh = SubResource( 8 )
+material/0 = null
+
+[node name="StepRamp" type="KinematicBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="StepRamp"]
+transform = Transform( 0.263772, -0.0952753, 0, 0.142913, 0.175848, 0, 0, 0, 1, -0.172159, -0.0707449, -1 )
+shape = SubResource( 9 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="StepRamp"]
+transform = Transform( -0.263772, 0.0952753, -8.74228e-08, 0.142913, 0.175848, 0, 2.30597e-08, -8.32923e-09, -1, 4.16927, -0.0707449, -1 )
+shape = SubResource( 9 )
