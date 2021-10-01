@@ -24,7 +24,7 @@ func _ready():
 			VIEWER.transform.origin = $Liminalum.GetSpawnPoint()
 	
 	GenerateMaze({
-				"dimensions": Vector3(5,0,5), 
+				"dimensions": Vector3(10,0,10), 
 				"difficulty": $Maze.MEDIUM, 
 				"seed": GameController.main_seed
 				})

@@ -6,7 +6,7 @@
 [ext_resource path="res://Textures/plaster/plaster01-2k/plaster01 roughness 2k.jpg" type="Texture" id=4]
 
 [resource]
-albedo_color = Color( 0.219608, 0.231373, 0.541176, 1 )
+albedo_color = Color( 0.235294, 0.341176, 0.666667, 1 )
 albedo_texture = ExtResource( 2 )
 metallic = 0.25
 roughness_texture = ExtResource( 4 )

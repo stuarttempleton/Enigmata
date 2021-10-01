@@ -1,12 +1,13 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://shaders/water.gdshader" type="Shader" id=1]
 [ext_resource path="res://MapPieces/test_walls/brick_floor.tres" type="Material" id=2]
 [ext_resource path="res://liminalum/liminalum.gd" type="Script" id=3]
-[ext_resource path="res://MapPieces/test_walls/wall_material.tres" type="Material" id=4]
-[ext_resource path="res://MapPieces/test_walls/plaster_top_material.tres" type="Material" id=5]
 [ext_resource path="res://MapPieces/test_walls/white_plaster_top_material.tres" type="Material" id=6]
 [ext_resource path="res://MapPieces/test_walls/l_blue_plaster_top_material.tres" type="Material" id=7]
+[ext_resource path="res://MapPieces/test_walls/pillar_large.tscn" type="PackedScene" id=8]
+[ext_resource path="res://MapPieces/test_walls/Wall_half.tscn" type="PackedScene" id=9]
+[ext_resource path="res://MapPieces/test_walls/rafter.tscn" type="PackedScene" id=10]
 
 [sub_resource type="OpenSimplexNoise" id=1]
 
@@ -52,171 +53,6 @@ extents = Vector3( 1, 1, 2 )
 [node name="Liminalum" type="Spatial"]
 script = ExtResource( 3 )
 
-[node name="Floor" type="CSGBox" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -1 )
-use_collision = true
-width = 16.0
-height = 1.0
-depth = 12.0
-material = ExtResource( 2 )
-
-[node name="CSGBox" type="CSGBox" parent="Floor"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 0 )
-height = 1.0
-depth = 4.0
-material = ExtResource( 2 )
-
-[node name="CSGBox2" type="CSGBox" parent="Floor"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0.25, 0 )
-width = 4.0
-height = 1.0
-depth = 4.0
-material = ExtResource( 2 )
-
-[node name="Walls" type="CSGBox" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -1 )
-use_collision = true
-width = 1.0
-height = 1.0
-depth = 12.0
-material = ExtResource( 4 )
-
-[node name="CSGBox" type="CSGBox" parent="Walls"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 6 )
-height = 4.0
-material = ExtResource( 4 )
-
-[node name="CSGBox2" type="CSGBox" parent="Walls"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, -6 )
-height = 4.0
-material = ExtResource( 4 )
-
-[node name="CSGBox3" type="CSGBox" parent="Walls"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 1, -6 )
-height = 4.0
-material = ExtResource( 4 )
-
-[node name="CSGBox4" type="CSGBox" parent="Walls"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 1, 6 )
-height = 4.0
-material = ExtResource( 4 )
-
-[node name="CSGBox8" type="CSGBox" parent="Walls"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 3, 6 )
-height = 1.0
-material = ExtResource( 5 )
-
-[node name="CSGBox9" type="CSGBox" parent="Walls"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 3, -6 )
-height = 1.0
-material = ExtResource( 5 )
-
-[node name="CSGBox10" type="CSGBox" parent="Walls"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 3, -6 )
-height = 1.0
-material = ExtResource( 5 )
-
-[node name="CSGBox11" type="CSGBox" parent="Walls"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 3, 6 )
-height = 1.0
-material = ExtResource( 5 )
-
-[node name="CSGBox7" type="CSGBox" parent="Walls"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 0 )
-width = 1.0
-height = 1.0
-depth = 10.0
-material = ExtResource( 4 )
-
-[node name="CSGBox5" type="CSGBox" parent="Walls"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 6 )
-width = 14.0
-height = 1.0
-depth = 1.0
-material = ExtResource( 4 )
-
-[node name="CSGBox20" type="CSGBox" parent="Walls"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18.75, 0, 2 )
-width = 6.51
-depth = 1.0
-material = ExtResource( 4 )
-
-[node name="CSGBox21" type="CSGBox" parent="Walls"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18.75, 0, -2 )
-width = 6.51
-depth = 1.0
-material = ExtResource( 4 )
-
-[node name="CSGBox6" type="CSGBox" parent="Walls"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -6 )
-width = 14.0
-height = 1.0
-depth = 1.0
-material = ExtResource( 4 )
-
-[node name="CSGBox12" type="CSGBox" parent="Walls"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 3.5, 0 )
-width = 1.0
-height = 0.5
-depth = 12.0
-material = ExtResource( 4 )
-
-[node name="CSGBox22" type="CSGBox" parent="Walls"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 4, 0 )
-width = 1.0
-height = 0.5
-depth = 12.0
-material = ExtResource( 4 )
-
-[node name="CSGBox13" type="CSGBox" parent="Walls"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 3.5, 0 )
-width = 1.0
-height = 0.5
-depth = 12.0
-material = ExtResource( 4 )
-
-[node name="CSGBox14" type="CSGBox" parent="Walls"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.25, 4, 6 )
-width = 20.0
-height = 1.0
-depth = 0.5
-material = ExtResource( 5 )
-
-[node name="CSGBox15" type="CSGBox" parent="Walls"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.25, 4, -6 )
-width = 20.0
-height = 1.0
-depth = 0.5
-material = ExtResource( 5 )
-
-[node name="CSGBox16" type="CSGBox" parent="Walls"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.25, 4, 3 )
-width = 22.0
-height = 1.0
-depth = 0.5
-material = ExtResource( 5 )
-
-[node name="CSGBox17" type="CSGBox" parent="Walls"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.25, 4, -3 )
-width = 22.0
-height = 1.0
-depth = 0.5
-material = ExtResource( 5 )
-
-[node name="CSGBox18" type="CSGBox" parent="Walls"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.25, 4, 0 )
-width = 24.0
-height = 1.0
-depth = 0.5
-material = ExtResource( 5 )
-
-[node name="CSGBox19" type="CSGBox" parent="Walls"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 0 )
-operation = 2
-width = 6.0
-depth = 4.0
-material = ExtResource( 4 )
-
 [node name="CenterPiece" type="CSGBox" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, -1 )
 use_collision = true
@@ -255,5 +91,141 @@ shape = SubResource( 9 )
 transform = Transform( -0.263772, 0.0952753, -8.74228e-08, 0.142913, 0.175848, 0, 2.30597e-08, -8.32923e-09, -1, 4.16927, -0.0707449, -1 )
 shape = SubResource( 9 )
 
+[node name="Floor2" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -1 )
+use_collision = true
+width = 16.0
+height = 1.0
+depth = 12.0
+material = ExtResource( 2 )
+
+[node name="CSGBox" type="CSGBox" parent="Floor2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 0 )
+height = 1.0
+depth = 4.0
+material = ExtResource( 2 )
+
+[node name="CSGBox2" type="CSGBox" parent="Floor2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0.25, 0 )
+width = 4.0
+height = 1.0
+depth = 4.0
+material = ExtResource( 2 )
+
+[node name="Walls2" type="Spatial" parent="."]
+
+[node name="Wall_half" parent="Walls2" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1, -7.25 )
+
+[node name="Wall_half2" parent="Walls2" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, -7.25 )
+
+[node name="Wall_half3" parent="Walls2" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, -7.25 )
+
+[node name="Wall_half4" parent="Walls2" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1, -7.25 )
+
+[node name="Wall_half14" parent="Walls2" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1, -3.25 )
+
+[node name="Wall_half15" parent="Walls2" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1, 1.25 )
+
+[node name="Wall_half16" parent="Walls2" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1, 1.25 )
+
+[node name="Wall_half17" parent="Walls2" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1, -3.25 )
+
+[node name="Wall_half7" parent="Walls2" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1, 5.25 )
+
+[node name="Wall_half8" parent="Walls2" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, 5.25 )
+
+[node name="Wall_half9" parent="Walls2" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 5.25 )
+
+[node name="Wall_half10" parent="Walls2" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1, 5.25 )
+
+[node name="Wall_half5" parent="Walls2" instance=ExtResource( 9 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.25, 1, -5.5 )
+
+[node name="Wall_half6" parent="Walls2" instance=ExtResource( 9 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.25, 1, 3.5 )
+
+[node name="Wall_half11" parent="Walls2" instance=ExtResource( 9 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.75, 1, -5 )
+
+[node name="Wall_half12" parent="Walls2" instance=ExtResource( 9 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.75, 1, 3 )
+
+[node name="Wall_half13" parent="Walls2" instance=ExtResource( 9 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.75, 1, -1 )
+
+[node name="Pillar_large" parent="Walls2" instance=ExtResource( 8 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.5, 1, 4 )
+
+[node name="Pillar_large2" parent="Walls2" instance=ExtResource( 8 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.5, 1, -6 )
+
+[node name="Pillar_large3" parent="Walls2" instance=ExtResource( 8 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7, 1, -6 )
+
+[node name="Pillar_large4" parent="Walls2" instance=ExtResource( 8 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7, 1, 4 )
+
+[node name="Pillar_large5" parent="Walls2" instance=ExtResource( 8 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 13.502, 1, 1 )
+
+[node name="Pillar_large6" parent="Walls2" instance=ExtResource( 8 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 13.502, 1, -3 )
+
+[node name="Ceiling" type="Spatial" parent="."]
+
+[node name="rafter" parent="Ceiling" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.75, -1 )
+
+[node name="rafter2" parent="Ceiling" instance=ExtResource( 10 )]
+transform = Transform( 0.8, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, -6.752 )
+
+[node name="rafter3" parent="Ceiling" instance=ExtResource( 10 )]
+transform = Transform( 0.8, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, 4.752 )
+
+[node name="rafter4" parent="Ceiling" instance=ExtResource( 10 )]
+transform = Transform( 0.9, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.75, 1.75 )
+
+[node name="rafter5" parent="Ceiling" instance=ExtResource( 10 )]
+transform = Transform( 0.9, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.75, -3.75 )
+
+[node name="Wall_half" parent="Ceiling" instance=ExtResource( 9 )]
+transform = Transform( -4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 7.5, 3.5, -4.992 )
+
+[node name="Wall_half2" parent="Ceiling" instance=ExtResource( 9 )]
+transform = Transform( -4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 7.5, 3.5, -1 )
+
+[node name="Wall_half3" parent="Ceiling" instance=ExtResource( 9 )]
+transform = Transform( -4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 7.5, 3.5, 2.992 )
+
+[node name="Wall_half4" parent="Ceiling" instance=ExtResource( 9 )]
+transform = Transform( -4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 0.5, 4.2, -4.992 )
+
+[node name="Wall_half5" parent="Ceiling" instance=ExtResource( 9 )]
+transform = Transform( -4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 0.5, 4.2, -1 )
+
+[node name="Wall_half6" parent="Ceiling" instance=ExtResource( 9 )]
+transform = Transform( -4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 0.5, 4.2, 2.992 )
+
+[node name="Wall_half7" parent="Ceiling" instance=ExtResource( 9 )]
+transform = Transform( -4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, -6, 3.5, -4.992 )
+
+[node name="Wall_half8" parent="Ceiling" instance=ExtResource( 9 )]
+transform = Transform( -4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, -6, 3.5, -1 )
+
+[node name="Wall_half9" parent="Ceiling" instance=ExtResource( 9 )]
+transform = Transform( -4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, -6, 3.5, 2.992 )
+
 [node name="PlayerSpawnPoint" type="Spatial" parent="."]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4, 0, 0 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4, 0, -1 )
