@@ -6,7 +6,7 @@ Solve the Enigmata mazes while finding cubes and placing them in the color-coded
 Enigmata is a game that features ProcGen mazes of varying degrees of complexity that the player can solve. Enigmata is inspired by escape rooms, hedge mazes, old issues of Games Magazine, and my childhood love of Highlights.
 
 # VR Couch Co-Op Multiplayer
-Enigmata uses an unusual form of assymetrical multiplayer. While one person walks through the maze, an unlimited number of observers and navigators can view a map of the maze, giving instruction and navigation in voice or chat. The games are not hosted or connected, so no network connectivity is required -- just the map code and a means to communicate with each other, like skype or discord or jitsi. 
+Enigmata uses an unusual form of asymmetrical multiplayer. While one person walks through the maze, an unlimited number of observers and navigators can view a map of the maze, giving instruction and navigation in voice or chat. The games are not hosted or connected, so no network connectivity is required -- just the map code and a means to communicate with each other, like skype or discord or jitsi. 
 
 # FAQ
 ### How does couch co-op work?
