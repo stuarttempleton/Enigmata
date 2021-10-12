@@ -6,9 +6,9 @@
 [ext_resource path="res://Textures/brick/bricks03-2k/bricks03 height 2k.jpg" type="Texture" id=4]
 
 [resource]
-albedo_color = Color( 0.556863, 0.619608, 0.643137, 1 )
+albedo_color = Color( 0.670588, 0.670588, 0.670588, 1 )
 albedo_texture = ExtResource( 3 )
-metallic = 0.5
+metallic = 0.08
 roughness_texture = ExtResource( 2 )
 normal_enabled = true
 normal_scale = 1.0

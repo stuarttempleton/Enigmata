@@ -8,13 +8,7 @@
 [resource]
 albedo_color = Color( 0.733333, 0.733333, 0.733333, 1 )
 albedo_texture = ExtResource( 2 )
-metallic = 0.25
 roughness_texture = ExtResource( 3 )
-emission_enabled = true
-emission = Color( 0, 0, 0, 1 )
-emission_energy = 1.0
-emission_operator = 0
-emission_on_uv2 = false
 normal_enabled = true
 normal_scale = 1.0
 normal_texture = ExtResource( 1 )

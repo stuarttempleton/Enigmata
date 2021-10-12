@@ -38,7 +38,11 @@ SceneChanger="*res://SceneChanger/SceneChanger.tscn"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/scene_map/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/godot-openvr/plugin.cfg", "res://addons/scene_map/plugin.cfg" )
+
+[gdnative]
+
+singletons=[ "res://addons/godot-openvr/godot_openvr.gdnlib" ]
 
 [input]
 
@@ -84,4 +88,5 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+quality/filters/msaa=2
 environment/default_environment="res://default_env.tres"

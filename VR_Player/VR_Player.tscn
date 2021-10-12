@@ -1,0 +1,102 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://addons/godot-openvr/OpenVRPose.gdns" type="Script" id=1]
+[ext_resource path="res://addons/godot-openvr/OpenVRAction.gdns" type="Script" id=2]
+[ext_resource path="res://addons/godot-openvr/OpenVRController.gdns" type="Script" id=3]
+[ext_resource path="res://VR_Player/Function_Locomotion.tscn" type="PackedScene" id=4]
+[ext_resource path="res://VR_Player/Function_Updated_Teleport.tscn" type="PackedScene" id=5]
+[ext_resource path="res://addons/godot-openvr/scenes/ovr_main.gd" type="Script" id=9]
+[ext_resource path="res://player/HandInteraction.tscn" type="PackedScene" id=11]
+[ext_resource path="res://addons/godot-openvr/scenes/ovr_right_hand.tscn" type="PackedScene" id=12]
+[ext_resource path="res://player/ButtonStates.tscn" type="PackedScene" id=13]
+[ext_resource path="res://addons/godot-openvr/scenes/ovr_render_model.tscn" type="PackedScene" id=14]
+[ext_resource path="res://addons/godot-xr-tools/functions/Function_Pickup.tscn" type="PackedScene" id=15]
+[ext_resource path="res://addons/godot-xr-tools/objects/Viewport_2D_in_3D.tscn" type="PackedScene" id=16]
+[ext_resource path="res://addons/godot-xr-tools/misc/VR_Common_Shader_Cache.tscn" type="PackedScene" id=18]
+[ext_resource path="res://addons/godot-openvr/scenes/ovr_shader_cache.tscn" type="PackedScene" id=19]
+[ext_resource path="res://addons/godot-openvr/scenes/ovr_controller.tscn" type="PackedScene" id=20]
+[ext_resource path="res://addons/godot-openvr/scenes/ovr_left_hand.tscn" type="PackedScene" id=21]
+[ext_resource path="res://player/Guardian.tscn" type="PackedScene" id=23]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_transparent = true
+flags_unshaded = true
+flags_no_depth_test = true
+albedo_color = Color( 1, 1, 1, 0.388235 )
+
+[sub_resource type="ArrayMesh" id=2]
+
+[node name="Player" type="ARVROrigin"]
+script = ExtResource( 9 )
+
+[node name="ARVRCamera" type="ARVRCamera" parent="."]
+
+[node name="vr_common_shader_cache" parent="ARVRCamera" instance=ExtResource( 18 )]
+
+[node name="ovr_shader_cache" parent="ARVRCamera" instance=ExtResource( 19 )]
+
+[node name="Left_Hand" parent="." instance=ExtResource( 20 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1.25, 0 )
+
+[node name="Function_Updated_Teleport" parent="Left_Hand" instance=ExtResource( 5 )]
+camera = NodePath("../../ARVRCamera")
+
+[node name="Function_Pickup" parent="Left_Hand" instance=ExtResource( 15 )]
+collision_layer = 0
+collision_mask = 4
+
+[node name="Right_Hand" type="ARVRController" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1.25, 0 )
+controller_id = 2
+script = ExtResource( 3 )
+button_actions = PoolStringArray( "/actions/godot/in/custom_boolean" )
+
+[node name="OVRRenderModel" parent="Right_Hand" instance=ExtResource( 14 )]
+
+[node name="Function_Locomotion" parent="Right_Hand" instance=ExtResource( 4 )]
+camera = NodePath("../../ARVRCamera")
+player_radius = 0.2
+max_speed = 500.0
+canFly = false
+
+[node name="Viewport2Din3D" parent="Right_Hand" instance=ExtResource( 16 )]
+transform = Transform( 0.707107, 2.98023e-08, -0.707107, 0.5, 0.707107, 0.5, 0.5, -0.707107, 0.5, 0.15, 0.1, 0 )
+screen_size = Vector2( 0.2, 0.2 )
+viewport_size = Vector2( 200, 200 )
+scene = ExtResource( 13 )
+collision_layer = 0
+
+[node name="Function_Pickup" parent="Right_Hand" instance=ExtResource( 15 )]
+collision_layer = 0
+collision_mask = 4
+
+[node name="Left_Hand_Pose" type="Spatial" parent="."]
+script = ExtResource( 1 )
+action = "/actions/godot/in/custom_pose"
+on_hand = 1
+
+[node name="Hand_Interaction" parent="Left_Hand_Pose" instance=ExtResource( 11 )]
+on_hand = 1
+
+[node name="Right_Hand_Pose" type="Spatial" parent="."]
+script = ExtResource( 1 )
+action = "/actions/godot/in/custom_pose"
+on_hand = 2
+
+[node name="Hand_Interaction" parent="Right_Hand_Pose" instance=ExtResource( 11 )]
+on_hand = 2
+
+[node name="Guardian" parent="." instance=ExtResource( 23 )]
+visible = false
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+
+[node name="Toggle" type="Spatial" parent="Guardian"]
+script = ExtResource( 2 )
+pressed_action = "/actions/godot/in/toggle_guardian"
+
+[node name="ovr_left_hand" parent="." instance=ExtResource( 21 )]
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -0.5, 1.25, 0 )
+
+[node name="ovr_right_hand" parent="." instance=ExtResource( 12 )]
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0.5, 1.25, 0 )

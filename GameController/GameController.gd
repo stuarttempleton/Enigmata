@@ -43,7 +43,7 @@ func ChangeGameMode(_mode):
 func create_map_code():
 	var characters = 'abcdefghjkmnopqrstuvwxyz'.to_upper()
 	var code: String
-	for i in range(default_code_length):
+	for _i in range(default_code_length):
 		code += characters[randi()% len(characters)]
 	code += " " + String(1000 + randi()% 8999)
 	return code

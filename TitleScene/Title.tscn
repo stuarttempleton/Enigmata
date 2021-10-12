@@ -6,7 +6,7 @@
 [ext_resource path="res://MapPieces/test_walls/1_1.tscn" type="PackedScene" id=4]
 [ext_resource path="res://MapPieces/test_walls/1_0.tscn" type="PackedScene" id=5]
 [ext_resource path="res://MapPieces/test_walls/1_5.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Sky.tscn" type="PackedScene" id=7]
+[ext_resource path="res://GameBoard/GameBoard_env.tscn" type="PackedScene" id=7]
 [ext_resource path="res://MapPieces/test_walls/brick_floor.tres" type="Material" id=8]
 [ext_resource path="res://TitleScene/button_hover_tip.gd" type="Script" id=9]
 [ext_resource path="res://TitleScene/Title.gd" type="Script" id=10]
@@ -31,7 +31,7 @@ font_data = SubResource( 3 )
 [node name="Title" type="Spatial"]
 script = ExtResource( 10 )
 
-[node name="Sky" parent="." instance=ExtResource( 7 )]
+[node name="GameBoard_env" parent="." instance=ExtResource( 7 )]
 
 [node name="Menu" type="Control" parent="."]
 anchor_right = 1.0
@@ -41,9 +41,9 @@ __meta__ = {
 }
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Menu"]
-margin_top = 128.0
+margin_top = 64.0
 margin_right = 1024.0
-margin_bottom = 228.0
+margin_bottom = 164.0
 custom_fonts/normal_font = SubResource( 2 )
 bbcode_enabled = true
 bbcode_text = "[center]ENIGMATA"
@@ -55,15 +55,15 @@ __meta__ = {
 
 [node name="VR" type="Button" parent="Menu"]
 margin_left = 416.0
-margin_top = 288.0
+margin_top = 208.0
 margin_right = 608.0
-margin_bottom = 320.0
+margin_bottom = 240.0
 custom_styles/hover = ExtResource( 1 )
 custom_styles/pressed = ExtResource( 1 )
 custom_styles/focus = ExtResource( 1 )
 custom_styles/normal = ExtResource( 2 )
 custom_fonts/font = ExtResource( 3 )
-text = "WALK"
+text = "VR"
 script = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -91,10 +91,9 @@ __meta__ = {
 }
 
 [node name="Desktop" type="Button" parent="Menu"]
-visible = false
-margin_left = 536.0
+margin_left = 416.0
 margin_top = 280.0
-margin_right = 728.0
+margin_right = 608.0
 margin_bottom = 312.0
 custom_styles/hover = ExtResource( 1 )
 custom_styles/pressed = ExtResource( 1 )
@@ -133,15 +132,15 @@ __meta__ = {
 
 [node name="Viewer" type="Button" parent="Menu"]
 margin_left = 416.0
-margin_top = 376.0
+margin_top = 432.0
 margin_right = 608.0
-margin_bottom = 408.0
+margin_bottom = 464.0
 custom_styles/hover = ExtResource( 1 )
 custom_styles/pressed = ExtResource( 1 )
 custom_styles/focus = ExtResource( 1 )
 custom_styles/normal = ExtResource( 2 )
 custom_fonts/font = ExtResource( 3 )
-text = "NAVIGATE"
+text = "MAP"
 script = ExtResource( 9 )
 
 [node name="TIP" type="ColorRect" parent="Menu/Viewer"]
@@ -232,6 +231,13 @@ transform = Transform( 0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -0.5, -1, -
 width = 14.0
 depth = 12.0
 material = ExtResource( 8 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 0.965926, -0.12941, 0.224144, 0, 0.866025, 0.5, -0.258819, -0.482963, 0.836516, 0, 3, 0 )
+shadow_enabled = true
+
+[node name="GIProbe" type="GIProbe" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5 )
 
 [connection signal="pressed" from="Menu/VR" to="." method="_on_VR_pressed"]
 [connection signal="pressed" from="Menu/Desktop" to="." method="_on_Desktop_pressed"]

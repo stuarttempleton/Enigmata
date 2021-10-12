@@ -1,33 +1,14 @@
 extends Spatial
 
 export var DoMazeTestsOnLoad = false
-export var FirstPersonControllerPath = "res://FirstPersonControllerRig/FPS.tscn"
-export var VRControllerPath = "res://FirstPersonControllerRig/FPS.tscn"
-export var ViewerCameraRigPath = "res://ViewerCameraRig/VIEWER.tscn"
-
-var FPC
-var VIEWER
 
 func _ready():
-	match GameController.mode:
-		GameController.MODE.PLAYER_VR:
-			print("VR not enabled, using Desktop instead")
-			continue
-		GameController.MODE.PLAYER_DESKTOP, GameController.MODE.PLAYER_VR:
-			FPC =  load(FirstPersonControllerPath).instance()
-			add_child(FPC)
-			FPC.transform.origin = $Liminalum.GetSpawnPoint()
-			FPC.rotation = $Liminalum.GetSpawnRotation()
-		GameController.MODE.VIEWER:
-			VIEWER = load(ViewerCameraRigPath).instance()
-			add_child(VIEWER)
-			VIEWER.transform.origin = $Liminalum.GetSpawnPoint()
-	
-	GenerateMaze({
-				"dimensions": Vector3(10,0,10), 
-				"difficulty": $Maze.MEDIUM, 
-				"seed": GameController.main_seed
-				})
+	pass
+
+func _process(delta):
+	if (Input.is_key_pressed(KEY_ESCAPE)):
+		get_tree().quit()
+
 
 func GenerateMaze(settings = {"dimensions": Vector3(11,0,11), "difficulty": $Maze.MEDIUM, "seed": GameController.main_seed}):
 	$Maze.connect("maze_generated", self, "ShushLoading")
@@ -37,24 +18,6 @@ func GenerateMaze(settings = {"dimensions": Vector3(11,0,11), "difficulty": $Maz
 		
 	$Liminalum.transform.origin += $Maze.access_points["entry"] * $Maze/SceneMap.cell_size
 	$"Liminalum-ENDPOINT".transform.origin += $Maze.access_points["exit"] * $Maze/SceneMap.cell_size
-	
-	if VIEWER:
-		VIEWER.transform.origin = $Maze/SceneMap.to_global($Maze.GetMidPoint())
-		VIEWER.transform.origin += Vector3(0,settings.dimensions.z * 4,0) #pull back y to fit z in frame
-		VIEWER.MaxCameraZoom = settings.dimensions.z * 5
-		VIEWER.Zoom(VIEWER.MaxCameraZoom)
-	elif FPC:
-		FPC.transform.origin = $Liminalum.GetSpawnPoint() #$PlayerSpawnPoint.transform.origin
-		FPC.rotation = $Liminalum.GetSpawnRotation()
-		
-	#center
-	#$Maze/SceneMap.to_global($Maze.GetMidPoint())
-	
-	#top left corner
-	#$Maze/SceneMap.to_global($Maze.util_get_node_from_p(Vector3(0,0,0)).transform.origin)
-
-	#start at random tile
-	#$Maze/SceneMap.to_global($Maze.util_get_random_node().transform.origin)
 
 
 func LoadingProgress(percent, message):
