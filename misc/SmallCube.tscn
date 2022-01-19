@@ -37,4 +37,5 @@ script = ExtResource( 2 )
 pressed_action = "/actions/godot/in/custom_boolean"
 analog_action = "/actions/godot/in/custom_analog"
 on_hand = 1
+
 [connection signal="pressed" from="Action" to="." method="_on_Action_pressed"]
