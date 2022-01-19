@@ -82,7 +82,6 @@ material/0 = null
 
 [node name="StepRamp" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0 )
-collision_layer = 3
 
 [node name="CollisionShape" type="CollisionShape" parent="StepRamp"]
 transform = Transform( 0.263772, -0.0952753, 0, 0.142913, 0.175848, 0, 0, 0, 1, -0.172159, -0.0707449, -1 )
@@ -95,7 +94,6 @@ shape = SubResource( 9 )
 [node name="Floor2" type="CSGBox" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -1 )
 use_collision = true
-collision_layer = 3
 width = 16.0
 height = 1.0
 depth = 12.0

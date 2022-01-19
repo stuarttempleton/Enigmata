@@ -10,6 +10,7 @@ extents = Vector3( 0.25, 0.25, 0.25 )
 
 [node name="RigidBody" type="RigidBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
+collision_layer = 3
 script = ExtResource( 2 )
 box_type = 2
 
