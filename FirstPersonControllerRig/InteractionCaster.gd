@@ -3,9 +3,10 @@ extends RayCast
 
 var lookingAt = null
 var holdingItem = null
+var UI = null
 
 func _ready():
-	pass # Replace with function body.
+	UI = get_node("../../../UI_Overlay/PickUpMsg")
 
 
 func _process(delta):
@@ -18,12 +19,13 @@ func _process(delta):
 		var obj = get_collider()
 		if obj != lookingAt:
 			lookingAt = obj
-			obj.Highlight()
+			UI.ShowHint()
 		#Test for interaction
 		if Input.is_action_just_pressed("grab_item"):
 			lookingAt.PickUp($HoldTarget)
+			UI.HideHint()
 			holdingItem = lookingAt
 	else:
 		if lookingAt != null:
-			lookingAt.Highlight(false)
+			UI.HideHint()
 			lookingAt = null
