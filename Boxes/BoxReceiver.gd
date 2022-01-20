@@ -3,6 +3,7 @@ extends Spatial
 export(Boxes.BOX_TYPE) var AcceptsBox = Boxes.BOX_TYPE.WHITE
 
 func _ready():
+	$CSGBox/CSGBox2.material = Boxes.BoxMaterials[AcceptsBox]
 	pass # Replace with function body.
 
 

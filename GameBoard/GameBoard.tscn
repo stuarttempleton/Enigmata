@@ -99,3 +99,7 @@ __meta__ = {
 [node name="BoxReceiver" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 6 )
 AcceptsBox = 0
+
+[node name="BoxReceiver2" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 3 )
+AcceptsBox = 1

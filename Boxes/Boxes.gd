@@ -23,13 +23,20 @@ class Box:
 		
 
 var Boxes
+var BoxMaterials
 
 func _ready():
 	Boxes = {
-	BOX_TYPE.GOLD: Box.new(load("res://Items/gold_box.tscn"), 1, 1, BOX_TYPE.GOLD),
-	BOX_TYPE.PURPLE: Box.new(load("res://Items/purple_box.tscn"), 1, 1, BOX_TYPE.PURPLE),
-	BOX_TYPE.RED: Box.new(load("res://Items/red_box.tscn"), 1, 1, BOX_TYPE.RED),
-	BOX_TYPE.WHITE: Box.new(load("res://Items/white_box.tscn"), 1, 1, BOX_TYPE.WHITE)}
+		BOX_TYPE.GOLD: Box.new(load("res://Items/gold_box.tscn"), 1, 1, BOX_TYPE.GOLD),
+		BOX_TYPE.PURPLE: Box.new(load("res://Items/purple_box.tscn"), 1, 1, BOX_TYPE.PURPLE),
+		BOX_TYPE.RED: Box.new(load("res://Items/red_box.tscn"), 1, 1, BOX_TYPE.RED),
+		BOX_TYPE.WHITE: Box.new(load("res://Items/white_box.tscn"), 1, 1, BOX_TYPE.WHITE)}
+	
+	BoxMaterials = {
+		BOX_TYPE.GOLD: load("res://Items/gold_plaster_cube.tres"),
+		BOX_TYPE.PURPLE: load("res://Items/purple_plaster_cube.tres"),
+		BOX_TYPE.RED: load("res://Items/red_plaster_cube.tres"),
+		BOX_TYPE.WHITE: load("res://Items/white_plaster_cube.tres")}
 
 func IsComplete(_type):
 	return Boxes[_type].IsComplete()
