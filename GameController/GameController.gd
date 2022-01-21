@@ -6,6 +6,7 @@ var mode = MODE.VIEWER
 var map_code = ""#"TESTMAZE"
 var main_seed = 0#map_code.hash()
 var default_code_length = 4
+var map_dimensions = Vector3(30,0,30)
 
 
 var score = 0
@@ -50,4 +51,5 @@ func create_map_code():
 	
 func CheckWinState():
 	return completion_score == score
+
 

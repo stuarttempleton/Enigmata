@@ -10,7 +10,7 @@ func _process(delta):
 func _ready():
 	$Player/Right_Hand/Viewport2Din3D.get_scene_instance().set_controller($Player/Right_Hand)
 	$GameBoard.GenerateMaze({
-				"dimensions": Vector3(10,0,10), 
+				"dimensions": GameController.map_dimensions, 
 				"difficulty": $GameBoard/Maze.MEDIUM, 
 				"seed": GameController.main_seed
 				})
