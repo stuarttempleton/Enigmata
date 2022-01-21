@@ -248,6 +248,16 @@ func TestPieceFromLocal(coord):
 		return false
 
 
+func util_get_random_nodes(qty, rng = false):
+	if !rng:
+		rng = RandomNumberGenerator.new()
+		rng.seed = maze_seed
+	var vals = $SceneMap.cell_map.values().duplicate(true)
+	var retVals = []
+	vals.shuffle()
+	for i in qty:
+		retVals.append($SceneMap.get_node(vals[i].path))
+	return retVals
 
 func util_get_random_node(rng = false):
 	if !rng:

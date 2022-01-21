@@ -1,9 +1,8 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Maze/Maze.tscn" type="PackedScene" id=1]
 [ext_resource path="res://GameBoard/GameBoard.gd" type="Script" id=2]
 [ext_resource path="res://GameBoard/GameBoard_env.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Boxes/BoxReceiver.tscn" type="PackedScene" id=4]
 [ext_resource path="res://GameBoard/FPS_Counter.gd" type="Script" id=6]
 [ext_resource path="res://liminalum/liminalum.tscn" type="PackedScene" id=11]
 
@@ -95,11 +94,3 @@ script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="BoxReceiver" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 6 )
-AcceptsBox = 0
-
-[node name="BoxReceiver2" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 3 )
-AcceptsBox = 1

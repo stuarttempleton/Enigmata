@@ -53,20 +53,21 @@ func PlaceBoxes(_maze):
 	var rng = RandomNumberGenerator.new()
 	rng.seed = GameController.main_seed
 	var maze = _maze
+	var qty_nodes = 0
+	for type in Boxes.keys():
+		if Boxes[type].qty > 0:
+			qty_nodes += Boxes[type].qty + 1 #and one for the receiver.
+
+	var nodes = maze.util_get_random_nodes(qty_nodes, rng)
 	
-	#rand placement until I have a better strategy...
 	GameController.completion_score = 0
 	for type in Boxes.keys():
 		GameController.completion_score += Boxes[type].qty * Boxes[type].value
 		for i in Boxes[type].qty:
 			var b = Boxes[type].node.instance()
 			add_child(b)
-			b.transform.origin = maze.get_node("SceneMap").to_global(maze.util_get_random_node(rng).transform.origin)
+			b.transform.origin = maze.get_node("SceneMap").to_global(nodes.pop_back().transform.origin)
 			b.transform.origin += Vector3(0,5,0)
-	PlaceReceptacles(maze,rng)
-
-func PlaceReceptacles(_maze, rng):
-	var maze = _maze
 	
 	for type in Boxes.keys():
 		if Boxes[type].qty > 0:
@@ -74,5 +75,5 @@ func PlaceReceptacles(_maze, rng):
 			add_child(br)
 			br.SetBoxType(type)
 			
-			br.transform.origin = maze.get_node("SceneMap").to_global(maze.util_get_random_node(rng).transform.origin)
+			br.transform.origin = maze.get_node("SceneMap").to_global(nodes.pop_back().transform.origin)
 			br.transform.origin += Vector3(0,0,0)
