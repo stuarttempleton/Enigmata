@@ -24,6 +24,7 @@ class Box:
 
 var Boxes
 var BoxMaterials
+var BoxReceptacle
 
 func _ready():
 	Boxes = {
@@ -37,6 +38,8 @@ func _ready():
 		BOX_TYPE.PURPLE: load("res://Items/purple_plaster_cube.tres"),
 		BOX_TYPE.RED: load("res://Items/red_plaster_cube.tres"),
 		BOX_TYPE.WHITE: load("res://Items/white_plaster_cube.tres")}
+		
+	BoxReceptacle = load("res://Boxes/BoxReceiver.tscn")
 
 func IsComplete(_type):
 	return Boxes[_type].IsComplete()
@@ -60,3 +63,16 @@ func PlaceBoxes(_maze):
 			add_child(b)
 			b.transform.origin = maze.get_node("SceneMap").to_global(maze.util_get_random_node(rng).transform.origin)
 			b.transform.origin += Vector3(0,5,0)
+	PlaceReceptacles(maze,rng)
+
+func PlaceReceptacles(_maze, rng):
+	var maze = _maze
+	
+	for type in Boxes.keys():
+		if Boxes[type].qty > 0:
+			var br = BoxReceptacle.instance()
+			add_child(br)
+			br.SetBoxType(type)
+			
+			br.transform.origin = maze.get_node("SceneMap").to_global(maze.util_get_random_node(rng).transform.origin)
+			br.transform.origin += Vector3(0,0,0)

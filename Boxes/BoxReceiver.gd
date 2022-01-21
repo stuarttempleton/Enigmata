@@ -3,13 +3,12 @@ extends Spatial
 export(Boxes.BOX_TYPE) var AcceptsBox = Boxes.BOX_TYPE.WHITE
 
 func _ready():
+	SetBoxType(AcceptsBox)
+
+
+func SetBoxType(_type):
+	AcceptsBox = _type
 	$CSGBox/CSGBox2.material = Boxes.BoxMaterials[AcceptsBox]
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
 
 
 func _on_Area_body_entered(body):
