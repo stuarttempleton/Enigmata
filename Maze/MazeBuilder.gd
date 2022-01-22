@@ -60,7 +60,6 @@ func GenerateMaze(settings = {"dimensions": Vector3(20,0,20), "difficulty": MEDI
 	RNG.seed = maze_seed
 	
 	print( "Seed: ", maze_seed)
-	#seed(maze_seed)
 	
 	access_points.entry = Vector3(1,0,0)
 	access_points.exit = Vector3(dimensions.x - 2,0,dimensions.z - 1)
@@ -247,23 +246,25 @@ func TestPieceFromLocal(coord):
 		print("***FAILURE***")
 		return false
 
+func shuffleList(list):
+	var shuffledList = [] 
+	var indexList = range(list.size())
+	for i in range(list.size()):
+		var x = RNG.randi()%indexList.size()
+		shuffledList.append(list[indexList[x]])
+		indexList.remove(x)
+	return shuffledList
 
-func util_get_random_nodes(qty, rng = false):
-	if !rng:
-		rng = RandomNumberGenerator.new()
-		rng.seed = maze_seed
+func util_get_random_nodes(qty):
 	var vals = $SceneMap.cell_map.values().duplicate(true)
 	var retVals = []
-	vals.shuffle()
+	vals = shuffleList(vals)
 	for i in qty:
 		retVals.append($SceneMap.get_node(vals[i].path))
 	return retVals
 
-func util_get_random_node(rng = false):
-	if !rng:
-		rng = RandomNumberGenerator.new()
-		rng.seed = maze_seed
-	var item = $SceneMap.cell_map.values()[rng.randi() % $SceneMap.cell_map.values().size()]
+func util_get_random_node():
+	var item = $SceneMap.cell_map.values()[RNG.randi() % $SceneMap.cell_map.values().size()]
 	return $SceneMap.get_node(item.path)
 
 func util_get_node_from_p(p_coordinate):
@@ -277,9 +278,6 @@ func util_get_node_from_w( w_coordinate ):
 	var p_coordinate = util_convert_w_to_p_coord(w_coordinate)
 	var item = util_get_node_from_p(p_coordinate)
 	return item
-
-
-
 
 func util_convert_p_to_w_coord( p_coordinate ):
 	var w_coordinate = p_coordinate * $SceneMap.cell_size
