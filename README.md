@@ -22,7 +22,7 @@ Yep. Every single person in your twitch chat can use your map code. There's no i
 To use a map code, enter the map code in the text box on the title screen and then click "NAVIGATE". A duplicate of the maze will be generated and you'll have a birds eye view of the maze. Now, you just have to talk to the person walking the maze to figure out where they are!
 
 ### Is it cross platform?
-Yes! There is no interconnectivity for the game modes, so you can play it on whatever you like, with whoever you like. Right now, I am only making builds for Windows, Linux, and macOS.
+Yes! There is no inter-connectivity for the game modes, so you can play it on whatever you like, with whoever you like. Right now, I am only making builds for Windows and Linux. SteamVR is no longer supporting macOS.
 
 # Install
 Enigmata is not yet ready for that kind of thing, but if you're feeling frosty, you can build it from source by cloning or downloading this git repository. You're absolutely welcome to do so.
