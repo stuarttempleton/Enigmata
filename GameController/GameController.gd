@@ -50,6 +50,6 @@ func create_map_code():
 	return code
 	
 func CheckWinState():
-	return completion_score == score
+	return score >= completion_score
 
 
