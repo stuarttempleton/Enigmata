@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://UI/PickUpMsg.gd" type="Script" id=1]
 [ext_resource path="res://UI/MapCode_UI.gd" type="Script" id=2]
 [ext_resource path="res://UI/Box Info.gd" type="Script" id=3]
 [ext_resource path="res://UI/UI_Overlay.gd" type="Script" id=4]
+[ext_resource path="res://UI/Box_UI.tscn" type="PackedScene" id=5]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://fonts/Montserrat-Regular.ttf"
@@ -45,53 +46,44 @@ __meta__ = {
 }
 
 [node name="World Info" type="ColorRect" parent="."]
-margin_left = 24.0
-margin_top = 568.0
-margin_right = 216.0
-margin_bottom = 584.0
+margin_left = 32.0
+margin_top = 560.0
+margin_right = 224.0
+margin_bottom = 576.0
 color = Color( 0, 0, 0, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Box Info" type="VBoxContainer" parent="World Info"]
-margin_top = -48.0
-margin_right = 40.0
+margin_left = 2.0
+margin_top = -24.0
+margin_right = 119.0
 margin_bottom = -8.0
 grow_vertical = 0
+size_flags_vertical = 2
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Gold" type="Label" parent="World Info/Box Info"]
-margin_right = 117.0
-margin_bottom = 14.0
-text = "Gold  Boxes: 0/4"
+[node name="Box_UI" parent="World Info/Box Info" instance=ExtResource( 5 )]
 
-[node name="Purple" type="Label" parent="World Info/Box Info"]
-margin_top = 18.0
-margin_right = 117.0
-margin_bottom = 32.0
-text = "Purple  Boxes: 0/4"
-
-[node name="Red" type="Label" parent="World Info/Box Info"]
-margin_top = 36.0
-margin_right = 117.0
-margin_bottom = 50.0
-text = "Red  Boxes: 0/4"
-
-[node name="White" type="Label" parent="World Info/Box Info"]
-margin_top = 54.0
-margin_right = 117.0
-margin_bottom = 68.0
-text = "White Boxes: 0/4"
-
-[node name="MapCode" type="Label" parent="World Info"]
+[node name="ColorRect" type="ColorRect" parent="World Info"]
 margin_right = 160.0
-margin_bottom = 16.0
-text = "Map Code: ABCD 1234"
-valign = 1
+margin_bottom = 24.0
+color = Color( 0, 0.266667, 0.607843, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MapCode" type="Label" parent="World Info/ColorRect"]
+margin_top = 4.0
+margin_right = 160.0
+margin_bottom = 20.0
+text = "Map Code: ABCD 0000"
+align = 1
+valign = 2
 uppercase = true
 script = ExtResource( 2 )
 __meta__ = {
