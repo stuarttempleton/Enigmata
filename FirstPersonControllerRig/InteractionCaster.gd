@@ -6,7 +6,7 @@ var holdingItem = null
 var UI = null
 
 func _ready():
-	UI = get_node("../../../UI_Overlay/PickUpMsg")
+	UI = get_node("../../../UI_Overlay/UI_Bundle/PickUpMsg")
 
 
 func _process(delta):

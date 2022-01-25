@@ -13,7 +13,9 @@ font_path = "res://fonts/Montserrat-Regular.ttf"
 size = 12
 font_data = SubResource( 1 )
 
-[node name="UI_Overlay" type="Control"]
+[node name="UI_Overlay" type="CanvasLayer"]
+
+[node name="UI_Bundle" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 4 )
@@ -21,7 +23,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PickUpMsg" type="ColorRect" parent="."]
+[node name="PickUpMsg" type="ColorRect" parent="UI_Bundle"]
 visible = false
 margin_left = 424.0
 margin_top = 432.0
@@ -33,7 +35,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="PickUpMsg"]
+[node name="Label" type="Label" parent="UI_Bundle/PickUpMsg"]
 margin_top = 8.0
 margin_right = 184.0
 margin_bottom = 24.0
@@ -45,31 +47,28 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="World Info" type="ColorRect" parent="."]
-margin_left = 32.0
-margin_top = 560.0
-margin_right = 224.0
-margin_bottom = 576.0
+[node name="World Info" type="ColorRect" parent="UI_Bundle"]
+margin_right = 192.0
+margin_bottom = 16.0
 color = Color( 0, 0, 0, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Box Info" type="VBoxContainer" parent="World Info"]
-margin_left = 2.0
-margin_top = -24.0
-margin_right = 119.0
-margin_bottom = -8.0
-grow_vertical = 0
+[node name="Box Info" type="VBoxContainer" parent="UI_Bundle/World Info"]
+margin_left = 8.0
+margin_top = 32.0
+margin_right = 125.0
+margin_bottom = 48.0
 size_flags_vertical = 2
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Box_UI" parent="World Info/Box Info" instance=ExtResource( 5 )]
+[node name="Box_UI" parent="UI_Bundle/World Info/Box Info" instance=ExtResource( 5 )]
 
-[node name="ColorRect" type="ColorRect" parent="World Info"]
+[node name="ColorRect" type="ColorRect" parent="UI_Bundle/World Info"]
 margin_right = 160.0
 margin_bottom = 24.0
 color = Color( 0, 0.266667, 0.607843, 1 )
@@ -77,7 +76,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MapCode" type="Label" parent="World Info/ColorRect"]
+[node name="MapCode" type="Label" parent="UI_Bundle/World Info/ColorRect"]
 margin_top = 4.0
 margin_right = 160.0
 margin_bottom = 20.0

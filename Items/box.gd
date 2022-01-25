@@ -19,7 +19,6 @@ func Highlight(doHighlight = true):
 		#save original material
 		#set highlight material
 		print("Looking at ", get_parent().name)
-		pass
 	else:
 		#set original material
 		pass

@@ -118,7 +118,7 @@ func make_maze():
 
 
 func erase_walls():
-	print("Erasing walls...")
+	print("Modifying difficulty...")
 	var idle_ct = 1
 	
 	# randomly remove a number of the map's walls
@@ -156,11 +156,9 @@ func erase_walls():
 
 func DestroyChildIfExists(node, child):
 	if node.has_node(child):
-		print("Destroying: ", child)
 		node.get_node(child).queue_free()
 
 func DestroyEdgeWallsOfTile(tile):
-	print("Destroying tile: ", tile)
 	var node = util_get_node_from_p(tile)
 	
 	#Remove east/west walls

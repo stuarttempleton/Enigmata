@@ -13,7 +13,6 @@ func _process(delta):
 	if Enabled == true && GameController.score != scoreCache:
 		scoreCache = GameController.score
 		UpdateBoxUI()
-		print("Updating score UI")
 
 func SetEnabled(_enabled):
 	Enabled = _enabled

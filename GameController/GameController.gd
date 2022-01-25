@@ -33,6 +33,8 @@ func _init():
 						mode = MODE.PLAYER_DESKTOP
 			"--seed":
 				main_seed = param[1].to_int()
+			"--code":
+				SetCode(param[1])
 
 func SetCode(_code):
 	map_code = _code

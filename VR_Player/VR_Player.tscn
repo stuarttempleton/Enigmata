@@ -5,10 +5,10 @@
 [ext_resource path="res://addons/godot-openvr/OpenVRController.gdns" type="Script" id=3]
 [ext_resource path="res://VR_Player/Function_Locomotion.tscn" type="PackedScene" id=4]
 [ext_resource path="res://VR_Player/Function_Updated_Teleport.tscn" type="PackedScene" id=5]
+[ext_resource path="res://UI/UI_Overlay.tscn" type="PackedScene" id=6]
 [ext_resource path="res://addons/godot-openvr/scenes/ovr_main.gd" type="Script" id=9]
 [ext_resource path="res://player/HandInteraction.tscn" type="PackedScene" id=11]
 [ext_resource path="res://addons/godot-openvr/scenes/ovr_right_hand.tscn" type="PackedScene" id=12]
-[ext_resource path="res://player/ButtonStates.tscn" type="PackedScene" id=13]
 [ext_resource path="res://addons/godot-openvr/scenes/ovr_render_model.tscn" type="PackedScene" id=14]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Pickup.tscn" type="PackedScene" id=15]
 [ext_resource path="res://addons/godot-xr-tools/objects/Viewport_2D_in_3D.tscn" type="PackedScene" id=16]
@@ -63,7 +63,7 @@ canFly = false
 transform = Transform( 0.707107, 2.98023e-08, -0.707107, 0.5, 0.707107, 0.5, 0.5, -0.707107, 0.5, 0.15, 0.1, 0 )
 screen_size = Vector2( 0.2, 0.2 )
 viewport_size = Vector2( 200, 200 )
-scene = ExtResource( 13 )
+scene = ExtResource( 6 )
 collision_layer = 0
 
 [node name="Function_Pickup" parent="Right_Hand" instance=ExtResource( 15 )]

@@ -19,21 +19,18 @@ func HandleLoad():
 	SceneChanger.LoadScene(LoadScene)
 
 func _on_VR_pressed():
-	print("VR Selected")
 	GameController.mode = GameController.MODE.PLAYER_VR
 	LoadScene = VRScene
 	HandleLoad()
 
 
 func _on_Desktop_pressed():
-	print("Desktop Selected")
 	GameController.mode = GameController.MODE.PLAYER_DESKTOP
 	LoadScene = FPSScene
 	HandleLoad()
 
 
 func _on_Viewer_pressed():
-	print("Navigator Selected")
 	GameController.mode = GameController.MODE.VIEWER
 	LoadScene = MapScene
 	HandleLoad()

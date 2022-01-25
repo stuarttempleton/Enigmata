@@ -17,7 +17,6 @@ func _on_Area_body_entered(body):
 		body.TurnIn(AcceptsBox)
 	else:
 		print("No Method: ", body.name)
-	pass # Replace with function body.
 
 
 func _on_Area_body_exited(body):
