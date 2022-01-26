@@ -29,7 +29,7 @@ Enigmata is not yet ready for that kind of thing, but if you're feeling frosty, 
 
 
 # Building and Tools
-Enigmata is created in Godot 3.3.4. [Godot](https://godotengine.org/) is a FOSS game engine and you can get it from itch.io, steam, or their website. 
+Enigmata is created in Godot 3.4.2. [Godot](https://godotengine.org/) is a FOSS game engine and you can get it from itch.io, steam, or their website. 
 
 If you're building for Windows, you might need to follow the instructions for installing [rcedit-x64](https://docs.godotengine.org/en/stable/getting_started/workflow/export/changing_application_icon_for_windows.html) to get the build application icons to work properly. That isn't required though.
 
