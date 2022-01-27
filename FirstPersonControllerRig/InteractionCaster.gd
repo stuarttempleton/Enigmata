@@ -22,7 +22,7 @@ func _process(delta):
 			UI.ShowHint()
 		#Test for interaction
 		if Input.is_action_just_pressed("grab_item"):
-			lookingAt.PickUp($HoldTarget)
+			lookingAt.PickUp($HoldTarget, true)
 			UI.HideHint()
 			holdingItem = lookingAt
 	else:

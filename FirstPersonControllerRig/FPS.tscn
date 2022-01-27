@@ -34,7 +34,7 @@ debug_shape_thickness = 1.0
 script = ExtResource( 2 )
 
 [node name="HoldTarget" type="Spatial" parent="Head/InteractionCaster"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.5 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.528526, -0.407304, -1.25 )
 
 [node name="Camera" type="Camera" parent="Head"]
 fov = 90.0

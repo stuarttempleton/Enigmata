@@ -8,6 +8,9 @@ onready var original_collision_mask = collision_mask
 onready var original_collision_layer = collision_layer
 var picked_up_by
 
+func _ready():
+	add_to_group("Items")
+
 func TurnIn( ReceiverType ):
 	if !expired && ReceiverType == box_type:
 		print("Can Turn In: ", get_parent().name)
@@ -23,7 +26,7 @@ func Highlight(doHighlight = true):
 		#set original material
 		pass
 
-func PickUp(new_parent):
+func PickUp(new_parent, move_to_parent = false):
 	if picked_up_by == new_parent:
 		return
 	if picked_up_by:
@@ -38,13 +41,15 @@ func PickUp(new_parent):
 	collision_layer = 0
 	collision_mask = 0
 	
-	#parent to some kind of target?
+	#parent to target?
 	#we are operating one node deep
 	var transform_stash = get_parent().global_transform
 	original_parent.remove_child(get_parent())
 	picked_up_by.add_child(get_parent())
-	#set position to target?
+	
 	get_parent().global_transform = transform_stash
+	if move_to_parent:
+		global_transform.origin = picked_up_by.global_transform.origin
 
 
 func LetGo():

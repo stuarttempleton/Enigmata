@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://addons/godot-openvr/OpenVRPose.gdns" type="Script" id=1]
 [ext_resource path="res://addons/godot-openvr/OpenVRAction.gdns" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://VR_Player/Function_Locomotion.tscn" type="PackedScene" id=4]
 [ext_resource path="res://VR_Player/Function_Updated_Teleport.tscn" type="PackedScene" id=5]
 [ext_resource path="res://UI/UI_Overlay.tscn" type="PackedScene" id=6]
+[ext_resource path="res://VR_Player/Function_Updated_Pickup.tscn" type="PackedScene" id=7]
 [ext_resource path="res://addons/godot-openvr/scenes/ovr_main.gd" type="Script" id=9]
 [ext_resource path="res://player/HandInteraction.tscn" type="PackedScene" id=11]
 [ext_resource path="res://addons/godot-openvr/scenes/ovr_right_hand.tscn" type="PackedScene" id=12]
@@ -41,9 +42,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1.25, 0 )
 [node name="Function_Updated_Teleport" parent="Left_Hand" instance=ExtResource( 5 )]
 camera = NodePath("../../ARVRCamera")
 
-[node name="Function_Pickup" parent="Left_Hand" instance=ExtResource( 15 )]
-collision_layer = 0
-collision_mask = 4
+[node name="Function_Updated_Pickup" parent="Left_Hand" instance=ExtResource( 7 )]
 
 [node name="Right_Hand" type="ARVRController" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1.25, 0 )

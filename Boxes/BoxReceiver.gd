@@ -3,6 +3,7 @@ extends Spatial
 export(Boxes.BOX_TYPE) var AcceptsBox = Boxes.BOX_TYPE.WHITE
 
 func _ready():
+	add_to_group("Receivers")
 	SetBoxType(AcceptsBox)
 
 

@@ -71,7 +71,7 @@ __meta__ = {
 [node name="ColorRect" type="ColorRect" parent="UI_Bundle/World Info"]
 margin_right = 160.0
 margin_bottom = 24.0
-color = Color( 0.713726, 0, 0.635294, 1 )
+color = Color( 1, 0.678431, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
