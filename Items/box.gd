@@ -52,7 +52,7 @@ func PickUp(new_parent, move_to_parent = false):
 		global_transform.origin = picked_up_by.global_transform.origin
 
 
-func LetGo():
+func LetGo(starting_linear_velocity = Vector3(0.0, 0.0, 0.0)):
 	if picked_up_by:
 		print("Dropping ", get_parent().name)
 		#un-parent
@@ -68,5 +68,7 @@ func LetGo():
 		mode = RigidBody.MODE_RIGID
 		collision_mask = original_collision_mask
 		collision_layer = original_collision_layer
-	
+		
+		#throwable
+		linear_velocity = starting_linear_velocity
 
