@@ -6,17 +6,15 @@
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.25, 0.25, 0.25 )
 
-[node name="White Box" type="Spatial"]
-
-[node name="RigidBody" type="RigidBody" parent="."]
+[node name="White Box" type="RigidBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
 collision_layer = 3
 script = ExtResource( 2 )
 
-[node name="CollisionShape" type="CollisionShape" parent="RigidBody"]
+[node name="CollisionShape" type="CollisionShape" parent="."]
 shape = SubResource( 1 )
 
-[node name="CSGBox" type="CSGBox" parent="RigidBody"]
+[node name="CSGBox" type="CSGBox" parent="."]
 width = 0.5
 height = 0.5
 depth = 0.5
