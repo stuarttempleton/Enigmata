@@ -22,6 +22,7 @@ export (bool) var hold_to_grab = true
 export var pick_up_range = 0.5
 
 var holdingItem = null
+var hoverItem = null
 
 var last_position = Vector3(0.0, 0.0, 0.0)
 var velocities = Array()
@@ -40,11 +41,10 @@ func _get_velocity():
 func _on_button_pressed(p_button):
 	if p_button == pickup_button_id:
 		DropIt()
-		var item = GetClosestItem()
-		if item != null and item.Distance <= pick_up_range:
-			print("Selected: ", item.node.name)
-			item.node.PickUp($HoldTarget, true)
-			holdingItem = item.node
+		if hoverItem != null:
+			print("Selected: ", hoverItem.name)
+			hoverItem.PickUp($HoldTarget, true)
+			holdingItem = hoverItem
 
 func DropIt():
 	if holdingItem != null:
@@ -57,20 +57,6 @@ func _on_button_release(p_button):
 		if hold_to_grab:
 			DropIt()
 
-func DistanceSort(a, b): 
-	return a.Distance < b.Distance
-	
-func DistanceBetween(a,b): 
-	return a.global_transform.origin.distance_to(b.global_transform.origin)
-
-func GetClosestItem():
-	var items = get_tree().get_nodes_in_group("Items")
-	var sortableItems = []
-	for item in items:
-		sortableItems.append({"node":item, "Distance": DistanceBetween(item, $HoldTarget) })
-	sortableItems.sort_custom(self, "DistanceSort")
-	return sortableItems[0]
-
 func _ready():
 	get_parent().connect("button_pressed", self, "_on_button_pressed")
 	get_parent().connect("button_release", self, "_on_button_release")
@@ -81,3 +67,17 @@ func _process(delta):
 	if velocities.size() > max_samples:
 		velocities.pop_front()
 	last_position = global_transform.origin
+
+
+func _on_Area_body_entered(body):
+	if body.has_method("PickUp"):
+		if body.has_method("Highlight"):
+			body.Highlight(true)
+		hoverItem = body
+
+
+func _on_Area_body_exited(body):
+	if hoverItem == body:
+		if body.has_method("Highlight"):
+			body.Highlight(false)
+		hoverItem = null

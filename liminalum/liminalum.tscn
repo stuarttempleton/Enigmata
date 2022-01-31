@@ -56,6 +56,8 @@ script = ExtResource( 3 )
 [node name="CenterPiece" type="CSGBox" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, -1 )
 use_collision = true
+collision_layer = 65537
+collision_mask = 65537
 width = 4.0
 height = 0.5
 depth = 3.0
@@ -82,6 +84,8 @@ material/0 = null
 
 [node name="StepRamp" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0 )
+collision_layer = 65537
+collision_mask = 65537
 
 [node name="CollisionShape" type="CollisionShape" parent="StepRamp"]
 transform = Transform( 0.263772, -0.0952753, 0, 0.142913, 0.175848, 0, 0, 0, 1, -0.172159, -0.0707449, -1 )
@@ -94,6 +98,8 @@ shape = SubResource( 9 )
 [node name="Floor2" type="CSGBox" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -1 )
 use_collision = true
+collision_layer = 65537
+collision_mask = 65537
 width = 16.0
 height = 1.0
 depth = 12.0
@@ -116,116 +122,190 @@ material = ExtResource( 2 )
 
 [node name="Wall_half" parent="Walls2" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1, -7.25 )
+collision_layer = 65537
+collision_mask = 65537
 
 [node name="Wall_half2" parent="Walls2" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, -7.25 )
+collision_layer = 65537
+collision_mask = 65537
 
 [node name="Wall_half3" parent="Walls2" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, -7.25 )
+collision_layer = 65537
+collision_mask = 65537
 
 [node name="Wall_half4" parent="Walls2" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1, -7.25 )
+collision_layer = 65537
+collision_mask = 65537
 
 [node name="Wall_half14" parent="Walls2" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1, -3.25 )
+collision_layer = 65537
+collision_mask = 65537
 
 [node name="Wall_half15" parent="Walls2" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1, 1.25 )
+collision_layer = 65537
+collision_mask = 65537
 
 [node name="Wall_half16" parent="Walls2" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1, 1.25 )
+collision_layer = 65537
+collision_mask = 65537
 
 [node name="Wall_half17" parent="Walls2" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1, -3.25 )
+collision_layer = 65537
+collision_mask = 65537
 
 [node name="Wall_half7" parent="Walls2" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1, 5.25 )
+collision_layer = 65537
+collision_mask = 65537
 
 [node name="Wall_half8" parent="Walls2" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, 5.25 )
+collision_layer = 65537
+collision_mask = 65537
 
 [node name="Wall_half9" parent="Walls2" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 5.25 )
+collision_layer = 65537
+collision_mask = 65537
 
 [node name="Wall_half10" parent="Walls2" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1, 5.25 )
+collision_layer = 65537
+collision_mask = 65537
 
 [node name="Wall_half5" parent="Walls2" instance=ExtResource( 9 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.25, 1, -5.5 )
+collision_layer = 65537
+collision_mask = 65537
 
 [node name="Wall_half6" parent="Walls2" instance=ExtResource( 9 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.25, 1, 3.5 )
+collision_layer = 65537
+collision_mask = 65537
 
 [node name="Wall_half11" parent="Walls2" instance=ExtResource( 9 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.75, 1, -5 )
+collision_layer = 65537
+collision_mask = 65537
 
 [node name="Wall_half12" parent="Walls2" instance=ExtResource( 9 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.75, 1, 3 )
+collision_layer = 65537
+collision_mask = 65537
 
 [node name="Wall_half13" parent="Walls2" instance=ExtResource( 9 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.75, 1, -1 )
+collision_layer = 65537
+collision_mask = 65537
 
 [node name="Pillar_large" parent="Walls2" instance=ExtResource( 8 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.5, 1, 4 )
+collision_layer = 65537
+collision_mask = 65537
 
 [node name="Pillar_large2" parent="Walls2" instance=ExtResource( 8 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.5, 1, -6 )
+collision_layer = 65537
+collision_mask = 65537
 
 [node name="Pillar_large3" parent="Walls2" instance=ExtResource( 8 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7, 1, -6 )
+collision_layer = 65537
+collision_mask = 65537
 
 [node name="Pillar_large4" parent="Walls2" instance=ExtResource( 8 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7, 1, 4 )
+collision_layer = 65537
+collision_mask = 65537
 
 [node name="Pillar_large5" parent="Walls2" instance=ExtResource( 8 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 13.502, 1, 1 )
+collision_layer = 65537
+collision_mask = 65537
 
 [node name="Pillar_large6" parent="Walls2" instance=ExtResource( 8 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 13.502, 1, -3 )
+collision_layer = 65537
+collision_mask = 65537
 
 [node name="Ceiling" type="Spatial" parent="."]
 
 [node name="rafter" parent="Ceiling" instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.75, -1 )
+collision_layer = 65537
+collision_mask = 65537
 
 [node name="rafter2" parent="Ceiling" instance=ExtResource( 10 )]
 transform = Transform( 0.8, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, -6.752 )
+collision_layer = 65537
+collision_mask = 65537
 
 [node name="rafter3" parent="Ceiling" instance=ExtResource( 10 )]
 transform = Transform( 0.8, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, 4.752 )
+collision_layer = 65537
+collision_mask = 65537
 
 [node name="rafter4" parent="Ceiling" instance=ExtResource( 10 )]
 transform = Transform( 0.9, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.75, 1.75 )
+collision_layer = 65537
+collision_mask = 65537
 
 [node name="rafter5" parent="Ceiling" instance=ExtResource( 10 )]
 transform = Transform( 0.9, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.75, -3.75 )
+collision_layer = 65537
+collision_mask = 65537
 
 [node name="Wall_half" parent="Ceiling" instance=ExtResource( 9 )]
 transform = Transform( -4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 7.5, 3.5, -4.992 )
+collision_layer = 65537
+collision_mask = 65537
 
 [node name="Wall_half2" parent="Ceiling" instance=ExtResource( 9 )]
 transform = Transform( -4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 7.5, 3.5, -1 )
+collision_layer = 65537
+collision_mask = 65537
 
 [node name="Wall_half3" parent="Ceiling" instance=ExtResource( 9 )]
 transform = Transform( -4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 7.5, 3.5, 2.992 )
+collision_layer = 65537
+collision_mask = 65537
 
 [node name="Wall_half4" parent="Ceiling" instance=ExtResource( 9 )]
 transform = Transform( -4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 0.5, 4.2, -4.992 )
+collision_layer = 65537
+collision_mask = 65537
 
 [node name="Wall_half5" parent="Ceiling" instance=ExtResource( 9 )]
 transform = Transform( -4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 0.5, 4.2, -1 )
+collision_layer = 65537
+collision_mask = 65537
 
 [node name="Wall_half6" parent="Ceiling" instance=ExtResource( 9 )]
 transform = Transform( -4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 0.5, 4.2, 2.992 )
+collision_layer = 65537
+collision_mask = 65537
 
 [node name="Wall_half7" parent="Ceiling" instance=ExtResource( 9 )]
 transform = Transform( -4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, -6, 3.5, -4.992 )
+collision_layer = 65537
+collision_mask = 65537
 
 [node name="Wall_half8" parent="Ceiling" instance=ExtResource( 9 )]
 transform = Transform( -4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, -6, 3.5, -1 )
+collision_layer = 65537
+collision_mask = 65537
 
 [node name="Wall_half9" parent="Ceiling" instance=ExtResource( 9 )]
 transform = Transform( -4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, -6, 3.5, 2.992 )
+collision_layer = 65537
+collision_mask = 65537
 
 [node name="PlayerSpawnPoint" type="Spatial" parent="."]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4, 0.2, -1 )
