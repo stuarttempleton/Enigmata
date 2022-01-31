@@ -31,6 +31,8 @@ func ShushLoading(maze_seed):
 	
 	Boxes.PlaceBoxes($Maze)
 	
+	GameController.Start()
+	
 	if DoMazeTestsOnLoad:
 		$Maze.GameboardUtilTests()
 

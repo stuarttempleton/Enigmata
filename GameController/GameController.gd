@@ -3,6 +3,8 @@ extends Node
 
 enum MODE { PLAYER_VR, PLAYER_DESKTOP, VIEWER }
 var mode = MODE.VIEWER
+enum STATE {STARTING, PLAYING, PAUSED, COMPLETE }
+var state = STATE.STARTING
 var map_code = ""#"TESTMAZE"
 var main_seed = 0#map_code.hash()
 var default_code_length = 4
@@ -50,7 +52,28 @@ func create_map_code():
 		code += characters[randi()% len(characters)]
 	code += " " + String(1000 + randi()% 8999)
 	return code
-	
+
+func Start():
+	state = STATE.PLAYING
+
+func Pause(doPause = true):
+	if state == STATE.PLAYING || state == STATE.PAUSED:
+		if doPause:
+			state = STATE.PAUSED
+		else:
+			state = STATE.PLAYING
+
+func _process(delta):
+	match state:
+		STATE.STARTING:
+			pass
+		STATE.PLAYING:
+			if CheckWinState():
+				print("Score complete")
+				state = STATE.COMPLETE
+		STATE.COMPLETE:
+			pass
+
 func CheckWinState():
 	return score >= completion_score
 
