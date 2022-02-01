@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://shaders/water.gdshader" type="Shader" id=1]
 [ext_resource path="res://MapPieces/test_walls/brick_floor.tres" type="Material" id=2]
 [ext_resource path="res://liminalum/liminalum.gd" type="Script" id=3]
+[ext_resource path="res://player/PersonReceiver.tscn" type="PackedScene" id=4]
 [ext_resource path="res://MapPieces/test_walls/white_plaster_top_material.tres" type="Material" id=6]
 [ext_resource path="res://MapPieces/test_walls/l_blue_plaster_top_material.tres" type="Material" id=7]
 [ext_resource path="res://MapPieces/test_walls/pillar_large.tscn" type="PackedScene" id=8]
@@ -52,6 +53,9 @@ extents = Vector3( 1, 1, 2 )
 
 [node name="Liminalum" type="Spatial"]
 script = ExtResource( 3 )
+
+[node name="PersonReceiver" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -1 )
 
 [node name="CenterPiece" type="CSGBox" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, -1 )

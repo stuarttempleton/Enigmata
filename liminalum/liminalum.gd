@@ -15,3 +15,7 @@ func GetSpawnPoint():
 
 func GetSpawnRotation():
 	return $PlayerSpawnPoint.global_transform.basis.get_euler()
+
+func SetFinishLine():
+	$PersonReceiver.TriggerFor = $PersonReceiver.USE.FINISH_LINE
+	GameController.total_endpoints += 1

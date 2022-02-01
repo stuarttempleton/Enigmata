@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://addons/godot-openvr/OpenVRPose.gdns" type="Script" id=1]
 [ext_resource path="res://addons/godot-openvr/OpenVRAction.gdns" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://VR_Player/Function_Updated_Teleport.tscn" type="PackedScene" id=5]
 [ext_resource path="res://UI/UI_Overlay.tscn" type="PackedScene" id=6]
 [ext_resource path="res://VR_Player/Function_Updated_Pickup.tscn" type="PackedScene" id=7]
+[ext_resource path="res://player/PersonTrigger.tscn" type="PackedScene" id=8]
 [ext_resource path="res://addons/godot-openvr/scenes/ovr_main.gd" type="Script" id=9]
 [ext_resource path="res://player/HandInteraction.tscn" type="PackedScene" id=11]
 [ext_resource path="res://addons/godot-openvr/scenes/ovr_right_hand.tscn" type="PackedScene" id=12]
@@ -28,6 +29,8 @@ albedo_color = Color( 1, 1, 1, 0.388235 )
 
 [node name="Player" type="ARVROrigin"]
 script = ExtResource( 9 )
+
+[node name="PersonTrigger" parent="." instance=ExtResource( 8 )]
 
 [node name="ARVRCamera" type="ARVRCamera" parent="."]
 

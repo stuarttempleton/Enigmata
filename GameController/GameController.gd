@@ -12,7 +12,9 @@ var map_dimensions = Vector3(10,0,10)
 
 
 var score = 0
-var completion_score = 100
+var total_score = 0
+var endpoints_explored = 0
+var total_endpoints = 0
 
 func _init():
 	if main_seed == 0:
@@ -54,6 +56,8 @@ func create_map_code():
 	return code
 
 func Start():
+	print("Starting game play")
+	StartTimer()
 	state = STATE.PLAYING
 
 func Pause(doPause = true):
@@ -69,12 +73,23 @@ func _process(delta):
 			pass
 		STATE.PLAYING:
 			if CheckWinState():
-				print("Score complete")
 				state = STATE.COMPLETE
+				StopTimer()
+				print("Endpoint exploration complete")
+				print("Score at endgame: ", score)
 		STATE.COMPLETE:
 			pass
 
+func StartTimer():
+	print("Starting map timer")
+
+func StopTimer():
+	print("Stopping map timer...")
+
+func PauseTimer():
+	pass
+
 func CheckWinState():
-	return score >= completion_score
+	return endpoints_explored >= total_endpoints
 
 

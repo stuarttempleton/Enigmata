@@ -59,18 +59,16 @@ func TurnIn(_type = BOX_TYPE.WHITE):
 func PlaceBoxes(_maze):
 	var maze = _maze
 	var qty_nodes = 0
-	GameController.completion_score = 0
 	
 	for type in Boxes.keys():
 		if Boxes[type].qty > 0:
 			qty_nodes += Boxes[type].qty + 1 #and one for the receiver.
-			GameController.completion_score += Boxes[type].qty * Boxes[type].value
 
 	var nodes = maze.util_get_random_nodes(qty_nodes)
 	
-	GameController.completion_score = 0
+	GameController.total_score = 0
 	for type in Boxes.keys():
-		GameController.completion_score += Boxes[type].qty * Boxes[type].value
+		GameController.total_score += Boxes[type].qty * Boxes[type].value
 		for i in Boxes[type].qty:
 			var b = Boxes[type].node.instance()
 			add_child(b)
