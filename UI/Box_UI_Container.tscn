@@ -1,0 +1,9 @@
+[gd_scene format=2]
+
+[node name="Box_UI_Container" type="HBoxContainer"]
+margin_top = 20.0
+margin_right = 117.0
+margin_bottom = 36.0
+__meta__ = {
+"_edit_use_anchors_": false
+}

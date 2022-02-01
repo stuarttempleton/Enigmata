@@ -12,9 +12,13 @@ margin_right = 16.0
 margin_bottom = 16.0
 rect_min_size = Vector2( 16, 16 )
 size_flags_horizontal = 0
-color = Color( 1, 0.678431, 0, 1 )
+color = Color( 0, 0, 0, 0.305882 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Qty" type="RichTextLabel" parent="."]
+visible = false
 margin_left = 18.0
 margin_right = 117.0
 margin_bottom = 16.0
