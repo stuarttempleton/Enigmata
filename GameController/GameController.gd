@@ -77,17 +77,21 @@ func _process(delta):
 				StopTimer()
 				print("Endpoint exploration complete")
 				print("Score at endgame: ", score)
+				print("Elapsed time: ", $PlayTimer.Elapsed)
 		STATE.COMPLETE:
 			pass
 
 func StartTimer():
 	print("Starting map timer")
+	$PlayTimer.ResetTimer()
+	$PlayTimer.GameLoopState( true )
 
 func StopTimer():
 	print("Stopping map timer...")
+	$PlayTimer.GameLoopState( false )
 
 func PauseTimer():
-	pass
+	$PlayTimer.PauseTimer()
 
 func CheckWinState():
 	return endpoints_explored >= total_endpoints
