@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://TitleScene/button_hover-press-focus.tres" type="StyleBox" id=1]
 [ext_resource path="res://TitleScene/button_normal.tres" type="StyleBox" id=2]
@@ -10,6 +10,9 @@
 [ext_resource path="res://MapPieces/test_walls/brick_floor.tres" type="Material" id=8]
 [ext_resource path="res://TitleScene/button_hover_tip.gd" type="Script" id=9]
 [ext_resource path="res://TitleScene/Title.gd" type="Script" id=10]
+[ext_resource path="res://Items/gold_box.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Items/purple_box.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Items/red_box.tscn" type="PackedScene" id=13]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://fonts/Montserrat-ExtraBold.ttf"
@@ -142,6 +145,9 @@ custom_styles/focus = ExtResource( 1 )
 custom_styles/normal = ExtResource( 2 )
 text = "MAP"
 script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="TIP" type="ColorRect" parent="Menu/Viewer"]
 visible = false
@@ -205,6 +211,15 @@ transform = Transform( 0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 4.69615, 1,
 
 [node name="Facade" type="Spatial" parent="."]
 
+[node name="Gold Box" parent="Facade" instance=ExtResource( 11 )]
+transform = Transform( 0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 1.76915, 4, -4.82035 )
+
+[node name="Red Box" parent="Facade" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.97255, 8.02097, -8.3247 )
+
+[node name="Purple Box" parent="Facade" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75626, 6.30571, -4.33145 )
+
 [node name="1_2" parent="Facade" instance=ExtResource( 6 )]
 transform = Transform( 0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -0.5, 0, -5.86602 )
 
@@ -228,6 +243,7 @@ transform = Transform( 0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 2.9641, 0, 
 
 [node name="CSGBox" type="CSGBox" parent="Facade"]
 transform = Transform( 0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -0.5, -1, -5.86602 )
+use_collision = true
 width = 14.0
 depth = 12.0
 material = ExtResource( 8 )

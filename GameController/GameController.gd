@@ -3,8 +3,9 @@ extends Node
 
 enum MODE { PLAYER_VR, PLAYER_DESKTOP, VIEWER }
 var mode = MODE.VIEWER
-enum STATE {STARTING, PLAYING, PAUSED, COMPLETE }
-var state = STATE.STARTING
+enum STATE {TITLE, STARTING, PLAYING, COMPLETE }
+var state = STATE.TITLE
+var input_cache
 var map_code = ""#"TESTMAZE"
 var main_seed = 0#map_code.hash()
 var default_code_length = 4
@@ -61,15 +62,26 @@ func Start():
 	state = STATE.PLAYING
 
 func Pause(doPause = true):
-	if state == STATE.PLAYING || state == STATE.PAUSED:
+	if state != STATE.TITLE:
+		get_tree().paused = doPause
+		$UI_pause.ShowUI(doPause)
+		PauseTimer(doPause)
+		
 		if doPause:
-			state = STATE.PAUSED
+			input_cache = Input.get_mouse_mode()
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		else:
-			state = STATE.PLAYING
+			Input.set_mouse_mode(input_cache)
 
 func _process(delta):
+	if state != STATE.TITLE && Input.is_action_just_pressed("pause") == true:
+		match mode:
+			MODE.PLAYER_DESKTOP, MODE.VIEWER:
+				Pause(!get_tree().paused)
+			MODE.PLAYER_VR:
+				get_tree().quit()
 	match state:
-		STATE.STARTING:
+		STATE.TITLE, STATE.STARTING, STATE.COMPLETE:
 			pass
 		STATE.PLAYING:
 			if CheckWinState():
@@ -78,8 +90,6 @@ func _process(delta):
 				print("Endpoint exploration complete")
 				print("Score at endgame: ", score)
 				print("Elapsed time: ", $PlayTimer.Elapsed)
-		STATE.COMPLETE:
-			pass
 
 func StartTimer():
 	print("Starting map timer")
@@ -90,8 +100,8 @@ func StopTimer():
 	print("Stopping map timer...")
 	$PlayTimer.GameLoopState( false )
 
-func PauseTimer():
-	$PlayTimer.PauseTimer()
+func PauseTimer(pState = true):
+	$PlayTimer.PauseTimer(pState)
 
 func CheckWinState():
 	return endpoints_explored >= total_endpoints

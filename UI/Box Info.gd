@@ -29,7 +29,6 @@ func UpdateBoxUI():
 			add_child(bc)
 			
 			for box_qty in Boxes.Boxes[i].qty:
-				print("box qty: ", box_qty)
 				var gathered = Boxes.Boxes[i].qty - Boxes.Boxes[i].remaining
 				var b = box_template.instance()
 				b.color = Boxes.BoxColors[i]

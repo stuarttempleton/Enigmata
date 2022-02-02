@@ -59,6 +59,8 @@ func TurnIn(_type = BOX_TYPE.WHITE):
 func PlaceBoxes(_maze):
 	var maze = _maze
 	var qty_nodes = 0
+	get_tree().call_group("Receivers", "queue_free")
+	get_tree().call_group("Items", "queue_free")
 	
 	for type in Boxes.keys():
 		if Boxes[type].qty > 0:

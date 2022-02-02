@@ -7,6 +7,9 @@ var MapScene = preload("res://MapViewport.tscn")
 var LoadScene
 
 func _ready():
+	GameController.Pause(false)
+	GameController.state = GameController.STATE.TITLE
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	SceneChanger.UnFade()
 
 

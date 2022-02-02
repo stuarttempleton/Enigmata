@@ -1,0 +1,121 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://TitleScene/button_regular_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://UI/UI_pause.gd" type="Script" id=2]
+[ext_resource path="res://TitleScene/button_normal.tres" type="StyleBox" id=3]
+[ext_resource path="res://TitleScene/button_hover-press-focus.tres" type="StyleBox" id=4]
+[ext_resource path="res://UI/ReturnToMainMenu.gd" type="Script" id=5]
+[ext_resource path="res://UI/Exit.gd" type="Script" id=6]
+[ext_resource path="res://UI/Resume.gd" type="Script" id=7]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://fonts/Montserrat-ExtraBold.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 30
+outline_size = 2
+outline_color = Color( 0, 0, 0, 0.227451 )
+font_data = SubResource( 1 )
+
+[node name="UI_pause" type="CanvasLayer"]
+layer = 2
+script = ExtResource( 2 )
+
+[node name="UI_pause" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MenuItems" type="VBoxContainer" parent="UI_pause"]
+margin_left = 384.0
+margin_top = 128.0
+margin_right = 640.0
+margin_bottom = 320.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MazePaused" type="Label" parent="UI_pause/MenuItems"]
+margin_right = 256.0
+margin_bottom = 38.0
+custom_fonts/font = SubResource( 2 )
+text = "Maze Paused"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Gap" type="ColorRect" parent="UI_pause/MenuItems"]
+margin_top = 42.0
+margin_right = 256.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 32, 18 )
+color = Color( 1, 1, 1, 0 )
+
+[node name="ReturnToMainMenu" type="Button" parent="UI_pause/MenuItems"]
+margin_top = 64.0
+margin_right = 256.0
+margin_bottom = 96.0
+rect_min_size = Vector2( 256, 32 )
+custom_fonts/font = ExtResource( 1 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = ExtResource( 4 )
+custom_styles/normal = ExtResource( 3 )
+text = "Main Menu"
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Gap2" type="ColorRect" parent="UI_pause/MenuItems"]
+margin_top = 100.0
+margin_right = 256.0
+margin_bottom = 112.0
+rect_min_size = Vector2( 32, 12 )
+color = Color( 1, 1, 1, 0 )
+
+[node name="Exit" type="Button" parent="UI_pause/MenuItems"]
+margin_top = 116.0
+margin_right = 256.0
+margin_bottom = 148.0
+rect_min_size = Vector2( 256, 32 )
+custom_fonts/font = ExtResource( 1 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = ExtResource( 4 )
+custom_styles/normal = ExtResource( 3 )
+text = "Exit to Desktop"
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Gap3" type="ColorRect" parent="UI_pause/MenuItems"]
+margin_top = 152.0
+margin_right = 256.0
+margin_bottom = 164.0
+rect_min_size = Vector2( 32, 12 )
+color = Color( 1, 1, 1, 0 )
+
+[node name="Resume" type="Button" parent="UI_pause/MenuItems"]
+margin_top = 168.0
+margin_right = 256.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 256, 32 )
+custom_fonts/font = ExtResource( 1 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = ExtResource( 4 )
+custom_styles/normal = ExtResource( 3 )
+text = "Resume"
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="UI_pause/MenuItems/ReturnToMainMenu" to="UI_pause/MenuItems/ReturnToMainMenu" method="_on_ReturnToMainMenu_pressed"]
+[connection signal="pressed" from="UI_pause/MenuItems/Exit" to="UI_pause/MenuItems/Exit" method="_on_Exit_pressed"]
+[connection signal="pressed" from="UI_pause/MenuItems/Resume" to="UI_pause/MenuItems/Resume" method="_on_Resume_pressed"]

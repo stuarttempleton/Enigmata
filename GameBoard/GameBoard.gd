@@ -3,11 +3,6 @@ extends Spatial
 export var DoMazeTestsOnLoad = false
 
 
-func _process(delta):
-	if (Input.is_key_pressed(KEY_ESCAPE)):
-		get_tree().quit()
-
-
 func GenerateMaze(settings = {"dimensions": Vector3(11,0,11), "difficulty": $Maze.MEDIUM, "seed": GameController.main_seed}):
 	$Maze.connect("maze_generated", self, "ShushLoading")
 	$Maze.connect("maze_progress", self, "LoadingProgress")
@@ -30,6 +25,8 @@ func ShushLoading(maze_seed):
 	$Maze.disconnect("maze_progress", self, "LoadingProgress")
 	
 	Boxes.PlaceBoxes($Maze)
+	
+	GameController.state = GameController.STATE.STARTING
 	
 	if DoMazeTestsOnLoad:
 		$Maze.GameboardUtilTests()

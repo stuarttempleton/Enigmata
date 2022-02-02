@@ -14,10 +14,7 @@ func SetBoxType(_type):
 
 func _on_Area_body_entered(body):
 	if body.has_method("TurnIn"):
-		print("Found: ", body.name)
 		body.TurnIn(AcceptsBox)
-	else:
-		print("No Method: ", body.name)
 
 
 func _on_Area_body_exited(body):

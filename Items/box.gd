@@ -13,7 +13,6 @@ func _ready():
 
 func TurnIn( ReceiverType ):
 	if !expired && ReceiverType == box_type:
-		print("Can Turn In: ", name)
 		Boxes.TurnIn(box_type)
 		expired = true
 
@@ -32,7 +31,6 @@ func PickUp(new_parent, move_to_parent = false):
 	if picked_up_by:
 		LetGo()
 	picked_up_by = new_parent
-	
 	
 	print("Picking up ", name)
 	
