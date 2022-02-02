@@ -90,6 +90,7 @@ func _process(delta):
 				print("Endpoint exploration complete")
 				print("Score at endgame: ", score)
 				print("Elapsed time: ", $PlayTimer.Elapsed)
+				$GameComplete.ShowUI( true )
 
 func StartTimer():
 	print("Starting map timer")

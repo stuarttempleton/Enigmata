@@ -1,0 +1,317 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://UI/GameComplete.gd" type="Script" id=1]
+[ext_resource path="res://UI/ReturnToMainMenu.tscn" type="PackedScene" id=2]
+[ext_resource path="res://UI/Exit.tscn" type="PackedScene" id=3]
+[ext_resource path="res://UI/Resume.tscn" type="PackedScene" id=4]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://fonts/Montserrat-ExtraBold.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 30
+outline_size = 2
+outline_color = Color( 0, 0, 0, 0.211765 )
+font_data = SubResource( 1 )
+
+[sub_resource type="DynamicFontData" id=3]
+font_path = "res://fonts/Montserrat-Regular.ttf"
+
+[sub_resource type="DynamicFont" id=4]
+size = 20
+outline_size = 1
+outline_color = Color( 0, 0, 0, 0.211765 )
+font_data = SubResource( 3 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 20
+outline_size = 1
+outline_color = Color( 0, 0, 0, 0.211765 )
+font_data = SubResource( 3 )
+
+[node name="GameComplete" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+color = Color( 0, 0, 0, 0.239216 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameCompleteContainer" type="VBoxContainer" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameCompleteTitle" type="Label" parent="GameCompleteContainer"]
+margin_top = 95.0
+margin_right = 1024.0
+margin_bottom = 133.0
+custom_fonts/font = SubResource( 2 )
+text = "Maze Complete"
+align = 1
+
+[node name="Gap" type="ColorRect" parent="GameCompleteContainer"]
+margin_top = 137.0
+margin_right = 1024.0
+margin_bottom = 161.0
+rect_min_size = Vector2( 24, 24 )
+color = Color( 1, 1, 1, 0 )
+
+[node name="ElapsedTime" type="ColorRect" parent="GameCompleteContainer"]
+margin_top = 165.0
+margin_right = 1024.0
+margin_bottom = 193.0
+rect_min_size = Vector2( 0, 28 )
+color = Color( 0, 0, 0, 0 )
+
+[node name="Elapsed" type="Label" parent="GameCompleteContainer/ElapsedTime"]
+margin_right = 512.0
+margin_bottom = 28.0
+custom_fonts/font = SubResource( 4 )
+text = "Elapsed: "
+align = 2
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Time" type="Label" parent="GameCompleteContainer/ElapsedTime"]
+margin_left = 514.0
+margin_right = 1026.0
+margin_bottom = 28.0
+custom_fonts/font = SubResource( 5 )
+text = "0.00233"
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Gap2" type="ColorRect" parent="GameCompleteContainer"]
+margin_top = 197.0
+margin_right = 1024.0
+margin_bottom = 221.0
+rect_min_size = Vector2( 24, 24 )
+color = Color( 1, 1, 1, 0 )
+
+[node name="TotalBoxes" type="ColorRect" parent="GameCompleteContainer"]
+margin_top = 225.0
+margin_right = 1024.0
+margin_bottom = 253.0
+rect_min_size = Vector2( 0, 28 )
+color = Color( 0, 0, 0, 0 )
+
+[node name="Label" type="Label" parent="GameCompleteContainer/TotalBoxes"]
+margin_right = 512.0
+margin_bottom = 28.0
+custom_fonts/font = SubResource( 4 )
+text = "Boxes Gathered: "
+align = 2
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Total" type="Label" parent="GameCompleteContainer/TotalBoxes"]
+margin_left = 514.0
+margin_right = 1026.0
+margin_bottom = 28.0
+custom_fonts/font = SubResource( 5 )
+text = "0"
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="White" type="ColorRect" parent="GameCompleteContainer"]
+margin_top = 257.0
+margin_right = 1024.0
+margin_bottom = 285.0
+rect_min_size = Vector2( 0, 28 )
+color = Color( 0, 0, 0, 0 )
+
+[node name="Label" type="Label" parent="GameCompleteContainer/White"]
+margin_right = 512.0
+margin_bottom = 28.0
+custom_fonts/font = SubResource( 4 )
+text = "White: "
+align = 2
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Total" type="Label" parent="GameCompleteContainer/White"]
+margin_left = 514.0
+margin_right = 1026.0
+margin_bottom = 28.0
+custom_fonts/font = SubResource( 5 )
+text = "0"
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Red" type="ColorRect" parent="GameCompleteContainer"]
+margin_top = 289.0
+margin_right = 1024.0
+margin_bottom = 317.0
+rect_min_size = Vector2( 0, 28 )
+color = Color( 0, 0, 0, 0 )
+
+[node name="Label" type="Label" parent="GameCompleteContainer/Red"]
+margin_right = 512.0
+margin_bottom = 28.0
+custom_fonts/font = SubResource( 4 )
+text = "Red: "
+align = 2
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Total" type="Label" parent="GameCompleteContainer/Red"]
+margin_left = 514.0
+margin_right = 1026.0
+margin_bottom = 28.0
+custom_fonts/font = SubResource( 5 )
+text = "0"
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Purple" type="ColorRect" parent="GameCompleteContainer"]
+margin_top = 321.0
+margin_right = 1024.0
+margin_bottom = 349.0
+rect_min_size = Vector2( 0, 28 )
+color = Color( 0, 0, 0, 0 )
+
+[node name="Label" type="Label" parent="GameCompleteContainer/Purple"]
+margin_right = 512.0
+margin_bottom = 28.0
+custom_fonts/font = SubResource( 4 )
+text = "Purple: "
+align = 2
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Total" type="Label" parent="GameCompleteContainer/Purple"]
+margin_left = 514.0
+margin_right = 1026.0
+margin_bottom = 28.0
+custom_fonts/font = SubResource( 5 )
+text = "0"
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Gold" type="ColorRect" parent="GameCompleteContainer"]
+margin_top = 353.0
+margin_right = 1024.0
+margin_bottom = 381.0
+rect_min_size = Vector2( 0, 28 )
+color = Color( 0, 0, 0, 0 )
+
+[node name="Label" type="Label" parent="GameCompleteContainer/Gold"]
+margin_right = 512.0
+margin_bottom = 28.0
+custom_fonts/font = SubResource( 4 )
+text = "Gold: "
+align = 2
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Total" type="Label" parent="GameCompleteContainer/Gold"]
+margin_left = 514.0
+margin_right = 1026.0
+margin_bottom = 28.0
+custom_fonts/font = SubResource( 5 )
+text = "0"
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Gap3" type="ColorRect" parent="GameCompleteContainer"]
+margin_top = 385.0
+margin_right = 1024.0
+margin_bottom = 409.0
+rect_min_size = Vector2( 24, 24 )
+color = Color( 1, 1, 1, 0 )
+
+[node name="Score" type="ColorRect" parent="GameCompleteContainer"]
+margin_top = 413.0
+margin_right = 1024.0
+margin_bottom = 441.0
+rect_min_size = Vector2( 0, 28 )
+color = Color( 0, 0, 0, 0 )
+
+[node name="Score" type="Label" parent="GameCompleteContainer/Score"]
+margin_right = 512.0
+margin_bottom = 28.0
+custom_fonts/font = SubResource( 4 )
+text = "Bonus Score: "
+align = 2
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Total" type="Label" parent="GameCompleteContainer/Score"]
+margin_left = 514.0
+margin_right = 1026.0
+margin_bottom = 28.0
+custom_fonts/font = SubResource( 5 )
+text = "0"
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Gap4" type="ColorRect" parent="GameCompleteContainer"]
+margin_top = 445.0
+margin_right = 1024.0
+margin_bottom = 469.0
+rect_min_size = Vector2( 24, 24 )
+color = Color( 1, 1, 1, 0 )
+
+[node name="MenuButtons" type="HBoxContainer" parent="GameCompleteContainer"]
+margin_top = 473.0
+margin_right = 1024.0
+margin_bottom = 505.0
+alignment = 1
+
+[node name="ReturnToMainMenu" parent="GameCompleteContainer/MenuButtons" instance=ExtResource( 2 )]
+margin_left = 124.0
+margin_top = 0.0
+margin_right = 380.0
+margin_bottom = 32.0
+
+[node name="Exit" parent="GameCompleteContainer/MenuButtons" instance=ExtResource( 3 )]
+margin_left = 384.0
+margin_top = 0.0
+margin_right = 640.0
+margin_bottom = 32.0
+
+[node name="Resume" parent="GameCompleteContainer/MenuButtons" instance=ExtResource( 4 )]
+margin_left = 644.0
+margin_top = 0.0
+margin_right = 900.0
+margin_bottom = 32.0

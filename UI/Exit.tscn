@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://TitleScene/button_normal.tres" type="StyleBox" id=1]
+[ext_resource path="res://TitleScene/button_hover-press-focus.tres" type="StyleBox" id=2]
+[ext_resource path="res://TitleScene/button_regular_font.tres" type="DynamicFont" id=3]
+[ext_resource path="res://UI/Exit.gd" type="Script" id=4]
+
+[node name="Exit" type="Button"]
+margin_top = 116.0
+margin_right = 256.0
+margin_bottom = 148.0
+rect_min_size = Vector2( 256, 32 )
+custom_fonts/font = ExtResource( 3 )
+custom_styles/hover = ExtResource( 2 )
+custom_styles/pressed = ExtResource( 2 )
+custom_styles/focus = ExtResource( 2 )
+custom_styles/normal = ExtResource( 1 )
+text = "Exit to Desktop"
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="." to="." method="_on_Exit_pressed"]
