@@ -6,6 +6,7 @@ var mode = MODE.VIEWER
 enum STATE {TITLE, STARTING, PLAYING, COMPLETE }
 var state = STATE.TITLE
 var input_cache
+var isPaused = false #lock to prevent modal flows overlapping
 var map_code = ""#"TESTMAZE"
 var main_seed = 0#map_code.hash()
 var default_code_length = 4
@@ -61,23 +62,50 @@ func Start():
 	StartTimer()
 	state = STATE.PLAYING
 
+func toggleInput(releaseMouse = true):
+	if releaseMouse:
+		input_cache = Input.get_mouse_mode()
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	else:
+		Input.set_mouse_mode(input_cache)
+
+func GameOverFlow(doGameOver = true):
+	if isPaused:
+		Pause(false)
+	get_tree().paused = doGameOver
+	GetUIHelper().ShowUI( doGameOver )
+	StopTimer()
+	toggleInput(doGameOver)
+	print("Endpoint exploration complete")
+	print("Score at endgame: ", score)
+	print("Elapsed time: ", $PlayTimer.Elapsed)
+
 func Pause(doPause = true):
 	if state != STATE.TITLE:
+		isPaused = doPause
 		get_tree().paused = doPause
-		$UI_pause.ShowUI(doPause)
+		GetUIHelper().ShowUI(doPause)
 		PauseTimer(doPause)
-		
-		if doPause:
-			input_cache = Input.get_mouse_mode()
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		else:
-			Input.set_mouse_mode(input_cache)
+		toggleInput(doPause)
+
+func GetUIHelper():
+	match mode:
+		MODE.PLAYER_DESKTOP, MODE.PLAYER_VR:
+			return $GameComplete
+		MODE.VIEWER:
+			return $UI_pause
+
+func PauseOrGOHelper(_state):
+	if state != STATE.COMPLETE:
+		Pause(_state)
+	else:
+		GameOverFlow(_state)
 
 func _process(delta):
 	if state != STATE.TITLE && Input.is_action_just_pressed("pause") == true:
 		match mode:
 			MODE.PLAYER_DESKTOP, MODE.VIEWER:
-				Pause(!get_tree().paused)
+				PauseOrGOHelper(!get_tree().paused)
 			MODE.PLAYER_VR:
 				get_tree().quit()
 	match state:
@@ -86,11 +114,7 @@ func _process(delta):
 		STATE.PLAYING:
 			if CheckWinState():
 				state = STATE.COMPLETE
-				StopTimer()
-				print("Endpoint exploration complete")
-				print("Score at endgame: ", score)
-				print("Elapsed time: ", $PlayTimer.Elapsed)
-				$GameComplete.ShowUI( true )
+				PauseOrGOHelper(true)
 
 func StartTimer():
 	print("Starting map timer")

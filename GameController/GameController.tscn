@@ -15,3 +15,4 @@ script = ExtResource( 1 )
 script = ExtResource( 2 )
 
 [node name="GameComplete" parent="." instance=ExtResource( 4 )]
+layer = 3

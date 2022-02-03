@@ -9,5 +9,6 @@ func _process(delta):
 		SetUIForMode()
 
 func SetUIForMode():
+	$TimerInfo.SetEnabled(mode_stash != GameController.MODE.VIEWER)
 	$PickUpMsg.SetEnabled(mode_stash == GameController.MODE.PLAYER_DESKTOP)
 	$"World Info/Box Info".SetEnabled(mode_stash != GameController.MODE.VIEWER)

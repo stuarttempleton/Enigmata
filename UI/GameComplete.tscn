@@ -29,15 +29,17 @@ outline_size = 1
 outline_color = Color( 0, 0, 0, 0.211765 )
 font_data = SubResource( 3 )
 
-[node name="GameComplete" type="Control"]
+[node name="GameComplete" type="CanvasLayer"]
+script = ExtResource( 1 )
+
+[node name="GameComplete" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="GameComplete"]
 margin_right = 1024.0
 margin_bottom = 600.0
 color = Color( 0, 0, 0, 0.239216 )
@@ -45,7 +47,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GameCompleteContainer" type="VBoxContainer" parent="."]
+[node name="GameCompleteContainer" type="VBoxContainer" parent="GameComplete"]
 margin_right = 1024.0
 margin_bottom = 600.0
 alignment = 1
@@ -53,7 +55,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GameCompleteTitle" type="Label" parent="GameCompleteContainer"]
+[node name="GameCompleteTitle" type="Label" parent="GameComplete/GameCompleteContainer"]
 margin_top = 95.0
 margin_right = 1024.0
 margin_bottom = 133.0
@@ -61,21 +63,21 @@ custom_fonts/font = SubResource( 2 )
 text = "Maze Complete"
 align = 1
 
-[node name="Gap" type="ColorRect" parent="GameCompleteContainer"]
+[node name="Gap" type="ColorRect" parent="GameComplete/GameCompleteContainer"]
 margin_top = 137.0
 margin_right = 1024.0
 margin_bottom = 161.0
 rect_min_size = Vector2( 24, 24 )
 color = Color( 1, 1, 1, 0 )
 
-[node name="ElapsedTime" type="ColorRect" parent="GameCompleteContainer"]
+[node name="ElapsedTime" type="ColorRect" parent="GameComplete/GameCompleteContainer"]
 margin_top = 165.0
 margin_right = 1024.0
 margin_bottom = 193.0
 rect_min_size = Vector2( 0, 28 )
 color = Color( 0, 0, 0, 0 )
 
-[node name="Elapsed" type="Label" parent="GameCompleteContainer/ElapsedTime"]
+[node name="Elapsed" type="Label" parent="GameComplete/GameCompleteContainer/ElapsedTime"]
 margin_right = 512.0
 margin_bottom = 28.0
 custom_fonts/font = SubResource( 4 )
@@ -86,7 +88,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Time" type="Label" parent="GameCompleteContainer/ElapsedTime"]
+[node name="Time" type="Label" parent="GameComplete/GameCompleteContainer/ElapsedTime"]
 margin_left = 514.0
 margin_right = 1026.0
 margin_bottom = 28.0
@@ -97,21 +99,21 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Gap2" type="ColorRect" parent="GameCompleteContainer"]
+[node name="Gap2" type="ColorRect" parent="GameComplete/GameCompleteContainer"]
 margin_top = 197.0
 margin_right = 1024.0
 margin_bottom = 221.0
 rect_min_size = Vector2( 24, 24 )
 color = Color( 1, 1, 1, 0 )
 
-[node name="TotalBoxes" type="ColorRect" parent="GameCompleteContainer"]
+[node name="TotalBoxes" type="ColorRect" parent="GameComplete/GameCompleteContainer"]
 margin_top = 225.0
 margin_right = 1024.0
 margin_bottom = 253.0
 rect_min_size = Vector2( 0, 28 )
 color = Color( 0, 0, 0, 0 )
 
-[node name="Label" type="Label" parent="GameCompleteContainer/TotalBoxes"]
+[node name="Label" type="Label" parent="GameComplete/GameCompleteContainer/TotalBoxes"]
 margin_right = 512.0
 margin_bottom = 28.0
 custom_fonts/font = SubResource( 4 )
@@ -122,7 +124,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Total" type="Label" parent="GameCompleteContainer/TotalBoxes"]
+[node name="Total" type="Label" parent="GameComplete/GameCompleteContainer/TotalBoxes"]
 margin_left = 514.0
 margin_right = 1026.0
 margin_bottom = 28.0
@@ -133,14 +135,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="White" type="ColorRect" parent="GameCompleteContainer"]
+[node name="White" type="ColorRect" parent="GameComplete/GameCompleteContainer"]
 margin_top = 257.0
 margin_right = 1024.0
 margin_bottom = 285.0
 rect_min_size = Vector2( 0, 28 )
 color = Color( 0, 0, 0, 0 )
 
-[node name="Label" type="Label" parent="GameCompleteContainer/White"]
+[node name="Label" type="Label" parent="GameComplete/GameCompleteContainer/White"]
 margin_right = 512.0
 margin_bottom = 28.0
 custom_fonts/font = SubResource( 4 )
@@ -151,7 +153,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Total" type="Label" parent="GameCompleteContainer/White"]
+[node name="Total" type="Label" parent="GameComplete/GameCompleteContainer/White"]
 margin_left = 514.0
 margin_right = 1026.0
 margin_bottom = 28.0
@@ -162,14 +164,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Red" type="ColorRect" parent="GameCompleteContainer"]
+[node name="Red" type="ColorRect" parent="GameComplete/GameCompleteContainer"]
 margin_top = 289.0
 margin_right = 1024.0
 margin_bottom = 317.0
 rect_min_size = Vector2( 0, 28 )
 color = Color( 0, 0, 0, 0 )
 
-[node name="Label" type="Label" parent="GameCompleteContainer/Red"]
+[node name="Label" type="Label" parent="GameComplete/GameCompleteContainer/Red"]
 margin_right = 512.0
 margin_bottom = 28.0
 custom_fonts/font = SubResource( 4 )
@@ -180,7 +182,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Total" type="Label" parent="GameCompleteContainer/Red"]
+[node name="Total" type="Label" parent="GameComplete/GameCompleteContainer/Red"]
 margin_left = 514.0
 margin_right = 1026.0
 margin_bottom = 28.0
@@ -191,14 +193,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Purple" type="ColorRect" parent="GameCompleteContainer"]
+[node name="Purple" type="ColorRect" parent="GameComplete/GameCompleteContainer"]
 margin_top = 321.0
 margin_right = 1024.0
 margin_bottom = 349.0
 rect_min_size = Vector2( 0, 28 )
 color = Color( 0, 0, 0, 0 )
 
-[node name="Label" type="Label" parent="GameCompleteContainer/Purple"]
+[node name="Label" type="Label" parent="GameComplete/GameCompleteContainer/Purple"]
 margin_right = 512.0
 margin_bottom = 28.0
 custom_fonts/font = SubResource( 4 )
@@ -209,7 +211,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Total" type="Label" parent="GameCompleteContainer/Purple"]
+[node name="Total" type="Label" parent="GameComplete/GameCompleteContainer/Purple"]
 margin_left = 514.0
 margin_right = 1026.0
 margin_bottom = 28.0
@@ -220,14 +222,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Gold" type="ColorRect" parent="GameCompleteContainer"]
+[node name="Gold" type="ColorRect" parent="GameComplete/GameCompleteContainer"]
 margin_top = 353.0
 margin_right = 1024.0
 margin_bottom = 381.0
 rect_min_size = Vector2( 0, 28 )
 color = Color( 0, 0, 0, 0 )
 
-[node name="Label" type="Label" parent="GameCompleteContainer/Gold"]
+[node name="Label" type="Label" parent="GameComplete/GameCompleteContainer/Gold"]
 margin_right = 512.0
 margin_bottom = 28.0
 custom_fonts/font = SubResource( 4 )
@@ -238,7 +240,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Total" type="Label" parent="GameCompleteContainer/Gold"]
+[node name="Total" type="Label" parent="GameComplete/GameCompleteContainer/Gold"]
 margin_left = 514.0
 margin_right = 1026.0
 margin_bottom = 28.0
@@ -249,21 +251,21 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Gap3" type="ColorRect" parent="GameCompleteContainer"]
+[node name="Gap3" type="ColorRect" parent="GameComplete/GameCompleteContainer"]
 margin_top = 385.0
 margin_right = 1024.0
 margin_bottom = 409.0
 rect_min_size = Vector2( 24, 24 )
 color = Color( 1, 1, 1, 0 )
 
-[node name="Score" type="ColorRect" parent="GameCompleteContainer"]
+[node name="Score" type="ColorRect" parent="GameComplete/GameCompleteContainer"]
 margin_top = 413.0
 margin_right = 1024.0
 margin_bottom = 441.0
 rect_min_size = Vector2( 0, 28 )
 color = Color( 0, 0, 0, 0 )
 
-[node name="Score" type="Label" parent="GameCompleteContainer/Score"]
+[node name="Score" type="Label" parent="GameComplete/GameCompleteContainer/Score"]
 margin_right = 512.0
 margin_bottom = 28.0
 custom_fonts/font = SubResource( 4 )
@@ -274,7 +276,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Total" type="Label" parent="GameCompleteContainer/Score"]
+[node name="Total" type="Label" parent="GameComplete/GameCompleteContainer/Score"]
 margin_left = 514.0
 margin_right = 1026.0
 margin_bottom = 28.0
@@ -285,32 +287,32 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Gap4" type="ColorRect" parent="GameCompleteContainer"]
+[node name="Gap4" type="ColorRect" parent="GameComplete/GameCompleteContainer"]
 margin_top = 445.0
 margin_right = 1024.0
 margin_bottom = 469.0
 rect_min_size = Vector2( 24, 24 )
 color = Color( 1, 1, 1, 0 )
 
-[node name="MenuButtons" type="HBoxContainer" parent="GameCompleteContainer"]
+[node name="MenuButtons" type="HBoxContainer" parent="GameComplete/GameCompleteContainer"]
 margin_top = 473.0
 margin_right = 1024.0
 margin_bottom = 505.0
 alignment = 1
 
-[node name="ReturnToMainMenu" parent="GameCompleteContainer/MenuButtons" instance=ExtResource( 2 )]
+[node name="ReturnToMainMenu" parent="GameComplete/GameCompleteContainer/MenuButtons" instance=ExtResource( 2 )]
 margin_left = 124.0
 margin_top = 0.0
 margin_right = 380.0
 margin_bottom = 32.0
 
-[node name="Exit" parent="GameCompleteContainer/MenuButtons" instance=ExtResource( 3 )]
+[node name="Exit" parent="GameComplete/GameCompleteContainer/MenuButtons" instance=ExtResource( 3 )]
 margin_left = 384.0
 margin_top = 0.0
 margin_right = 640.0
 margin_bottom = 32.0
 
-[node name="Resume" parent="GameCompleteContainer/MenuButtons" instance=ExtResource( 4 )]
+[node name="Resume" parent="GameComplete/GameCompleteContainer/MenuButtons" instance=ExtResource( 4 )]
 margin_left = 644.0
 margin_top = 0.0
 margin_right = 900.0
