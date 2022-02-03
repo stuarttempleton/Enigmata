@@ -32,8 +32,7 @@ func TotalBoxString():
 	var total = 0
 	for i in Boxes.BOX_TYPE.WHITE + 1:
 		if Boxes.Boxes[i].qty > 0:
-			for box_qty in Boxes.Boxes[i].qty:
-				gathered += Boxes.Boxes[i].qty - Boxes.Boxes[i].remaining
-				total += Boxes.Boxes[i].qty
+			gathered += Boxes.Boxes[i].qty - Boxes.Boxes[i].remaining
+			total += Boxes.Boxes[i].qty
 	var percent = gathered * 1.0 / total * 100
 	return "%d (%d%%)" % [gathered, percent]
