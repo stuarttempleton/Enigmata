@@ -1,9 +1,15 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://UI/GameComplete.gd" type="Script" id=1]
 [ext_resource path="res://UI/ReturnToMainMenu.tscn" type="PackedScene" id=2]
 [ext_resource path="res://UI/Exit.tscn" type="PackedScene" id=3]
 [ext_resource path="res://UI/Resume.tscn" type="PackedScene" id=4]
+[ext_resource path="res://shaders/white.png" type="Texture" id=5]
+[ext_resource path="res://shaders/blur.shader" type="Shader" id=6]
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = ExtResource( 6 )
+shader_param/amount = 2.0
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://fonts/Montserrat-ExtraBold.ttf"
@@ -46,6 +52,13 @@ color = Color( 0, 0, 0, 0.239216 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Blur" type="TextureRect" parent="GameComplete"]
+material = SubResource( 6 )
+margin_right = 1024.0
+margin_bottom = 600.0
+texture = ExtResource( 5 )
+expand = true
 
 [node name="GameCompleteContainer" type="VBoxContainer" parent="GameComplete"]
 margin_right = 1024.0
