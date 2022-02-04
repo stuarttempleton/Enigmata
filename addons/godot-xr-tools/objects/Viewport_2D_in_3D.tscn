@@ -22,13 +22,14 @@ extents = Vector3( 1.5, 1, 0.01 )
 
 [node name="Viewport2Din3D" type="Spatial"]
 script = ExtResource( 1 )
+collision_layer = 13
 
 [node name="Screen" type="MeshInstance" parent="."]
 mesh = SubResource( 1 )
 material/0 = SubResource( 3 )
 
 [node name="StaticBody" type="StaticBody" parent="."]
-collision_layer = 15
+collision_layer = 13
 collision_mask = 0
 script = ExtResource( 2 )
 viewport = NodePath("../Viewport")

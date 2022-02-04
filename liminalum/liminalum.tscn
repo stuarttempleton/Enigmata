@@ -1,14 +1,18 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://shaders/water.gdshader" type="Shader" id=1]
 [ext_resource path="res://MapPieces/test_walls/brick_floor.tres" type="Material" id=2]
 [ext_resource path="res://liminalum/liminalum.gd" type="Script" id=3]
 [ext_resource path="res://player/PersonReceiver.tscn" type="PackedScene" id=4]
+[ext_resource path="res://addons/godot-xr-tools/objects/Viewport_2D_in_3D.tscn" type="PackedScene" id=5]
 [ext_resource path="res://MapPieces/test_walls/white_plaster_top_material.tres" type="Material" id=6]
 [ext_resource path="res://MapPieces/test_walls/l_blue_plaster_top_material.tres" type="Material" id=7]
 [ext_resource path="res://MapPieces/test_walls/pillar_large.tscn" type="PackedScene" id=8]
 [ext_resource path="res://MapPieces/test_walls/Wall_half.tscn" type="PackedScene" id=9]
 [ext_resource path="res://MapPieces/test_walls/rafter.tscn" type="PackedScene" id=10]
+[ext_resource path="res://UI/GameComplete.tscn" type="PackedScene" id=11]
+[ext_resource path="res://MapPieces/test_walls/wood_planks.tres" type="Material" id=12]
+[ext_resource path="res://MapPieces/test_walls/stone_floor.tres" type="Material" id=13]
 
 [sub_resource type="OpenSimplexNoise" id=1]
 
@@ -107,7 +111,7 @@ collision_mask = 65537
 width = 16.0
 height = 1.0
 depth = 12.0
-material = ExtResource( 2 )
+material = ExtResource( 13 )
 
 [node name="CSGBox" type="CSGBox" parent="Floor2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 0 )
@@ -313,3 +317,19 @@ collision_mask = 65537
 
 [node name="PlayerSpawnPoint" type="Spatial" parent="."]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4, 0.2, -1 )
+
+[node name="WorldUIBox" type="CSGBox" parent="."]
+transform = Transform( -0.723168, 0.14129, -0.676066, 0.191751, 0.981444, 1.67634e-08, 0.663521, -0.129637, -0.736841, 5.88999, 1, -4.80678 )
+width = 0.0647501
+height = 1.9
+depth = 2.8
+material = ExtResource( 12 )
+
+[node name="Viewport2Din3D" parent="WorldUIBox" instance=ExtResource( 5 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.03265, -0.00460994, 0 )
+screen_size = Vector2( 2.4, 1.6 )
+viewport_size = Vector2( 1024, 600 )
+scene = ExtResource( 11 )
+
+[connection signal="PersonEntered" from="PersonReceiver" to="." method="_on_PersonReceiver_PersonEntered"]
+[connection signal="PersonExited" from="PersonReceiver" to="." method="_on_PersonReceiver_PersonExited"]
