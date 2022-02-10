@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://UI/MapCode_UI.gd" type="Script" id=1]
+[ext_resource path="res://UI/Box_UI.tscn" type="PackedScene" id=2]
+[ext_resource path="res://UI/Box_UI_Container.tscn" type="PackedScene" id=3]
+[ext_resource path="res://UI/Box Info.gd" type="Script" id=4]
+
+[node name="World Info" type="ColorRect"]
+margin_right = 192.0
+margin_bottom = 16.0
+color = Color( 0, 0, 0, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Box Info" type="VBoxContainer" parent="."]
+margin_left = 8.0
+margin_top = 32.0
+margin_right = 125.0
+margin_bottom = 48.0
+size_flags_vertical = 2
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Box_UI_Container" parent="Box Info" instance=ExtResource( 3 )]
+margin_top = 0.0
+margin_bottom = 0.0
+
+[node name="Box_UI" parent="Box Info" instance=ExtResource( 2 )]
+margin_top = 4.0
+margin_bottom = 20.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 160.0
+margin_bottom = 24.0
+color = Color( 0, 0.266667, 0.607843, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MapCode" type="Label" parent="ColorRect"]
+margin_top = 4.0
+margin_right = 160.0
+margin_bottom = 20.0
+text = "Map Code: ABCD 0000"
+align = 1
+valign = 2
+uppercase = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

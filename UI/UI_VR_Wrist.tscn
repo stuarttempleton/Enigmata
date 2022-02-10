@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://UI/World Info.tscn" type="PackedScene" id=1]
+[ext_resource path="res://UI/TimerInfo.tscn" type="PackedScene" id=2]
+
+[node name="UI_VR_Wrist" type="CanvasLayer"]
+
+[node name="UI_Bundle" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="World Info" parent="UI_Bundle" instance=ExtResource( 1 )]
+margin_top = 40.0
+margin_bottom = 56.0
+
+[node name="TimerInfo" parent="UI_Bundle" instance=ExtResource( 2 )]

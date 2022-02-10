@@ -95,11 +95,16 @@ func GetUIHelper():
 		MODE.VIEWER:
 			return $UI_pause
 
+#
+# Show pause or game over sc ene, based on game state and play mode. 
+# If we're in VR, do not pause.
+#
 func PauseOrGOHelper(_state):
-	if state != STATE.COMPLETE:
-		Pause(_state)
-	else:
-		GameOverFlow(_state)
+	if mode != MODE.PLAYER_VR:
+		if state != STATE.COMPLETE:
+			Pause(_state)
+		else:
+			GameOverFlow(_state)
 
 func _process(delta):
 	if state != STATE.TITLE && Input.is_action_just_pressed("pause") == true:

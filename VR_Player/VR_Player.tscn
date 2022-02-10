@@ -5,7 +5,7 @@
 [ext_resource path="res://addons/godot-openvr/OpenVRController.gdns" type="Script" id=3]
 [ext_resource path="res://VR_Player/Function_Locomotion.tscn" type="PackedScene" id=4]
 [ext_resource path="res://VR_Player/Function_Updated_Teleport.tscn" type="PackedScene" id=5]
-[ext_resource path="res://UI/UI_Overlay.tscn" type="PackedScene" id=6]
+[ext_resource path="res://UI/UI_VR_Wrist.tscn" type="PackedScene" id=6]
 [ext_resource path="res://VR_Player/Function_Updated_Pickup.tscn" type="PackedScene" id=7]
 [ext_resource path="res://player/PersonTrigger.tscn" type="PackedScene" id=8]
 [ext_resource path="res://addons/godot-openvr/scenes/ovr_main.gd" type="Script" id=9]
@@ -63,9 +63,9 @@ max_speed = 500.0
 canFly = false
 
 [node name="Viewport2Din3D" parent="Right_Hand" instance=ExtResource( 16 )]
-transform = Transform( 0.707107, 2.98023e-08, -0.707107, 0.5, 0.707107, 0.5, 0.5, -0.707107, 0.5, 0.15, 0.1, 0 )
+transform = Transform( 0.812422, 0.183013, -0.553603, 0.419139, 0.476727, 0.772693, 0.40533, -0.85979, 0.310596, 0.15, 0.1, 0 )
 screen_size = Vector2( 0.2, 0.2 )
-viewport_size = Vector2( 200, 200 )
+viewport_size = Vector2( 300, 300 )
 scene = ExtResource( 6 )
 collision_layer = 0
 

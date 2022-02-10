@@ -5,5 +5,5 @@ sky_top_color = Color( 0.211765, 0.313726, 0.552941, 1 )
 sky_horizon_color = Color( 0.545098, 0.686275, 0.811765, 1 )
 ground_bottom_color = Color( 0.172549, 0.172549, 0.172549, 1 )
 ground_horizon_color = Color( 0.176471, 0.184314, 0.196078, 1 )
-sun_color = Color( 1, 0.945098, 0.737255, 1 )
+sun_color = Color( 1, 0.921569, 0.772549, 1 )
 sun_longitude = -47.37

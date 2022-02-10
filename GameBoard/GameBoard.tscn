@@ -70,6 +70,7 @@ light_energy = 0.74
 light_indirect_energy = 1.65
 light_bake_mode = 0
 shadow_enabled = true
+directional_shadow_normal_bias = 0.0
 
 [node name="Liminalum" parent="." instance=ExtResource( 11 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0 )
