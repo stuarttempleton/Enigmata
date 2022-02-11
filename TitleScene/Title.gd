@@ -15,7 +15,7 @@ func _ready():
 
 func HandleLoad():
 	if $Menu/MapCode/TextBox.text == "":
-		$Menu/MapCode/TextBox.text = GameController.create_map_code()
+		$Menu/MapCode/TextBox.text = GameController.CreateMapCode()
 	print("Using code: ", $Menu/MapCode/TextBox.text)
 	GameController.SetCode($Menu/MapCode/TextBox.text)
 	
