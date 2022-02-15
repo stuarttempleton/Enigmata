@@ -10,6 +10,7 @@ func _ready():
 	GameController.Pause(false)
 	GameController.state = GameController.STATE.TITLE
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	$Menu/MapCode/TextBox.text = GameController.map_code
 	SceneChanger.UnFade()
 
 

@@ -2,7 +2,7 @@ extends Node
 
 
 enum MODE { PLAYER_VR, PLAYER_DESKTOP, VIEWER }
-var mode = MODE.VIEWER
+var mode = MODE.PLAYER_DESKTOP
 enum STATE {TITLE, STARTING, PLAYING, COMPLETE }
 var state = STATE.TITLE
 var input_cache
@@ -26,7 +26,7 @@ func _init():
 	PopulateTables()
 	if main_seed == 0:
 		randomize()
-		SetCode(CreateMapCode())
+		#SetCode(CreateMapCode())
 		
 	for arg in OS.get_cmdline_args():
 		print("Arg: ", arg)
@@ -42,8 +42,6 @@ func _init():
 						mode = MODE.VIEWER
 					_:
 						mode = MODE.PLAYER_DESKTOP
-			"--seed":
-				main_seed = param[1].to_int()
 			"--code":
 				SetCode(param[1])
 
@@ -53,9 +51,9 @@ func PopulateTables():
 	for ch in characters:
 		dimension_table[ch] = i * o
 		i += 1
-
+	
 func SetCode(_code):
-	if !IsValidCode(map_code):
+	if !IsValidCode(_code):
 		_code = CreateMapCode()
 	map_code = _code
 	main_seed = hash(map_code.replace(" ", ""))
