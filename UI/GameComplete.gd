@@ -6,16 +6,12 @@ func _ready():
 	GC_parent = get_parent().name == "GameController"
 	if GC_parent:
 		ShowUI(false)
-		print("parent == gamecont")
 	else:
-		print("own parent")
 		ShowUI(true)
 
 func ShowUI(_visible = true):
 	$GameComplete.visible = _visible
 	$GameComplete/GameCompleteContainer/MenuButtons.visible = GC_parent
-	#$GameComplete/Blur.visible = GC_parent
-	#$GameComplete/ColorRect.visible = GC_parent
 	if _visible:
 		UpdateUI()
 

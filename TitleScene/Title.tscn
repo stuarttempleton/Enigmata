@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://TitleScene/button_hover-press-focus.tres" type="StyleBox" id=1]
 [ext_resource path="res://TitleScene/button_normal.tres" type="StyleBox" id=2]
@@ -23,14 +23,6 @@ outline_size = 4
 outline_color = Color( 0, 0, 0, 0.262745 )
 font_data = SubResource( 1 )
 
-[sub_resource type="DynamicFontData" id=3]
-font_path = "res://fonts/Montserrat-Light.ttf"
-
-[sub_resource type="DynamicFont" id=4]
-size = 12
-outline_color = Color( 0, 0, 0, 0.215686 )
-font_data = SubResource( 3 )
-
 [node name="Title" type="Spatial"]
 script = ExtResource( 10 )
 
@@ -39,14 +31,16 @@ script = ExtResource( 10 )
 [node name="Menu" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 256.0
+margin_right = -256.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Menu"]
-margin_top = 64.0
-margin_right = 1024.0
-margin_bottom = 164.0
+margin_top = 48.0
+margin_right = 512.0
+margin_bottom = 148.0
 custom_fonts/normal_font = SubResource( 2 )
 bbcode_enabled = true
 bbcode_text = "[center]ENIGMATA"
@@ -56,134 +50,79 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VR" type="Button" parent="Menu"]
-margin_left = 416.0
-margin_top = 208.0
-margin_right = 608.0
-margin_bottom = 240.0
+[node name="Buttons" type="VBoxContainer" parent="Menu"]
+margin_left = 64.0
+margin_top = 128.0
+margin_right = 448.0
+margin_bottom = 408.0
+custom_constants/separation = 30
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VR" type="Button" parent="Menu/Buttons"]
+margin_top = 62.0
+margin_right = 384.0
+margin_bottom = 94.0
+rect_min_size = Vector2( 0, 32 )
 custom_fonts/font = ExtResource( 3 )
 custom_styles/hover = ExtResource( 1 )
 custom_styles/pressed = ExtResource( 1 )
 custom_styles/focus = ExtResource( 1 )
 custom_styles/normal = ExtResource( 2 )
-text = "VR"
+text = "Enter Maze (VR)"
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+EnableOnState = 0
+
+[node name="Desktop" type="Button" parent="Menu/Buttons"]
+margin_top = 124.0
+margin_right = 384.0
+margin_bottom = 156.0
+rect_min_size = Vector2( 0, 32 )
+custom_fonts/font = ExtResource( 3 )
+custom_styles/hover = ExtResource( 1 )
+custom_styles/pressed = ExtResource( 1 )
+custom_styles/focus = ExtResource( 1 )
+custom_styles/normal = ExtResource( 2 )
+text = "Enter Maze"
 script = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TIP" type="ColorRect" parent="Menu/VR"]
-visible = false
-self_modulate = Color( 1, 1, 1, 0.772549 )
+[node name="Viewer" type="Button" parent="Menu/Buttons"]
+margin_top = 186.0
+margin_right = 384.0
+margin_bottom = 218.0
+rect_min_size = Vector2( 0, 32 )
+custom_fonts/font = ExtResource( 3 )
+custom_styles/hover = ExtResource( 1 )
+custom_styles/pressed = ExtResource( 1 )
+custom_styles/focus = ExtResource( 1 )
+custom_styles/normal = ExtResource( 2 )
+text = "View Map"
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+EnableOnState = 2
+
+[node name="MapCode" type="ColorRect" parent="Menu/Buttons/Viewer"]
 margin_left = 32.0
-margin_top = 40.0
-margin_right = 160.0
-margin_bottom = 56.0
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="Menu/VR/TIP"]
-margin_right = 128.0
-margin_bottom = 16.0
-custom_colors/default_color = Color( 0, 0, 0, 1 )
-custom_fonts/normal_font = SubResource( 4 )
-bbcode_enabled = true
-bbcode_text = "[center]Walk the maze."
-text = "Walk the maze."
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Desktop" type="Button" parent="Menu"]
-margin_left = 416.0
-margin_top = 280.0
-margin_right = 608.0
-margin_bottom = 312.0
-custom_fonts/font = ExtResource( 3 )
-custom_styles/hover = ExtResource( 1 )
-custom_styles/pressed = ExtResource( 1 )
-custom_styles/focus = ExtResource( 1 )
-custom_styles/normal = ExtResource( 2 )
-text = "Desktop"
-script = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TIP" type="ColorRect" parent="Menu/Desktop"]
-visible = false
-self_modulate = Color( 1, 1, 1, 0.772549 )
-margin_left = 24.0
-margin_top = 40.0
-margin_right = 168.0
-margin_bottom = 56.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="Menu/Desktop/TIP"]
-margin_right = 144.0
-margin_bottom = 16.0
-custom_colors/default_color = Color( 0, 0, 0, 1 )
-custom_fonts/normal_font = SubResource( 4 )
-bbcode_enabled = true
-bbcode_text = "[center]Use mouse & keyboard"
-text = "Use mouse & keyboard"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Viewer" type="Button" parent="Menu"]
-margin_left = 416.0
-margin_top = 432.0
-margin_right = 608.0
-margin_bottom = 464.0
-custom_fonts/font = ExtResource( 3 )
-custom_styles/hover = ExtResource( 1 )
-custom_styles/pressed = ExtResource( 1 )
-custom_styles/focus = ExtResource( 1 )
-custom_styles/normal = ExtResource( 2 )
-text = "MAP"
-script = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TIP" type="ColorRect" parent="Menu/Viewer"]
-visible = false
-self_modulate = Color( 1, 1, 1, 0.772549 )
-margin_left = 24.0
-margin_top = 40.0
-margin_right = 168.0
-margin_bottom = 56.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="Menu/Viewer/TIP"]
-margin_right = 144.0
-margin_bottom = 16.0
-custom_colors/default_color = Color( 0, 0, 0, 1 )
-custom_fonts/normal_font = SubResource( 4 )
-bbcode_enabled = true
-bbcode_text = "[center]View a maze map."
-text = "View a maze map."
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MapCode" type="ColorRect" parent="Menu"]
-margin_left = 368.0
-margin_top = 504.0
-margin_right = 656.0
-margin_bottom = 536.0
+margin_top = 48.0
+margin_right = 352.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 0, 32 )
 color = Color( 0.713726, 0.486275, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="Menu/MapCode"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="Menu/Buttons/Viewer/MapCode"]
 margin_left = 8.0
 margin_top = 10.0
 margin_right = 88.0
@@ -196,10 +135,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextBox" type="LineEdit" parent="Menu/MapCode"]
+[node name="TextBox" type="LineEdit" parent="Menu/Buttons/Viewer/MapCode"]
 margin_left = 88.0
 margin_top = 2.0
-margin_right = 286.0
+margin_right = 318.0
 margin_bottom = 30.0
 placeholder_text = "Leave blank for a new maze"
 __meta__ = {
@@ -257,6 +196,6 @@ directional_shadow_normal_bias = 0.0
 [node name="GIProbe" type="GIProbe" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5 )
 
-[connection signal="pressed" from="Menu/VR" to="." method="_on_VR_pressed"]
-[connection signal="pressed" from="Menu/Desktop" to="." method="_on_Desktop_pressed"]
-[connection signal="pressed" from="Menu/Viewer" to="." method="_on_Viewer_pressed"]
+[connection signal="pressed" from="Menu/Buttons/VR" to="." method="_on_VR_pressed"]
+[connection signal="pressed" from="Menu/Buttons/Desktop" to="." method="_on_Desktop_pressed"]
+[connection signal="pressed" from="Menu/Buttons/Viewer" to="." method="_on_Viewer_pressed"]

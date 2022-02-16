@@ -53,15 +53,17 @@ __meta__ = {
 margin_left = 384.0
 margin_right = 640.0
 margin_bottom = 600.0
+custom_constants/separation = 20
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MazePaused" type="Label" parent="UI_pause/MenuItems"]
-margin_top = 200.0
+margin_top = 198.0
 margin_right = 256.0
-margin_bottom = 238.0
+margin_bottom = 246.0
+rect_min_size = Vector2( 0, 48 )
 custom_fonts/font = SubResource( 2 )
 text = "Maze Paused"
 align = 1
@@ -69,35 +71,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Gap" type="ColorRect" parent="UI_pause/MenuItems"]
-margin_top = 242.0
-margin_right = 256.0
-margin_bottom = 260.0
-rect_min_size = Vector2( 32, 18 )
-color = Color( 1, 1, 1, 0 )
-
 [node name="ReturnToMainMenu" parent="UI_pause/MenuItems" instance=ExtResource( 4 )]
-margin_top = 264.0
-margin_bottom = 296.0
-
-[node name="Gap2" type="ColorRect" parent="UI_pause/MenuItems"]
-margin_top = 300.0
-margin_right = 256.0
-margin_bottom = 312.0
-rect_min_size = Vector2( 32, 12 )
-color = Color( 1, 1, 1, 0 )
+margin_top = 266.0
+margin_bottom = 298.0
 
 [node name="Exit" parent="UI_pause/MenuItems" instance=ExtResource( 1 )]
-margin_top = 316.0
-margin_bottom = 348.0
-
-[node name="Gap3" type="ColorRect" parent="UI_pause/MenuItems"]
-margin_top = 352.0
-margin_right = 256.0
-margin_bottom = 364.0
-rect_min_size = Vector2( 32, 12 )
-color = Color( 1, 1, 1, 0 )
+margin_top = 318.0
+margin_bottom = 350.0
 
 [node name="Resume" parent="UI_pause/MenuItems" instance=ExtResource( 3 )]
-margin_top = 368.0
-margin_bottom = 400.0
+margin_top = 370.0
+margin_bottom = 402.0

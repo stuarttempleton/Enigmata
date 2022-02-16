@@ -5,20 +5,22 @@ var VRScene = preload("res://ConstructVRViewport.tscn")
 var FPSScene = preload("res://FPSViewport.tscn")
 var MapScene = preload("res://MapViewport.tscn")
 var LoadScene
+var MapCodeUI
 
 func _ready():
 	GameController.Pause(false)
 	GameController.state = GameController.STATE.TITLE
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	$Menu/MapCode/TextBox.text = GameController.map_code
+	MapCodeUI = $Menu/Buttons/Viewer/MapCode/TextBox
+	MapCodeUI.text = GameController.map_code
 	SceneChanger.UnFade()
 
 
 func HandleLoad():
-	if $Menu/MapCode/TextBox.text == "":
-		$Menu/MapCode/TextBox.text = GameController.CreateMapCode()
-	print("Using code: ", $Menu/MapCode/TextBox.text)
-	GameController.SetCode($Menu/MapCode/TextBox.text)
+	if MapCodeUI.text == "":
+		MapCodeUI.text = GameController.CreateMapCode()
+	print("Using code: ", MapCodeUI.text)
+	GameController.SetCode(MapCodeUI.text)
 	
 	SceneChanger.LoadScene(LoadScene)
 
