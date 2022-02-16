@@ -27,7 +27,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Enigmata"
-run/main_scene="res://TitleScene/Title.tscn"
+run/main_scene="res://ExperienceBootStrap/ExperienceBootStrap.tscn"
 config/icon="res://icon.png"
 
 [autoload]

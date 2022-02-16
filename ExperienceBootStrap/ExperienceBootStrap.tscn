@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://ExperienceBootStrap/ExperienceBootStrap.gd" type="Script" id=1]
+[ext_resource path="res://TitleScene/Title.tscn" type="PackedScene" id=2]
+
+[node name="ExperienceBootStrap" type="Spatial"]
+script = ExtResource( 1 )
+VRExperience = ExtResource( 2 )
+DesktopExperience = ExtResource( 2 )
+NavigatorExperience = ExtResource( 2 )
