@@ -22,12 +22,12 @@ func _export_begin(features: PoolStringArray, is_debug: bool, path: String, flag
 	var dir = Directory.new()
 	var platform = get_target_platform_from_features(features)
 	
-	#print("Exporting for ", platform)
+	print("Exporting for ", platform)
 	# place in relative root
 	var export_to = path.get_base_dir() + "/"
 	
 	# check for custom stuff in project
-	var export_from = "res://addons/ExportFiles/launchers/"
+	var export_from = "res://addons/ExportLaunchers/launchers/"
 	if dir.dir_exists("res://launchers/"):
 		export_from = "res://launchers/"
 	elif dir.dir_exists("res://Launchers/"):

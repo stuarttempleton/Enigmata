@@ -2,7 +2,7 @@ tool
 extends EditorPlugin
 
 
-const EditorExportFiles = preload("res://addons/ExportFiles/EditorExportFiles.gd")
+const EditorExportFiles = preload("res://addons/ExportLaunchers/EditorExportFiles.gd")
 var export_plugin = EditorExportFiles.new()
 
 func _enter_tree():
