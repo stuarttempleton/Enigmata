@@ -1,0 +1,1 @@
+enigmata.exe --mode=viewer

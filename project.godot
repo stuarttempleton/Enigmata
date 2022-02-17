@@ -38,7 +38,7 @@ SceneChanger="*res://SceneChanger/SceneChanger.tscn"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/godot-openvr/plugin.cfg", "res://addons/scene_map/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/ExportFiles/plugin.cfg", "res://addons/godot-openvr/plugin.cfg", "res://addons/scene_map/plugin.cfg" )
 
 [gdnative]
 
