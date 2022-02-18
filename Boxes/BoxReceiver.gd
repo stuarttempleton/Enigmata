@@ -10,6 +10,7 @@ func _ready():
 func SetBoxType(_type):
 	AcceptsBox = _type
 	$CSGBox/CSGBox2.material = Boxes.BoxMaterials[AcceptsBox]
+	$MeshInstance.set_surface_material(0, Boxes.BoxWaterMaterials[AcceptsBox])
 
 
 func _on_Area_body_entered(body):

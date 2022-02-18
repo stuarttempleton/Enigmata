@@ -24,6 +24,7 @@ class Box:
 
 var Boxes
 var BoxMaterials
+var BoxWaterMaterials
 var BoxReceptacle
 var BoxColors
 
@@ -45,6 +46,12 @@ func _ready():
 		BOX_TYPE.PURPLE: load("res://Items/purple_plaster_cube.tres"),
 		BOX_TYPE.RED: load("res://Items/red_plaster_cube.tres"),
 		BOX_TYPE.WHITE: load("res://Items/white_plaster_cube.tres")}
+		
+	BoxWaterMaterials = {
+		BOX_TYPE.GOLD: load("res://Items/yellow_water_material.tres"),
+		BOX_TYPE.PURPLE: load("res://Items/purple_water_material.tres"),
+		BOX_TYPE.RED: load("res://Items/red_water_material.tres"),
+		BOX_TYPE.WHITE: load("res://Items/blue_water_material.tres")}
 		
 	BoxReceptacle = load("res://Boxes/BoxReceiver.tscn")
 

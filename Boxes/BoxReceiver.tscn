@@ -1,11 +1,15 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Boxes/BoxReceiver.gd" type="Script" id=1]
-[ext_resource path="res://Items/gold_plaster_cube.tres" type="Material" id=2]
+[ext_resource path="res://Items/blue_water_material.tres" type="Material" id=2]
 [ext_resource path="res://Items/white_plaster_cube.tres" type="Material" id=3]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.733609, 0.431376, 0.714648 )
+
+[sub_resource type="PlaneMesh" id=2]
+material = ExtResource( 2 )
+size = Vector2( 1.8, 1.8 )
 
 [node name="BoxReceiver" type="Spatial"]
 script = ExtResource( 1 )
@@ -29,7 +33,15 @@ operation = 2
 width = 1.5
 height = 1.1769
 depth = 1.5
-material = ExtResource( 2 )
+material = ExtResource( 3 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.32976, 0 )
+mesh = SubResource( 2 )
+material/0 = null
+__meta__ = {
+"_editor_description_": ""
+}
 
 [connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
 [connection signal="body_exited" from="Area" to="." method="_on_Area_body_exited"]
