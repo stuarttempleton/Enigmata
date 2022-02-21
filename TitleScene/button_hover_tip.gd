@@ -4,4 +4,5 @@ export (GameController.MODE) var EnableOnState = GameController.MODE.PLAYER_DESK
 
 func _ready():
 	if (GameController.mode != EnableOnState):
-		visible = false
+		#visible = false
+		pass

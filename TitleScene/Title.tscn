@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://TitleScene/button_hover-press-focus.tres" type="StyleBox" id=1]
 [ext_resource path="res://TitleScene/button_normal.tres" type="StyleBox" id=2]
@@ -13,6 +13,8 @@
 [ext_resource path="res://Items/gold_box.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Items/purple_box.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Items/red_box.tscn" type="PackedScene" id=13]
+[ext_resource path="res://TitleScene/SizeSelector.gd" type="Script" id=14]
+[ext_resource path="res://TitleScene/ComplexitySelector.gd" type="Script" id=15]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://fonts/Montserrat-ExtraBold.ttf"
@@ -61,7 +63,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VR" type="Button" parent="Menu/Buttons"]
+[node name="Gap" type="ColorRect" parent="Menu/Buttons"]
+margin_right = 384.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 0, 32 )
+color = Color( 1, 1, 1, 0 )
+
+[node name="Desktop" type="Button" parent="Menu/Buttons"]
 margin_top = 62.0
 margin_right = 384.0
 margin_bottom = 94.0
@@ -71,14 +79,13 @@ custom_styles/hover = ExtResource( 1 )
 custom_styles/pressed = ExtResource( 1 )
 custom_styles/focus = ExtResource( 1 )
 custom_styles/normal = ExtResource( 2 )
-text = "Enter Maze (VR)"
+text = "Enter Maze (Desktop)"
 script = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-EnableOnState = 0
 
-[node name="Desktop" type="Button" parent="Menu/Buttons"]
+[node name="VR" type="Button" parent="Menu/Buttons"]
 margin_top = 124.0
 margin_right = 384.0
 margin_bottom = 156.0
@@ -88,16 +95,162 @@ custom_styles/hover = ExtResource( 1 )
 custom_styles/pressed = ExtResource( 1 )
 custom_styles/focus = ExtResource( 1 )
 custom_styles/normal = ExtResource( 2 )
-text = "Enter Maze"
+text = "Enter Maze (SteamVR)"
 script = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+EnableOnState = 0
 
-[node name="Viewer" type="Button" parent="Menu/Buttons"]
+[node name="Difficulty" type="VBoxContainer" parent="Menu/Buttons"]
 margin_top = 186.0
 margin_right = 384.0
-margin_bottom = 218.0
+margin_bottom = 250.0
+alignment = 1
+
+[node name="MazeSize" type="HBoxContainer" parent="Menu/Buttons/Difficulty"]
+margin_right = 384.0
+margin_bottom = 28.0
+alignment = 1
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Menu/Buttons/Difficulty/MazeSize"]
+margin_left = 73.0
+margin_right = 73.0
+margin_bottom = 28.0
+color = Color( 0.521569, 0.219608, 0.592157, 0.756863 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect2" type="ColorRect" parent="Menu/Buttons/Difficulty/MazeSize/ColorRect"]
+margin_right = 239.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 128, 28 )
+color = Color( 0.713726, 0.486275, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Menu/Buttons/Difficulty/MazeSize"]
+margin_left = 77.0
+margin_top = 3.0
+margin_right = 179.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 102, 0 )
+custom_fonts/font = ExtResource( 3 )
+text = "Size:"
+align = 2
+
+[node name="Less" type="Button" parent="Menu/Buttons/Difficulty/MazeSize"]
+margin_left = 183.0
+margin_right = 205.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 3 )
+text = "<"
+flat = true
+
+[node name="Size" type="Label" parent="Menu/Buttons/Difficulty/MazeSize"]
+margin_left = 209.0
+margin_top = 3.0
+margin_right = 284.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 75, 0 )
+custom_fonts/font = ExtResource( 3 )
+text = "10 x 10"
+align = 1
+
+[node name="More" type="Button" parent="Menu/Buttons/Difficulty/MazeSize"]
+margin_left = 288.0
+margin_right = 310.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 3 )
+text = ">"
+flat = true
+
+[node name="MazeComplexity2" type="HBoxContainer" parent="Menu/Buttons/Difficulty"]
+margin_top = 32.0
+margin_right = 384.0
+margin_bottom = 60.0
+alignment = 1
+script = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect2" type="ColorRect" parent="Menu/Buttons/Difficulty/MazeComplexity2"]
+margin_left = 73.0
+margin_right = 73.0
+margin_bottom = 28.0
+color = Color( 0, 0, 0, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect2" type="ColorRect" parent="Menu/Buttons/Difficulty/MazeComplexity2/ColorRect2"]
+margin_right = 239.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 128, 28 )
+color = Color( 0.713726, 0.486275, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Menu/Buttons/Difficulty/MazeComplexity2"]
+margin_left = 77.0
+margin_top = 3.0
+margin_right = 179.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 10.2, 0 )
+custom_fonts/font = ExtResource( 3 )
+text = "Complexity:"
+align = 2
+
+[node name="Less" type="Button" parent="Menu/Buttons/Difficulty/MazeComplexity2"]
+margin_left = 183.0
+margin_right = 205.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 3 )
+text = "<"
+flat = true
+
+[node name="Size" type="Label" parent="Menu/Buttons/Difficulty/MazeComplexity2"]
+margin_left = 209.0
+margin_top = 3.0
+margin_right = 284.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 75, 0 )
+custom_fonts/font = ExtResource( 3 )
+text = "MEDIUM"
+align = 1
+
+[node name="More" type="Button" parent="Menu/Buttons/Difficulty/MazeComplexity2"]
+margin_left = 288.0
+margin_right = 310.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 3 )
+text = ">"
+flat = true
+
+[node name="MazeComplexity" type="HBoxContainer" parent="Menu/Buttons/Difficulty"]
+margin_top = 64.0
+margin_right = 384.0
+margin_bottom = 64.0
+
+[node name="Gap2" type="ColorRect" parent="Menu/Buttons"]
+margin_top = 280.0
+margin_right = 384.0
+margin_bottom = 312.0
+rect_min_size = Vector2( 0, 32 )
+color = Color( 1, 1, 1, 0 )
+
+[node name="Viewer" type="Button" parent="Menu/Buttons"]
+margin_top = 342.0
+margin_right = 384.0
+margin_bottom = 374.0
 rect_min_size = Vector2( 0, 32 )
 custom_fonts/font = ExtResource( 3 )
 custom_styles/hover = ExtResource( 1 )
@@ -196,6 +349,10 @@ directional_shadow_normal_bias = 0.0
 [node name="GIProbe" type="GIProbe" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5 )
 
-[connection signal="pressed" from="Menu/Buttons/VR" to="." method="_on_VR_pressed"]
 [connection signal="pressed" from="Menu/Buttons/Desktop" to="." method="_on_Desktop_pressed"]
+[connection signal="pressed" from="Menu/Buttons/VR" to="." method="_on_VR_pressed"]
+[connection signal="pressed" from="Menu/Buttons/Difficulty/MazeSize/Less" to="Menu/Buttons/Difficulty/MazeSize" method="_on_Less_pressed"]
+[connection signal="pressed" from="Menu/Buttons/Difficulty/MazeSize/More" to="Menu/Buttons/Difficulty/MazeSize" method="_on_More_pressed"]
+[connection signal="pressed" from="Menu/Buttons/Difficulty/MazeComplexity2/Less" to="Menu/Buttons/Difficulty/MazeComplexity2" method="_on_Less_pressed"]
+[connection signal="pressed" from="Menu/Buttons/Difficulty/MazeComplexity2/More" to="Menu/Buttons/Difficulty/MazeComplexity2" method="_on_More_pressed"]
 [connection signal="pressed" from="Menu/Buttons/Viewer" to="." method="_on_Viewer_pressed"]

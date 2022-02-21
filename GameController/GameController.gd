@@ -4,6 +4,8 @@ extends Node
 enum MODE { PLAYER_VR, PLAYER_DESKTOP, VIEWER }
 var mode = MODE.PLAYER_DESKTOP
 enum STATE {TITLE, STARTING, PLAYING, COMPLETE }
+enum SIZES { TINY, SMALL, MEDIUM, LARGE, GIANT, ENORMOUS}
+enum COMPLEXITIES {EASY, MEDIUM, HARD}
 var state = STATE.TITLE
 var input_cache
 var isPaused = false #lock to prevent modal flows overlapping
@@ -11,6 +13,7 @@ var map_code = ""#"TESTMAZE"
 var main_seed = 0#map_code.hash()
 var default_code_length = 4
 var dimension_table = {} #generated dynmically
+var complexity_presets = {COMPLEXITIES.EASY: "A", COMPLEXITIES.MEDIUM: "B", COMPLEXITIES.HARD:"C"}
 var complexity_table = {"A":0.2, "B":0.1, "C":0.0} #correlates to maze complexity
 var characters = 'abcdefghjkmnopqrstuvwxyz'.to_upper()
 var map_dimensions = Vector3(10,0,10)
@@ -89,7 +92,7 @@ func CreateDifficutlyCode():
 			_code[2] = key
 	for key in complexity_table:
 		if complexity_table[key] == map_complexity:
-			_code[2] = key
+			_code[3] = key
 	
 	return _code
 
