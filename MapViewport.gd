@@ -4,7 +4,7 @@ extends Spatial
 func _ready():
 	$GameBoard.GenerateMaze({
 				"dimensions": GameController.map_dimensions, 
-				"difficulty": $GameBoard/Maze.MEDIUM, 
+				"difficulty": GameController.map_complexity, 
 				"seed": GameController.main_seed
 				})
 	PositionPlayer()

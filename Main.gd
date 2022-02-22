@@ -11,7 +11,7 @@ func _ready():
 	#$Player/Right_Hand/Viewport2Din3D.get_scene_instance().set_controller($Player/Right_Hand)
 	$GameBoard.GenerateMaze({
 				"dimensions": GameController.map_dimensions, 
-				"difficulty": $GameBoard/Maze.MEDIUM, 
+				"difficulty": GameController.map_complexity, 
 				"seed": GameController.main_seed
 				})
 	PositionPlayer()
