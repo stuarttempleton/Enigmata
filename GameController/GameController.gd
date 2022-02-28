@@ -153,6 +153,9 @@ func PauseOrGOHelper(_state):
 			Pause(_state)
 		else:
 			GameOverFlow(_state)
+	else:
+		if state == STATE.COMPLETE:
+			StopTimer()
 
 func _process(delta):
 	if state != STATE.TITLE && Input.is_action_just_pressed("pause") == true:

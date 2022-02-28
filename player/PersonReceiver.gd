@@ -13,7 +13,6 @@ func _on_PersonReceiver_area_entered(area):
 		if !expired:
 			expired = true
 			GameController.endpoints_explored += 1
-			#TODO: stop timer, end game
 			print("Player entering finish line")
 
 
