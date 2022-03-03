@@ -7,4 +7,5 @@ func _ready():
 	UpdateCode()
 
 func UpdateCode():
-	text = BoilerPlate % [GameController.map_code]
+	var code = GameController.map_code if GameController.map_code != "" else "UNKNOWN" 
+	text = BoilerPlate % [code]

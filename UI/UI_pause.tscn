@@ -35,9 +35,6 @@ __meta__ = {
 margin_right = 1024.0
 margin_bottom = 600.0
 color = Color( 0, 0, 0, 0.239216 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Blur" type="TextureRect" parent="UI_pause"]
 material = SubResource( 3 )

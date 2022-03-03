@@ -1,4 +1,4 @@
-extends Spatial
+extends Control
 
 
 var VRScene = preload("res://ConstructVRViewport.tscn")
@@ -11,7 +11,7 @@ func _ready():
 	GameController.Pause(false)
 	GameController.state = GameController.STATE.TITLE
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	MapCodeUI = $Menu/Buttons/Viewer/MapCode/TextBox
+	MapCodeUI = $Buttons/Viewer/MapCode/TextBox
 	MapCodeUI.text = GameController.map_code
 	SceneChanger.UnFade()
 

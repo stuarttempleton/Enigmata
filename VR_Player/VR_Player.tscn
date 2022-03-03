@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://addons/godot-openvr/OpenVRPose.gdns" type="Script" id=1]
 [ext_resource path="res://addons/godot-openvr/OpenVRAction.gdns" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://VR_Player/Function_Updated_Pickup.tscn" type="PackedScene" id=7]
 [ext_resource path="res://player/PersonTrigger.tscn" type="PackedScene" id=8]
 [ext_resource path="res://addons/godot-openvr/scenes/ovr_main.gd" type="Script" id=9]
+[ext_resource path="res://VR_Player/ControllerRayCast.tscn" type="PackedScene" id=10]
 [ext_resource path="res://player/HandInteraction.tscn" type="PackedScene" id=11]
 [ext_resource path="res://addons/godot-openvr/scenes/ovr_right_hand.tscn" type="PackedScene" id=12]
 [ext_resource path="res://addons/godot-openvr/scenes/ovr_render_model.tscn" type="PackedScene" id=14]
@@ -41,6 +42,8 @@ script = ExtResource( 9 )
 [node name="Left_Hand" parent="." instance=ExtResource( 20 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1.25, 0 )
 
+[node name="ControllerRayCast2" parent="Left_Hand" instance=ExtResource( 10 )]
+
 [node name="Function_Updated_Teleport" parent="Left_Hand" instance=ExtResource( 5 )]
 camera = NodePath("../../ARVRCamera")
 
@@ -55,6 +58,8 @@ button_actions = PoolStringArray( "/actions/godot/in/custom_boolean" )
 [node name="OVRRenderModel" parent="Right_Hand" instance=ExtResource( 14 )]
 
 [node name="Function_Updated_Pickup" parent="Right_Hand" instance=ExtResource( 7 )]
+
+[node name="ControllerRayCast" parent="Right_Hand" instance=ExtResource( 10 )]
 
 [node name="Function_Locomotion" parent="Right_Hand" instance=ExtResource( 4 )]
 camera = NodePath("../../ARVRCamera")

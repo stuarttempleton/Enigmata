@@ -1,0 +1,187 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://TitleScene/ComplexitySelector.gd" type="Script" id=1]
+[ext_resource path="res://TitleScene/SizeSelector.gd" type="Script" id=2]
+[ext_resource path="res://TitleScene/button_regular_font.tres" type="DynamicFont" id=3]
+[ext_resource path="res://UI/label_title_font.tres" type="DynamicFont" id=4]
+[ext_resource path="res://shaders/blur.shader" type="Shader" id=5]
+[ext_resource path="res://shaders/white.png" type="Texture" id=6]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 5 )
+shader_param/amount = 1.0
+
+[node name="ColorRect" type="ColorRect"]
+margin_right = 384.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 384, 128 )
+color = Color( 1, 1, 1, 0.133333 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource( 1 )
+margin_right = 384.0
+margin_bottom = 128.0
+texture = ExtResource( 6 )
+expand = true
+
+[node name="Difficulty" type="VBoxContainer" parent="."]
+margin_left = 32.0
+margin_right = 352.0
+margin_bottom = 128.0
+alignment = 1
+
+[node name="MazeSize" type="HBoxContainer" parent="Difficulty"]
+margin_top = 7.0
+margin_right = 320.0
+margin_bottom = 35.0
+alignment = 1
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+slider = NodePath("../SizeSlider")
+
+[node name="ColorRect" type="ColorRect" parent="Difficulty/MazeSize"]
+margin_left = 32.0
+margin_right = 32.0
+margin_bottom = 28.0
+color = Color( 0.521569, 0.219608, 0.592157, 0.756863 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect2" type="ColorRect" parent="Difficulty/MazeSize/ColorRect"]
+margin_left = -16.0
+margin_right = 272.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 280, 28 )
+color = Color( 0.713726, 0.486275, 0, 1 )
+
+[node name="Label" type="Label" parent="Difficulty/MazeSize"]
+margin_left = 36.0
+margin_top = 3.0
+margin_right = 156.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 120, 0 )
+custom_fonts/font = ExtResource( 4 )
+text = "Size:  "
+align = 2
+
+[node name="Less" type="Button" parent="Difficulty/MazeSize"]
+margin_left = 160.0
+margin_right = 182.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 3 )
+text = "<"
+flat = true
+
+[node name="Size" type="Label" parent="Difficulty/MazeSize"]
+margin_left = 186.0
+margin_top = 3.0
+margin_right = 261.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 75, 0 )
+custom_fonts/font = ExtResource( 3 )
+text = "10 x 10"
+align = 1
+
+[node name="More" type="Button" parent="Difficulty/MazeSize"]
+margin_left = 265.0
+margin_right = 287.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 3 )
+text = ">"
+flat = true
+
+[node name="SizeSlider" type="HSlider" parent="Difficulty"]
+margin_top = 39.0
+margin_right = 320.0
+margin_bottom = 55.0
+max_value = 19.0
+tick_count = 20
+ticks_on_borders = true
+
+[node name="ColorRect" type="ColorRect" parent="Difficulty"]
+margin_top = 59.0
+margin_right = 320.0
+margin_bottom = 69.0
+rect_min_size = Vector2( 0, 10 )
+color = Color( 1, 1, 1, 0 )
+
+[node name="MazeComplexity" type="HBoxContainer" parent="Difficulty"]
+margin_top = 73.0
+margin_right = 320.0
+margin_bottom = 101.0
+alignment = 1
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+slider = NodePath("../ComplexitySlider")
+
+[node name="ColorRect2" type="ColorRect" parent="Difficulty/MazeComplexity"]
+margin_left = 32.0
+margin_right = 32.0
+margin_bottom = 28.0
+color = Color( 0, 0, 0, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect2" type="ColorRect" parent="Difficulty/MazeComplexity/ColorRect2"]
+margin_left = -16.0
+margin_right = 272.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 280, 28 )
+color = Color( 0.713726, 0.486275, 0, 1 )
+
+[node name="Label" type="Label" parent="Difficulty/MazeComplexity"]
+margin_left = 36.0
+margin_top = 3.0
+margin_right = 156.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 120, 0 )
+custom_fonts/font = ExtResource( 4 )
+text = "Complexity:  "
+align = 2
+
+[node name="Less" type="Button" parent="Difficulty/MazeComplexity"]
+margin_left = 160.0
+margin_right = 182.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 3 )
+text = "<"
+flat = true
+
+[node name="Size" type="Label" parent="Difficulty/MazeComplexity"]
+margin_left = 186.0
+margin_top = 3.0
+margin_right = 261.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 75, 0 )
+custom_fonts/font = ExtResource( 3 )
+text = "MEDIUM"
+align = 1
+
+[node name="More" type="Button" parent="Difficulty/MazeComplexity"]
+margin_left = 265.0
+margin_right = 287.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 3 )
+text = ">"
+flat = true
+
+[node name="ComplexitySlider" type="HSlider" parent="Difficulty"]
+margin_top = 105.0
+margin_right = 320.0
+margin_bottom = 121.0
+max_value = 2.0
+tick_count = 3
+ticks_on_borders = true
+
+[connection signal="pressed" from="Difficulty/MazeSize/Less" to="Difficulty/MazeSize" method="_on_Less_pressed"]
+[connection signal="pressed" from="Difficulty/MazeSize/More" to="Difficulty/MazeSize" method="_on_More_pressed"]
+[connection signal="value_changed" from="Difficulty/SizeSlider" to="Difficulty/MazeSize" method="_on_SizeSlider_value_changed"]
+[connection signal="pressed" from="Difficulty/MazeComplexity/Less" to="Difficulty/MazeComplexity" method="_on_Less_pressed"]
+[connection signal="pressed" from="Difficulty/MazeComplexity/More" to="Difficulty/MazeComplexity" method="_on_More_pressed"]
+[connection signal="value_changed" from="Difficulty/ComplexitySlider" to="Difficulty/MazeComplexity" method="_on_ComplexitySlider_value_changed"]
