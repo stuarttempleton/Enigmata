@@ -34,7 +34,7 @@ Enigmata is created in Godot 3.4.2. [Godot](https://godotengine.org/) is a FOSS 
 If you're building for Windows, you might need to follow the instructions for installing [rcedit-x64](https://docs.godotengine.org/en/stable/getting_started/workflow/export/changing_application_icon_for_windows.html) to get the build application icons to work properly. That isn't required though.
 
 # Dependencies and such
-Enigmata is using modified versions of [Godot OpenVR](https://github.com/GodotVR/godot_openvr), [Godot XR Tools](https://github.com/GodotVR/godot-xr-tools) and [Godot Scene Map](https://github.com/DarkKilauea/godot-scene-map), all of which are under the MIT License.
+Enigmata is using modified versions of [Godot OpenVR](https://github.com/GodotVR/godot_openvr), [Godot XR Tools](https://github.com/GodotVR/godot-xr-tools), [Godot GUI in VR](https://github.com/aaronfranke/godot-GUI-in-VR) and [Godot Scene Map](https://github.com/DarkKilauea/godot-scene-map), all of which are under the MIT License.
 
 We are also using textures from [Kenney Prototype Textures](https://www.kenney.nl/assets/prototype-textures) and [Lennart - AmbientCG](https://ambientcg.com/) which are licensed under [CCO 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/).
 
