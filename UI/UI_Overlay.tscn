@@ -18,16 +18,17 @@ font_data = SubResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="PickUpMsg" type="ColorRect" parent="UI_Bundle"]
 visible = false
-margin_left = 424.0
-margin_top = 432.0
-margin_right = 608.0
-margin_bottom = 464.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -88.0
+margin_top = 132.0
+margin_right = 96.0
+margin_bottom = 164.0
 color = Color( 0.0901961, 0.0901961, 0.0901961, 0 )
 script = ExtResource( 1 )
 __meta__ = {
@@ -49,5 +50,7 @@ __meta__ = {
 [node name="World Info" parent="UI_Bundle" instance=ExtResource( 2 )]
 
 [node name="TimerInfo" parent="UI_Bundle" instance=ExtResource( 6 )]
-margin_left = 448.0
-margin_right = 576.0
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -64.0
+margin_right = 64.0
