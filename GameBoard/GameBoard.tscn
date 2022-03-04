@@ -23,7 +23,10 @@ script = ExtResource( 2 )
 
 [node name="GameBoard_env" parent="." instance=ExtResource( 3 )]
 
-[node name="Loading" type="ColorRect" parent="."]
+[node name="LoadScreen" type="CanvasLayer" parent="."]
+layer = 5
+
+[node name="Loading" type="ColorRect" parent="LoadScreen"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -32,11 +35,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Loading"]
+[node name="Label" type="Label" parent="LoadScreen/Loading"]
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
+margin_left = -512.0
 margin_top = -7.0
+margin_right = 512.0
 margin_bottom = 7.0
 text = "Generating maze..."
 align = 1
@@ -45,11 +51,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ProgressBar" type="ProgressBar" parent="Loading"]
-margin_left = 384.0
-margin_top = 344.0
-margin_right = 640.0
-margin_bottom = 352.0
+[node name="ProgressBar" type="ProgressBar" parent="LoadScreen/Loading"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -128.0
+margin_top = 44.0
+margin_right = 128.0
+margin_bottom = 52.0
 custom_colors/font_color = Color( 0, 0, 0, 0 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 0 )
 custom_fonts/font = SubResource( 3 )

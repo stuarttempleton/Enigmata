@@ -16,10 +16,9 @@ var ShowFPS := false
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("show_fps"):
-		ShowFPS = !ShowFPS
-		visible = ShowFPS
+		visible = !visible
 		
-	if ShowFPS:
+	if visible:
 		var now := OS.get_ticks_msec()
 
 		# Remove frames older than 1 second in the `times` array
