@@ -47,6 +47,8 @@ func _init():
 						mode = MODE.PLAYER_DESKTOP
 			"--code":
 				SetCode(param[1])
+			"--fullscreen":
+				OS.window_fullscreen = param[0] == "0"
 
 func PopulateTables():
 	var i = 1 #index
@@ -171,6 +173,9 @@ func _process(delta):
 			if CheckWinState():
 				state = STATE.COMPLETE
 				PauseOrGOHelper(true)
+	if Input.is_action_just_pressed("fullscreen_mode"):
+		OS.window_fullscreen = !OS.window_fullscreen
+
 
 func StartTimer():
 	print("Starting map timer")
