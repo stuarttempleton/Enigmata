@@ -66,24 +66,24 @@ __meta__ = {
 }
 
 [node name="GameCompleteTitle" type="Label" parent="GameComplete/GameCompleteContainer"]
-margin_top = 95.0
-margin_right = 1024.0
-margin_bottom = 133.0
+margin_top = 155.0
+margin_right = 1280.0
+margin_bottom = 193.0
 custom_fonts/font = SubResource( 2 )
 text = "Maze Complete"
 align = 1
 
 [node name="Gap" type="ColorRect" parent="GameComplete/GameCompleteContainer"]
-margin_top = 137.0
-margin_right = 1024.0
-margin_bottom = 161.0
+margin_top = 197.0
+margin_right = 1280.0
+margin_bottom = 221.0
 rect_min_size = Vector2( 24, 24 )
 color = Color( 1, 1, 1, 0 )
 
 [node name="ElapsedTime" type="ColorRect" parent="GameComplete/GameCompleteContainer"]
-margin_top = 165.0
-margin_right = 1024.0
-margin_bottom = 193.0
+margin_top = 225.0
+margin_right = 1280.0
+margin_bottom = 253.0
 rect_min_size = Vector2( 0, 28 )
 color = Color( 0, 0, 0, 0 )
 
@@ -111,16 +111,16 @@ __meta__ = {
 }
 
 [node name="Gap2" type="ColorRect" parent="GameComplete/GameCompleteContainer"]
-margin_top = 197.0
-margin_right = 1024.0
-margin_bottom = 221.0
+margin_top = 257.0
+margin_right = 1280.0
+margin_bottom = 281.0
 rect_min_size = Vector2( 24, 24 )
 color = Color( 1, 1, 1, 0 )
 
 [node name="TotalBoxes" type="ColorRect" parent="GameComplete/GameCompleteContainer"]
-margin_top = 225.0
-margin_right = 1024.0
-margin_bottom = 253.0
+margin_top = 285.0
+margin_right = 1280.0
+margin_bottom = 313.0
 rect_min_size = Vector2( 0, 28 )
 color = Color( 0, 0, 0, 0 )
 
@@ -151,9 +151,9 @@ __meta__ = {
 }
 
 [node name="White" type="ColorRect" parent="GameComplete/GameCompleteContainer"]
-margin_top = 257.0
-margin_right = 1024.0
-margin_bottom = 285.0
+margin_top = 317.0
+margin_right = 1280.0
+margin_bottom = 345.0
 rect_min_size = Vector2( 0, 28 )
 color = Color( 0, 0, 0, 0 )
 
@@ -181,9 +181,9 @@ text = "0"
 valign = 2
 
 [node name="Red" type="ColorRect" parent="GameComplete/GameCompleteContainer"]
-margin_top = 289.0
-margin_right = 1024.0
-margin_bottom = 317.0
+margin_top = 349.0
+margin_right = 1280.0
+margin_bottom = 377.0
 rect_min_size = Vector2( 0, 28 )
 color = Color( 0, 0, 0, 0 )
 
@@ -214,9 +214,9 @@ __meta__ = {
 }
 
 [node name="Purple" type="ColorRect" parent="GameComplete/GameCompleteContainer"]
-margin_top = 321.0
-margin_right = 1024.0
-margin_bottom = 349.0
+margin_top = 381.0
+margin_right = 1280.0
+margin_bottom = 409.0
 rect_min_size = Vector2( 0, 28 )
 color = Color( 0, 0, 0, 0 )
 
@@ -247,9 +247,9 @@ __meta__ = {
 }
 
 [node name="Gold" type="ColorRect" parent="GameComplete/GameCompleteContainer"]
-margin_top = 353.0
-margin_right = 1024.0
-margin_bottom = 381.0
+margin_top = 413.0
+margin_right = 1280.0
+margin_bottom = 441.0
 rect_min_size = Vector2( 0, 28 )
 color = Color( 0, 0, 0, 0 )
 
@@ -280,16 +280,16 @@ __meta__ = {
 }
 
 [node name="Gap3" type="ColorRect" parent="GameComplete/GameCompleteContainer"]
-margin_top = 385.0
-margin_right = 1024.0
-margin_bottom = 409.0
+margin_top = 445.0
+margin_right = 1280.0
+margin_bottom = 469.0
 rect_min_size = Vector2( 24, 24 )
 color = Color( 1, 1, 1, 0 )
 
 [node name="Score" type="ColorRect" parent="GameComplete/GameCompleteContainer"]
-margin_top = 413.0
-margin_right = 1024.0
-margin_bottom = 441.0
+margin_top = 473.0
+margin_right = 1280.0
+margin_bottom = 501.0
 rect_min_size = Vector2( 0, 28 )
 color = Color( 0, 0, 0, 0 )
 
@@ -317,32 +317,32 @@ __meta__ = {
 }
 
 [node name="Gap4" type="ColorRect" parent="GameComplete/GameCompleteContainer"]
-margin_top = 445.0
-margin_right = 1024.0
-margin_bottom = 469.0
+margin_top = 505.0
+margin_right = 1280.0
+margin_bottom = 529.0
 rect_min_size = Vector2( 24, 24 )
 color = Color( 1, 1, 1, 0 )
 
 [node name="MenuButtons" type="HBoxContainer" parent="GameComplete/GameCompleteContainer"]
-margin_top = 473.0
-margin_right = 1024.0
-margin_bottom = 505.0
+margin_top = 533.0
+margin_right = 1280.0
+margin_bottom = 565.0
 alignment = 1
 
 [node name="ReturnToMainMenu" parent="GameComplete/GameCompleteContainer/MenuButtons" instance=ExtResource( 2 )]
-margin_left = 124.0
+margin_left = 252.0
 margin_top = 0.0
-margin_right = 380.0
+margin_right = 508.0
 margin_bottom = 32.0
 
 [node name="Exit" parent="GameComplete/GameCompleteContainer/MenuButtons" instance=ExtResource( 3 )]
-margin_left = 384.0
+margin_left = 512.0
 margin_top = 0.0
-margin_right = 640.0
+margin_right = 768.0
 margin_bottom = 32.0
 
 [node name="Resume" parent="GameComplete/GameCompleteContainer/MenuButtons" instance=ExtResource( 4 )]
-margin_left = 644.0
+margin_left = 772.0
 margin_top = 0.0
-margin_right = 900.0
+margin_right = 1028.0
 margin_bottom = 32.0
