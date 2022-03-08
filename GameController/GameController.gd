@@ -29,8 +29,6 @@ func _init():
 	PopulateTables()
 	if main_seed == 0:
 		randomize()
-		#SetCode(CreateMapCode())
-	
 	
 	for arg in OS.get_cmdline_args():
 		print("Arg: ", arg)
@@ -56,6 +54,9 @@ func _init():
 					"0","false","no":
 						PlayerPrefs.SetPref("window_fullscreen", true)
 	LoadWindowSettings()
+	if PlayerPrefs.HasPref("previous_difficulty_code"):
+		default_difficulty = PlayerPrefs.GetPref("previous_difficulty_code")
+		ApplyDifficultyFromCode(default_difficulty)
 
 func LoadWindowSettings():
 	OS.window_fullscreen = PlayerPrefs.GetPref("window_fullscreen")
@@ -79,6 +80,8 @@ func SetCode(_code):
 	map_code = _code
 	main_seed = hash(map_code.replace(" ", ""))
 	ApplyDifficultyFromCode(map_code.substr(map_code.length() - 4))
+	PlayerPrefs.SetPref("previous_map_code",map_code)
+	PlayerPrefs.SetPref("previous_difficulty_code", CreateDifficutlyCode())
 
 func ChangeGameMode(_mode):
 	mode = _mode

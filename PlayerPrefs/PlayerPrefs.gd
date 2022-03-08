@@ -23,9 +23,15 @@ func LoadPrefs() :
 func SavePrefs():
 	self.Save(PrefsFileName)
 
+func HasPref(property):
+	return settings.has(property)
 
 func GetPref(property):
-	return settings[property]
+	if HasPref(property):
+		return settings[property]
+	else:
+		printerr("Unknown property requested: ", property)
+		return 0
 
 
 func SetPref(property, value):

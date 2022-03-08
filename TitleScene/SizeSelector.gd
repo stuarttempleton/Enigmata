@@ -16,13 +16,8 @@ func _ready():
 
 
 func update_ui_info():
-	var map_code = GameController.map_code
-	var current_difficulty_code
+	var current_difficulty_code = GameController.CreateDifficutlyCode()
 	
-	if map_code == "":
-		current_difficulty_code = GameController.CreateDifficutlyCode()
-	else:
-		current_difficulty_code = map_code.substr(map_code.length() - 4)
 	max_index = chars.length()
 	current_x = chars.find(current_difficulty_code[1])
 	current_z = chars.find(current_difficulty_code[2])
