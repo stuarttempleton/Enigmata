@@ -30,7 +30,8 @@ func _init():
 	if main_seed == 0:
 		randomize()
 		#SetCode(CreateMapCode())
-		
+	
+	
 	for arg in OS.get_cmdline_args():
 		print("Arg: ", arg)
 		var param = arg.split("=")
@@ -47,8 +48,23 @@ func _init():
 						mode = MODE.PLAYER_DESKTOP
 			"--code":
 				SetCode(param[1])
-			"--fullscreen":
-				OS.window_fullscreen = param[0] == "0"
+			"--windowed", "-w":
+				match param[1]:
+					"1","true","yes":
+						PlayerPrefs.SetPref("window_fullscreen", false)
+						PlayerPrefs.SetPref("window_size", {"x":1280,"y":720})
+					"0","false","no":
+						PlayerPrefs.SetPref("window_fullscreen", true)
+	LoadWindowSettings()
+
+func LoadWindowSettings():
+	OS.window_fullscreen = PlayerPrefs.GetPref("window_fullscreen")
+	if !OS.window_fullscreen:
+		OS.window_size = Vector2(PlayerPrefs.GetPref("window_size").x,PlayerPrefs.GetPref("window_size").y)
+
+func SaveWindowSettings():
+	PlayerPrefs.SetPref("window_fullscreen", OS.window_fullscreen)
+	PlayerPrefs.SetPref("window_size", {"x":OS.window_size.x,"y":OS.window_size.x})
 
 func PopulateTables():
 	var i = 1 #index
@@ -174,7 +190,8 @@ func _process(delta):
 				state = STATE.COMPLETE
 				PauseOrGOHelper(true)
 	if Input.is_action_just_pressed("fullscreen_mode"):
-		OS.window_fullscreen = !OS.window_fullscreen
+		PlayerPrefs.SetPref("window_fullscreen", !OS.window_fullscreen)
+		LoadWindowSettings()
 
 
 func StartTimer():

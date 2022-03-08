@@ -32,9 +32,16 @@ config/icon="res://icon.png"
 
 [autoload]
 
+PlayerPrefs="*res://PlayerPrefs/PlayerPrefs.tscn"
 Boxes="*res://Boxes/Boxes.tscn"
 GameController="*res://GameController/GameController.tscn"
 SceneChanger="*res://SceneChanger/SceneChanger.tscn"
+
+[display]
+
+window/size/width=1280
+window/size/height=720
+window/size/fullscreen=true
 
 [editor_plugins]
 
