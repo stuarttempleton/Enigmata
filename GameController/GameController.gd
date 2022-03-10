@@ -65,7 +65,8 @@ func LoadWindowSettings():
 
 func SaveWindowSettings():
 	PlayerPrefs.SetPref("window_fullscreen", OS.window_fullscreen)
-	PlayerPrefs.SetPref("window_size", {"x":OS.window_size.x,"y":OS.window_size.x})
+	if !OS.window_fullscreen:
+		PlayerPrefs.SetPref("window_size", {"x":OS.window_size.x,"y":OS.window_size.y})
 
 func PopulateTables():
 	var i = 1 #index
@@ -195,6 +196,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("fullscreen_mode"):
 		PlayerPrefs.SetPref("window_fullscreen", !OS.window_fullscreen)
 		LoadWindowSettings()
+		SaveWindowSettings()
 
 
 func StartTimer():
