@@ -47,6 +47,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1.25, 0 )
 [node name="Function_Updated_Teleport" parent="Left_Hand" instance=ExtResource( 5 )]
 camera = NodePath("../../ARVRCamera")
 
+[node name="Function_Locomotion" parent="Left_Hand" instance=ExtResource( 4 )]
+enabled = false
+
 [node name="Function_Updated_Pickup" parent="Left_Hand" instance=ExtResource( 7 )]
 
 [node name="Right_Hand" type="ARVRController" parent="."]
@@ -54,6 +57,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1.25, 0 )
 controller_id = 2
 script = ExtResource( 3 )
 button_actions = PoolStringArray( "/actions/godot/in/custom_boolean" )
+
+[node name="Function_Updated_Teleport" parent="Right_Hand" instance=ExtResource( 5 )]
+enabled = false
 
 [node name="OVRRenderModel" parent="Right_Hand" instance=ExtResource( 14 )]
 

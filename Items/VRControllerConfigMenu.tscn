@@ -1,0 +1,144 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://fonts/VR_settings_label_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Items/ControllerMovementSelector.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://fonts/Montserrat-ExtraBold.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 40
+outline_size = 3
+outline_color = Color( 0, 0, 0, 0.294118 )
+font_data = SubResource( 1 )
+
+[sub_resource type="DynamicFontData" id=3]
+font_path = "res://fonts/Montserrat-Light.ttf"
+
+[sub_resource type="DynamicFont" id=4]
+size = 15
+outline_size = 2
+outline_color = Color( 0, 0, 0, 0.180392 )
+font_data = SubResource( 3 )
+
+[node name="VRControllerConfig" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -768.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 512.0
+margin_bottom = 600.0
+color = Color( 0, 0, 0, 0.407843 )
+
+[node name="Menu" type="VBoxContainer" parent="."]
+margin_right = 512.0
+margin_bottom = 600.0
+custom_constants/separation = 24
+alignment = 1
+
+[node name="Title" type="Label" parent="Menu"]
+margin_top = 144.0
+margin_right = 512.0
+margin_bottom = 194.0
+custom_fonts/font = SubResource( 2 )
+text = "MOVEMENT"
+align = 1
+
+[node name="MovementStyle" type="HBoxContainer" parent="Menu"]
+margin_top = 218.0
+margin_right = 512.0
+margin_bottom = 247.0
+custom_constants/separation = 24
+alignment = 1
+
+[node name="Label" type="Label" parent="Menu/MovementStyle"]
+margin_left = 64.0
+margin_top = 3.0
+margin_right = 244.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 180, 0 )
+custom_fonts/font = ExtResource( 1 )
+text = "Movement Style:"
+align = 2
+
+[node name="StyleOptions" type="OptionButton" parent="Menu/MovementStyle"]
+margin_left = 268.0
+margin_right = 448.0
+margin_bottom = 29.0
+rect_min_size = Vector2( 180, 0 )
+custom_fonts/font = ExtResource( 1 )
+text = "MERLIN"
+script = ExtResource( 2 )
+
+[node name="Gap" type="ColorRect" parent="Menu"]
+margin_top = 271.0
+margin_right = 512.0
+margin_bottom = 283.0
+rect_min_size = Vector2( 0, 12 )
+color = Color( 1, 1, 1, 0 )
+
+[node name="RightHand" type="HBoxContainer" parent="Menu"]
+margin_top = 307.0
+margin_right = 512.0
+margin_bottom = 330.0
+custom_constants/separation = 12
+alignment = 1
+
+[node name="Label" type="Label" parent="Menu/RightHand"]
+margin_left = 70.0
+margin_right = 250.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 180, 0 )
+custom_fonts/font = ExtResource( 1 )
+text = "Right Hand:"
+align = 2
+
+[node name="Movement" type="Label" parent="Menu/RightHand"]
+margin_left = 262.0
+margin_right = 442.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 180, 0 )
+custom_fonts/font = ExtResource( 1 )
+text = "Snap-Turn"
+
+[node name="LeftHand" type="HBoxContainer" parent="Menu"]
+margin_top = 354.0
+margin_right = 512.0
+margin_bottom = 377.0
+custom_constants/separation = 12
+alignment = 1
+
+[node name="Label" type="Label" parent="Menu/LeftHand"]
+margin_left = 70.0
+margin_right = 250.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 180, 0 )
+custom_fonts/font = ExtResource( 1 )
+text = "Left Hand:"
+align = 2
+
+[node name="Movement" type="Label" parent="Menu/LeftHand"]
+margin_left = 262.0
+margin_right = 442.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 180, 0 )
+custom_fonts/font = ExtResource( 1 )
+text = "Teleport"
+
+[node name="Gap2" type="ColorRect" parent="Menu"]
+margin_top = 401.0
+margin_right = 512.0
+margin_bottom = 413.0
+rect_min_size = Vector2( 0, 12 )
+color = Color( 1, 1, 1, 0 )
+
+[node name="Description" type="Label" parent="Menu"]
+margin_top = 437.0
+margin_right = 512.0
+margin_bottom = 456.0
+custom_fonts/font = SubResource( 4 )
+text = "This is a description of the beast."
+align = 1
+
+[connection signal="item_selected" from="Menu/MovementStyle/StyleOptions" to="Menu/MovementStyle/StyleOptions" method="_on_StyleOptions_item_selected"]

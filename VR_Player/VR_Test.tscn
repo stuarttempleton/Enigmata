@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://MapPieces/test_walls/stone_floor.tres" type="Material" id=1]
 [ext_resource path="res://VR_Player/VR_Player.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Items/gold_plaster_cube.tres" type="Material" id=9]
 [ext_resource path="res://Items/gold_box.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Items/red_box.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Items/VRControllerBoard.tscn" type="PackedScene" id=12]
 
 [node name="VR_TitleArea" type="Spatial"]
 
@@ -64,6 +65,9 @@ directional_shadow_normal_bias = 0.0
 __meta__ = {
 "_editor_description_": ""
 }
+
+[node name="VRControllerBoard" parent="." instance=ExtResource( 12 )]
+transform = Transform( 0.75, 0, 0, 0, 0.75, 0, 0, 0, 1, 1.09962, 1.10664, -3.4978 )
 
 [node name="TitleBoard" parent="." instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -3.5 )

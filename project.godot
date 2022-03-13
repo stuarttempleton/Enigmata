@@ -43,6 +43,10 @@ window/size/width=1280
 window/size/height=720
 window/size/fullscreen=true
 
+[editor]
+
+main_run_args="--mode=vr"
+
 [editor_plugins]
 
 enabled=PoolStringArray( "res://addons/ExportLaunchers/plugin.cfg", "res://addons/godot-openvr/plugin.cfg", "res://addons/scene_map/plugin.cfg" )

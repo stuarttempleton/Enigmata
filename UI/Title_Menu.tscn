@@ -30,20 +30,22 @@ margin_right = -768.0
 script = ExtResource( 6 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color( 0, 0, 0, 1 )
+margin_right = 512.0
+margin_bottom = 720.0
+color = Color( 0, 0, 0, 0.407843 )
 script = ExtResource( 1 )
 ExcludeFromDesktop = true
 ExcludeFromViewer = true
 
 [node name="Blur" type="TextureRect" parent="."]
+visible = false
 material = SubResource( 3 )
-anchor_right = 1.0
-anchor_bottom = 1.0
+margin_right = 512.0
+margin_bottom = 720.0
 texture = ExtResource( 8 )
 expand = true
 script = ExtResource( 1 )
+ExcludeFromVR = true
 ExcludeFromDesktop = true
 ExcludeFromViewer = true
 
