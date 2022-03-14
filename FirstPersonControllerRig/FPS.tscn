@@ -34,7 +34,7 @@ enabled = true
 cast_to = Vector3( 0, 0, -2 )
 collision_mask = 2
 debug_shape_custom_color = Color( 0.87451, 1, 0, 1 )
-debug_shape_thickness = 1.0
+debug_shape_thickness = 1
 script = ExtResource( 2 )
 
 [node name="HoldTarget" type="Spatial" parent="Head/InteractionCaster"]

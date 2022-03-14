@@ -49,6 +49,9 @@ camera = NodePath("../../ARVRCamera")
 
 [node name="Function_Locomotion" parent="Left_Hand" instance=ExtResource( 4 )]
 enabled = false
+camera = NodePath("../../ARVRCamera")
+player_radius = 0.2
+max_speed = 500.0
 canFly = false
 
 [node name="Function_Updated_Pickup" parent="Left_Hand" instance=ExtResource( 7 )]

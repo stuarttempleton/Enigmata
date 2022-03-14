@@ -254,20 +254,16 @@ func _physics_process(delta):
 				velocity *= (1.0 - drag_factor)
 				
 				if move_type == LOCOMOTION_TYPE.SMOOTH:
-					if abs(forwards_backwards) > 0.1:
-						print("move requested. ")
-						if tail.is_colliding():
-							print("tail colliding")
-						else:
-							print("tail NOT colliding!")
-					if (abs(forwards_backwards) > 0.1 and tail.is_colliding()):
+					if abs(forwards_backwards) > 0.2:
+					#if (abs(forwards_backwards) > 0.1 and tail.is_colliding()):
 						print("smooooooth!")
 						var dir = camera_transform.basis.z
 						dir.y = 0.0					
 						velocity = dir.normalized() * -forwards_backwards * delta * max_speed * ARVRServer.world_scale
 						#velocity = velocity.linear_interpolate(dir, delta * 100.0)		
 				elif move_type == LOCOMOTION_TYPE.SMOOTH_AND_STRAFE:
-					if ((abs(forwards_backwards) > 0.1 ||  abs(left_right) > 0.1) and tail.is_colliding()):
+					if ((abs(forwards_backwards) > 0.2 ||  abs(left_right) > 0.2)):
+					#if ((abs(forwards_backwards) > 0.1 ||  abs(left_right) > 0.1) and tail.is_colliding()):
 						var dir_forward = camera_transform.basis.z
 						dir_forward.y = 0.0				
 						# VR Capsule will strafe left and right
