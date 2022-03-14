@@ -95,6 +95,12 @@ func set_player_radius(p_radius):
 		capsule.mesh.mid_height = player_height - (2.0 * player_radius)
 		capsule.mesh.radius = player_radius
 
+func update_player_config():
+	print("config update requested for teleport on ", get_parent().name)
+	var my_config = VRConfig.Styles[int(VRConfig.controller_config)][get_parent().name]["teleport"]
+	set_enabled(my_config)
+
+
 func _ready():
 	# We should be a child of an ARVRController and it should be a child or our ARVROrigin
 	origin_node = get_node("../..")
@@ -120,6 +126,8 @@ func _ready():
 	# call set player to ensure our collision shape is sized
 	set_player_height(player_height)
 	set_player_radius(player_radius)
+	
+	update_player_config()
 
 func _physics_process(delta):
 	# We should be the child or the controller on which the teleport is implemented

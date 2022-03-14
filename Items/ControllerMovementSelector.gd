@@ -2,71 +2,15 @@ extends OptionButton
 
 
 enum Controller {RIGHT, LEFT}
-enum MoveStyle {MERLIN, MORGANA, LANCELOT, GAWAIN}
-enum MoveType {NONE, TELEPORT, LOCOMOTION_TURN, LOCOMOTION_STRAFE}
-enum TurnType {NONE, SMOOTH, SNAP}
-var Styles = {}
-var MoveConfigs = {
-	"Snap-Turn":{
-		"text":"Snap-Turn",
-		"teleport":false,
-		"locomotion":{
-			"move_type":0, 
-			"rotation_type":2
-			}
-		},
-	"Smooth-Turn":{
-		"text":"Smooth-Turn",
-		"teleport":false,
-		"locomotion":{
-			"move_type":0, 
-			"rotation_type":1
-			}
-		},
-	"Teleport":{
-		"text":"Teleport",
-		"teleport":true,
-		"locomotion":{
-			"move_type":0, 
-			"rotation_type":0
-			}
-		},
-	"Locomotion-Strafe":{
-		"text":"Locomotion-Strafe",
-		"teleport":false,
-		"locomotion":{
-			"move_type":2, 
-			"rotation_type":3
-			}
-		}
-	}
 var Hands = {}
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
-	Hands["Right"] = GetHand(Controller.RIGHT)
-	Hands["Left"] = GetHand(Controller.LEFT)
+	for key in VRConfig.MOVE_STYLE.keys():
+		add_item(key, VRConfig.MOVE_STYLE[key])
 	
-	#Populate the drop down
-	for key in MoveStyle.keys():
-		add_item(key, MoveStyle[key])
-	var snap_turn = {
-		"text":"Snap-Turn",
-		"teleport":true,
-		"locomotion":{
-			"move_type":0, 
-			"rotation_type":0
-			}
-		}
-	#Build the style info stuff
-	Styles = {
-		MoveStyle.MERLIN: {"RS":MoveConfigs["Snap-Turn"], "LS":MoveConfigs["Teleport"], "Description":"Merlin teleports.\r\nRECOMMENDED"},
-		MoveStyle.MORGANA: {"RS":MoveConfigs["Teleport"], "LS":MoveConfigs["Snap-Turn"], "Description":"Morgana teleports, left handed.\r\nRECOMMENDED"},
-		MoveStyle.LANCELOT: {"RS":MoveConfigs["Smooth-Turn"], "LS":MoveConfigs["Locomotion-Strafe"], "Description":"Like a first person shooter"},
-		MoveStyle.GAWAIN: {"RS":MoveConfigs["Locomotion-Strafe"], "LS":MoveConfigs["Smooth-Turn"], "Description":"Like a first person shooter, left handed."}
-	}
-	select(0)
-	DoSelection(MoveStyle.MERLIN)
+	select(VRConfig.controller_config)
+	DoSelection(VRConfig.controller_config)
 
 
 func GetHand(hand):
@@ -78,7 +22,12 @@ func GetHand(hand):
 		Controller.LEFT:
 			print("LEFT HAND: ")
 			hand_node = get_tree().get_root().find_node("Left_Hand",true,false)
-			
+	
+	#they might not have one more more hand controller.
+	if !hand_node:
+		print(" NOT FOUND. SKIPPING.")
+		return null
+	
 	var loco_node = hand_node.find_node("Function_Locomotion", true, true)
 	var tele_node = hand_node.find_node("Function_Updated_Teleport", true, true)
 	
@@ -90,13 +39,20 @@ func GetHand(hand):
 	
 	return {"base:":hand_node, "locomotion":loco_node, "teleport":tele_node}
 
-func GetCurrentSetting():
-	pass
 
 func DoSelection(style):
-	$'../../RightHand/Movement'.text = Styles[style]["RS"]["text"]
-	$'../../LeftHand/Movement'.text = Styles[style]["LS"]["text"]
-	$'../../Description'.text = Styles[style]["Description"]
+	style = int(style)
+	$'../../RightHand/Movement'.text = VRConfig.Styles[style]["Right_Hand"]["text"]
+	$'../../LeftHand/Movement'.text = VRConfig.Styles[style]["Left_Hand"]["text"]
+	$'../../Description'.text = VRConfig.Styles[style]["Description"]
+	
+	VRConfig.controller_config = style
+	
+	for hand in Controller.values():
+		var hand_node = GetHand(hand)
+		if hand_node:
+			hand_node["locomotion"].update_player_config()
+			hand_node["teleport"].update_player_config()
 
 
 func _on_StyleOptions_item_selected(index):

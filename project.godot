@@ -36,6 +36,7 @@ PlayerPrefs="*res://PlayerPrefs/PlayerPrefs.tscn"
 Boxes="*res://Boxes/Boxes.tscn"
 GameController="*res://GameController/GameController.tscn"
 SceneChanger="*res://SceneChanger/SceneChanger.tscn"
+VRConfig="*res://VRConfig/VRConfig.tscn"
 
 [display]
 

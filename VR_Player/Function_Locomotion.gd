@@ -102,6 +102,14 @@ func get_player_radius():
 func set_player_radius(p_radius):
 	player_radius = p_radius
 
+func update_player_config():
+	print("config update requested for locomotion on ", get_parent().name)
+	var my_config = VRConfig.Styles[int(VRConfig.controller_config)][get_parent().name]["locomotion"]
+	move_type = my_config.move_type
+	rotation_type = my_config.rotation_type
+	set_enabled( my_config.enabled)
+
+
 func _ready():
 	# origin node should always be the parent of our parent
 	origin_node = get_node("../..")
@@ -119,6 +127,8 @@ func _ready():
 	
 	collision_shape.disabled = !enabled
 	tail.enabled = enabled
+	
+	update_player_config()
 
 func _physics_process(delta):
 	if !origin_node:
@@ -244,6 +254,12 @@ func _physics_process(delta):
 				velocity *= (1.0 - drag_factor)
 				
 				if move_type == LOCOMOTION_TYPE.SMOOTH:
+					if abs(forwards_backwards) > 0.1:
+						print("move requested. ")
+						if tail.is_colliding():
+							print("tail colliding")
+						else:
+							print("tail NOT colliding!")
 					if (abs(forwards_backwards) > 0.1 and tail.is_colliding()):
 						print("smooooooth!")
 						var dir = camera_transform.basis.z
