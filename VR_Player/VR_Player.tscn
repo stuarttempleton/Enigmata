@@ -64,6 +64,7 @@ button_actions = PoolStringArray( "/actions/godot/in/custom_boolean" )
 
 [node name="Function_Updated_Teleport" parent="Right_Hand" instance=ExtResource( 5 )]
 enabled = false
+camera = NodePath("../../ARVRCamera")
 
 [node name="OVRRenderModel" parent="Right_Hand" instance=ExtResource( 14 )]
 
