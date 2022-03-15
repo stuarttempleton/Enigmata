@@ -1,10 +1,10 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=22 format=2]
 
-[ext_resource path="res://MapPieces/test_walls/stone_floor.tres" type="Material" id=1]
+[ext_resource path="res://shaders/water.gdshader" type="Shader" id=1]
 [ext_resource path="res://VR_Player/VR_Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://addons/gui_in_vr/gui_panel_3d.tscn" type="PackedScene" id=3]
+[ext_resource path="res://VR_Player/VR_TitleArea.gd" type="Script" id=3]
 [ext_resource path="res://GameBoard/GameBoard_env.tscn" type="PackedScene" id=4]
-[ext_resource path="res://MapPieces/test_walls/1_3.tscn" type="PackedScene" id=5]
+[ext_resource path="res://MapPieces/test_walls/wall_material.tres" type="Material" id=5]
 [ext_resource path="res://Items/TitleBoard.tscn" type="PackedScene" id=6]
 [ext_resource path="res://MapPieces/test_walls/l_blue_plaster_top_material.tres" type="Material" id=7]
 [ext_resource path="res://MapPieces/test_walls/brick_floor.tres" type="Material" id=8]
@@ -12,53 +12,88 @@
 [ext_resource path="res://Items/gold_box.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Items/red_box.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Items/VRControllerBoard.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Items/white_plaster_cube.tres" type="Material" id=13]
+
+[sub_resource type="OpenSimplexNoise" id=1]
+
+[sub_resource type="NoiseTexture" id=2]
+width = 1024
+height = 1024
+seamless = true
+noise = SubResource( 1 )
+
+[sub_resource type="OpenSimplexNoise" id=3]
+
+[sub_resource type="NoiseTexture" id=4]
+width = 1024
+height = 1024
+seamless = true
+noise = SubResource( 3 )
+
+[sub_resource type="OpenSimplexNoise" id=5]
+
+[sub_resource type="NoiseTexture" id=6]
+seamless = true
+as_normalmap = true
+noise = SubResource( 5 )
+
+[sub_resource type="ShaderMaterial" id=7]
+shader = ExtResource( 1 )
+shader_param/speed = 0.015
+shader_param/color = Color( 0.156863, 0.458824, 0.698039, 0.596078 )
+shader_param/edge_color = Color( 0.615686, 0.745098, 0.823529, 1 )
+shader_param/edge_scale = 0.3
+shader_param/near = 1.0
+shader_param/far = 200.0
+shader_param/wave_strengh = Vector2( 0.01, 0.01 )
+shader_param/wave_frequency = Vector2( 12, 12 )
+shader_param/time_factor = Vector2( 0.5, 1 )
+shader_param/noise1 = SubResource( 2 )
+shader_param/noise2 = SubResource( 4 )
+shader_param/normalmap = SubResource( 6 )
+
+[sub_resource type="PlaneMesh" id=8]
+material = SubResource( 7 )
+size = Vector2( 17.5, 17.5 )
 
 [node name="VR_TitleArea" type="Spatial"]
+script = ExtResource( 3 )
 
-[node name="Red Box" parent="." instance=ExtResource( 11 )]
-transform = Transform( 0.965926, 0, -0.258819, -0.0669873, 0.965926, -0.25, 0.25, 0.258819, 0.933013, 3.11237, 1.35854, -2.97092 )
+[node name="Boxes" type="Spatial" parent="."]
 
-[node name="Red Box2" parent="." instance=ExtResource( 11 )]
-transform = Transform( 0.965926, 0, -0.258819, 0.0202076, 0.996947, 0.0754159, 0.258029, -0.0780763, 0.962977, 2.85355, 1.10854, -2.0379 )
+[node name="Red Box" parent="Boxes" instance=ExtResource( 11 )]
+transform = Transform( 0.965926, 0, -0.258819, -0.0669873, 0.965926, -0.25, 0.25, 0.258819, 0.933013, 5.11237, 1.35854, -2.97092 )
 
-[node name="Red Box3" parent="." instance=ExtResource( 11 )]
-transform = Transform( 0.968202, -0.0760209, -0.238341, 0.00924144, 0.96293, -0.269594, 0.25, 0.258819, 0.933013, 3.11237, 2.32447, -2.7121 )
+[node name="Red Box2" parent="Boxes" instance=ExtResource( 11 )]
+transform = Transform( 0.965926, 0, -0.258819, 0.0202076, 0.996947, 0.0754159, 0.258029, -0.0780763, 0.962977, 4.85355, 1.10854, -2.0379 )
 
-[node name="Red Box4" parent="." instance=ExtResource( 11 )]
-transform = Transform( 0.965926, 0, -0.258819, -0.0901663, 0.937355, -0.336505, 0.242605, 0.348376, 0.905415, 2.14645, 1.42553, -3.08163 )
+[node name="Red Box3" parent="Boxes" instance=ExtResource( 11 )]
+transform = Transform( 0.968202, -0.0760209, -0.238341, 0.00924144, 0.96293, -0.269594, 0.25, 0.258819, 0.933013, 5.11237, 2.32447, -2.7121 )
 
-[node name="Red Box5" parent="." instance=ExtResource( 11 )]
-transform = Transform( 0.965926, 0, -0.258819, -0.0669873, 0.965926, -0.25, 0.25, 0.258819, 0.933013, 2.51073, 2.39146, -2.9621 )
+[node name="Red Box4" parent="Boxes" instance=ExtResource( 11 )]
+transform = Transform( 0.965926, 0, -0.258819, -0.0901663, 0.937355, -0.336505, 0.242605, 0.348376, 0.905415, 4.14645, 1.42553, -3.08163 )
 
-[node name="1_3" parent="." instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2 )
+[node name="Red Box5" parent="Boxes" instance=ExtResource( 11 )]
+transform = Transform( 0.965926, 0, -0.258819, -0.0669873, 0.965926, -0.25, 0.25, 0.258819, 0.933013, 4.51073, 2.39146, -2.9621 )
 
-[node name="1_4" parent="." instance=ExtResource( 5 )]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2, 0, 2 )
+[node name="Gold Box" parent="Boxes" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 0.990505, -0.137479, 0, 0.137479, 0.990505, -5, 1.64645, -3.11237 )
 
-[node name="1_5" parent="." instance=ExtResource( 5 )]
-transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -2, 0, 2 )
+[node name="Gold Box2" parent="Boxes" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, -4, 1.64645, -3.11237 )
 
-[node name="1_6" parent="." instance=ExtResource( 5 )]
-transform = Transform( 1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -2, 0, -2 )
+[node name="Gold Box3" parent="Boxes" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, -5, 1.38763, -2.14645 )
 
-[node name="GUIPanel3D" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.871888, 1, -3.49665 )
+[node name="Gold Box4" parent="Boxes" instance=ExtResource( 10 )]
+transform = Transform( 0.975695, 0.211664, -0.0567153, -0.219131, 0.942449, -0.252529, 0, 0.258819, 0.965926, -5, 2.61237, -2.85355 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1 )
-
-[node name="CSGBox" type="CSGBox" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
-use_collision = true
-width = 18.0
-depth = 14.0
-material = ExtResource( 1 )
 
 [node name="GameBoard_env" parent="." instance=ExtResource( 4 )]
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( 0.965926, -0.12941, 0.224144, 0, 0.866025, 0.5, -0.258819, -0.482963, 0.836516, 0, 3, 0 )
+transform = Transform( 0.965926, -0.12941, 0.224144, -0.129409, 0.508518, 0.851271, -0.224144, -0.851271, 0.474444, 0, 3, 0 )
 shadow_enabled = true
 directional_shadow_split_1 = 0.078
 directional_shadow_normal_bias = 0.0
@@ -67,167 +102,285 @@ __meta__ = {
 }
 
 [node name="VRControllerBoard" parent="." instance=ExtResource( 12 )]
-transform = Transform( 0.75, 0, 0, 0, 0.75, 0, 0, 0, 1, 1.09962, 1.10664, -3.4978 )
+transform = Transform( 0.75, 0, 0, 0, 0.75, 0, 0, 0, 1, 1.3133, 1.107, -3.5 )
 
 [node name="TitleBoard" parent="." instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -3.5 )
+transform = Transform( 1.2, 0, 0, 0, 1.2, 0, 0, 0, 1, 0, 1.25, -3.5 )
 
-[node name="Rail" type="CSGBox" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2.25, -3.75 )
+[node name="Floor" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
+use_collision = true
+width = 20.0
+depth = 16.0
+material = ExtResource( 13 )
+
+[node name="CSGBox" type="CSGBox" parent="Floor"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.881258, 0 )
+operation = 2
+width = 18.0
+height = 0.25
+depth = 14.0
+
+[node name="Exterior Walls" type="Spatial" parent="."]
+
+[node name="CSGBox" type="CSGBox" parent="Exterior Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -7 )
+width = 18.0
+depth = 0.5
+material = ExtResource( 5 )
+
+[node name="CSGBox" type="CSGBox" parent="Exterior Walls/CSGBox"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 7 )
+width = 0.5
+depth = 14.0
+material = ExtResource( 5 )
+
+[node name="CSGBox2" type="CSGBox" parent="Exterior Walls/CSGBox"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 14 )
+width = 18.0
+depth = 0.5
+material = ExtResource( 5 )
+
+[node name="CSGBox3" type="CSGBox" parent="Exterior Walls/CSGBox"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 7 )
+width = 0.5
+depth = 14.0
+material = ExtResource( 5 )
+
+[node name="Interior Walls" type="Spatial" parent="."]
+
+[node name="MenuWall" type="CSGBox" parent="Interior Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -3.75 )
+use_collision = true
+width = 4.0
+depth = 0.5
+material = ExtResource( 5 )
+
+[node name="Topper" type="CSGBox" parent="Interior Walls/MenuWall"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15, 0 )
+width = 4.0
+height = 0.3
+depth = 0.5
+material = ExtResource( 7 )
+
+[node name="Column" type="CSGBox" parent="Interior Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.5, -4 )
+use_collision = true
+width = 1.0
+height = 3.0
+depth = 1.0
+material = ExtResource( 5 )
+
+[node name="Topper" type="CSGBox" parent="Interior Walls/Column"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0 )
+width = 1.0
+height = 0.5
+depth = 1.0
+material = ExtResource( 9 )
+
+[node name="Column2" type="CSGBox" parent="Interior Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1.5, -4 )
+use_collision = true
+width = 1.0
+height = 3.0
+depth = 1.0
+material = ExtResource( 5 )
+
+[node name="Topper" type="CSGBox" parent="Interior Walls/Column2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0 )
+width = 1.0
+height = 0.5
+depth = 1.0
+material = ExtResource( 9 )
+
+[node name="Column3" type="CSGBox" parent="Interior Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1.5, 4 )
+use_collision = true
+width = 1.0
+height = 3.0
+depth = 1.0
+material = ExtResource( 5 )
+
+[node name="Topper" type="CSGBox" parent="Interior Walls/Column3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0 )
+width = 1.0
+height = 0.5
+depth = 1.0
+material = ExtResource( 9 )
+
+[node name="Column4" type="CSGBox" parent="Interior Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.5, 4 )
+use_collision = true
+width = 1.0
+height = 3.0
+depth = 1.0
+material = ExtResource( 5 )
+
+[node name="Topper" type="CSGBox" parent="Interior Walls/Column4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0 )
+width = 1.0
+height = 0.5
+depth = 1.0
+material = ExtResource( 9 )
+
+[node name="Rail" type="CSGBox" parent="Interior Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4, -3.75 )
 use_collision = true
 width = 0.25
 height = 0.5
 depth = 0.5
 material = ExtResource( 7 )
 
-[node name="CSGBox" type="CSGBox" parent="Rail"]
+[node name="CSGBox" type="CSGBox" parent="Interior Walls/Rail"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 3.75 )
 width = 0.15
 height = 0.5
 depth = 12.0
 material = ExtResource( 7 )
 
-[node name="CSGBox3" type="CSGBox" parent="Rail"]
+[node name="CSGBox3" type="CSGBox" parent="Interior Walls/Rail"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.5 )
 width = 0.25
 height = 0.5
 depth = 0.5
 material = ExtResource( 7 )
 
-[node name="Rail2" type="CSGBox" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.25, -3.75 )
+[node name="Rail2" type="CSGBox" parent="Interior Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4, -3.75 )
 use_collision = true
 width = 0.25
 height = 0.5
 depth = 0.5
 material = ExtResource( 7 )
 
-[node name="CSGBox" type="CSGBox" parent="Rail2"]
+[node name="CSGBox" type="CSGBox" parent="Interior Walls/Rail2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 3.75 )
 width = 0.15
 height = 0.5
 depth = 12.0
 material = ExtResource( 7 )
 
-[node name="CSGBox3" type="CSGBox" parent="Rail2"]
+[node name="CSGBox3" type="CSGBox" parent="Interior Walls/Rail2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.5 )
 width = 0.25
 height = 0.5
 depth = 0.5
 material = ExtResource( 7 )
 
-[node name="Rail4" type="CSGBox" parent="."]
-transform = Transform( 0.996195, 0, -0.0871557, 0, 1, 0, 0.0871557, 0, 0.996195, 4, 2.25, -3.75 )
+[node name="Rail4" type="CSGBox" parent="Interior Walls"]
+transform = Transform( 0.996195, 0, -0.0871557, 0, 1, 0, 0.0871557, 0, 0.996195, 4, 4, -3.75 )
 use_collision = true
 width = 0.25
 height = 0.5
 depth = 0.5
 material = ExtResource( 7 )
 
-[node name="CSGBox" type="CSGBox" parent="Rail4"]
+[node name="CSGBox" type="CSGBox" parent="Interior Walls/Rail4"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 3.75 )
 width = 0.15
 height = 0.5
 depth = 12.0
 material = ExtResource( 7 )
 
-[node name="CSGBox3" type="CSGBox" parent="Rail4"]
+[node name="CSGBox3" type="CSGBox" parent="Interior Walls/Rail4"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.5 )
 width = 0.25
 height = 0.5
 depth = 0.5
 material = ExtResource( 7 )
 
-[node name="Rail5" type="CSGBox" parent="."]
-transform = Transform( 0.996195, 0, 0.0871557, 0, 1, 0, -0.0871557, 0, 0.996195, -4, 2.25, -3.75 )
+[node name="Rail5" type="CSGBox" parent="Interior Walls"]
+transform = Transform( 0.996195, 0, 0.0871557, 0, 1, 0, -0.0871557, 0, 0.996195, -4, 4, -3.75 )
 use_collision = true
 width = 0.25
 height = 0.5
 depth = 0.5
 material = ExtResource( 7 )
 
-[node name="CSGBox" type="CSGBox" parent="Rail5"]
+[node name="CSGBox" type="CSGBox" parent="Interior Walls/Rail5"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 3.75 )
 width = 0.15
 height = 0.5
 depth = 12.0
 material = ExtResource( 7 )
 
-[node name="CSGBox3" type="CSGBox" parent="Rail5"]
+[node name="CSGBox3" type="CSGBox" parent="Interior Walls/Rail5"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.5 )
 width = 0.25
 height = 0.5
 depth = 0.5
 material = ExtResource( 7 )
 
-[node name="Rail3" type="CSGBox" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, -3.75 )
+[node name="Rail3" type="CSGBox" parent="Interior Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -3.75 )
 use_collision = true
 width = 0.25
 height = 0.5
 depth = 0.5
 material = ExtResource( 7 )
 
-[node name="CSGBox" type="CSGBox" parent="Rail3"]
+[node name="CSGBox" type="CSGBox" parent="Interior Walls/Rail3"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.620553, 3.75 )
 width = 0.15
 height = 0.75
 depth = 16.0
 material = ExtResource( 7 )
 
-[node name="CSGBox3" type="CSGBox" parent="Rail3"]
+[node name="CSGBox3" type="CSGBox" parent="Interior Walls/Rail3"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.5 )
 width = 0.25
 height = 0.5
 depth = 0.5
 material = ExtResource( 7 )
 
-[node name="gutter" type="CSGBox" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -4.25 )
+[node name="gutter" type="CSGBox" parent="Interior Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.75, -4.25 )
 use_collision = true
 width = 8.0
 height = 0.5
 depth = 0.5
 material = ExtResource( 8 )
 
-[node name="CSGBox5" type="CSGBox" parent="gutter"]
+[node name="CSGBox5" type="CSGBox" parent="Interior Walls/gutter"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.5 )
 width = 8.0
 height = 0.5
 depth = 0.5
 material = ExtResource( 8 )
 
-[node name="gutter2" type="CSGBox" parent="."]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.25, 2, 0 )
+[node name="gutter2" type="CSGBox" parent="Interior Walls"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.25, 3.75, 0 )
 use_collision = true
 width = 8.0
 height = 0.5
 depth = 0.5
 material = ExtResource( 8 )
 
-[node name="CSGBox5" type="CSGBox" parent="gutter2"]
+[node name="CSGBox5" type="CSGBox" parent="Interior Walls/gutter2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.5 )
 width = 8.0
 height = 0.5
 depth = 0.5
 material = ExtResource( 8 )
 
-[node name="CSGBox2" type="CSGBox" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, 0 )
+[node name="Pool" type="CSGBox" parent="Interior Walls"]
 use_collision = true
-width = 1.0
+width = 12.0
 height = 0.5
-depth = 1.0
-material = ExtResource( 9 )
+depth = 10.0
+material = ExtResource( 5 )
 
-[node name="Gold Box" parent="." instance=ExtResource( 10 )]
-transform = Transform( 1, 0, 0, 0, 0.990505, -0.137479, 0, 0.137479, 0.990505, -3, 1.64645, -3.11237 )
+[node name="CSGBox" type="CSGBox" parent="Interior Walls/Pool"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
+operation = 2
+width = 11.0
+height = 0.5
+depth = 9.0
+material = ExtResource( 5 )
 
-[node name="Gold Box2" parent="." instance=ExtResource( 10 )]
-transform = Transform( 1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, -2, 1.64645, -3.11237 )
+[node name="MeshInstance" type="MeshInstance" parent="Interior Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.125, 0 )
+mesh = SubResource( 8 )
+material/0 = null
 
-[node name="Gold Box3" parent="." instance=ExtResource( 10 )]
-transform = Transform( 1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, -3, 1.38763, -2.14645 )
-
-[node name="Gold Box4" parent="." instance=ExtResource( 10 )]
-transform = Transform( 0.975695, 0.211664, -0.0567153, -0.219131, 0.942449, -0.252529, 0, 0.258819, 0.965926, -3, 2.61237, -2.85355 )
+[node name="PlayerSpawnPoint" type="Spatial" parent="."]

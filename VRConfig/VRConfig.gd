@@ -1,7 +1,7 @@
 extends Node
 
 enum Controller {RIGHT, LEFT}
-enum MOVE_STYLE {MERLIN, MORGANA, LANCELOT, GAWAIN}
+enum MOVE_STYLE {MERLIN, MORGANA, ARTHUR, MORDRED, LANCELOT, GAWAIN}
 enum MOVE_TYPE {NONE, TELEPORT, LOCOMOTION_TURN, LOCOMOTION_STRAFE}
 enum TURN_TYPE {NONE, SMOOTH, SNAP}
 var Styles = {}
@@ -58,10 +58,12 @@ var controller_config = MOVE_STYLE.MERLIN setget set_controller_config, get_cont
 
 func _init():
 	Styles = {
-		MOVE_STYLE.MERLIN: {"Right_Hand":MoveConfigs["Snap-Turn"], "Left_Hand":MoveConfigs["Teleport"], "Description":"Merlin teleports.\r\nRECOMMENDED"},
-		MOVE_STYLE.MORGANA: {"Right_Hand":MoveConfigs["Teleport"], "Left_Hand":MoveConfigs["Snap-Turn"], "Description":"Morgana teleports, left handed.\r\nRECOMMENDED"},
-		MOVE_STYLE.LANCELOT: {"Right_Hand":MoveConfigs["Smooth-Turn"], "Left_Hand":MoveConfigs["Locomotion-Strafe"], "Description":"Like a first person shooter"},
-		MOVE_STYLE.GAWAIN: {"Right_Hand":MoveConfigs["Locomotion-Strafe"], "Left_Hand":MoveConfigs["Smooth-Turn"], "Description":"Like a first person shooter, left handed."}
+		MOVE_STYLE.MERLIN: {"Right_Hand":MoveConfigs["Snap-Turn"], "Left_Hand":MoveConfigs["Teleport"], "Description":"Merlin teleports. Right handed..\r\nRECOMMENDED"},
+		MOVE_STYLE.MORGANA: {"Right_Hand":MoveConfigs["Teleport"], "Left_Hand":MoveConfigs["Snap-Turn"], "Description":"Morgana teleports. Left handed.\r\nRECOMMENDED"},
+		MOVE_STYLE.ARTHUR: {"Right_Hand":MoveConfigs["Smooth-Turn"], "Left_Hand":MoveConfigs["Locomotion-Strafe"], "Description":"Like a first person shooter. Right handed."},
+		MOVE_STYLE.MORDRED: {"Right_Hand":MoveConfigs["Locomotion-Strafe"], "Left_Hand":MoveConfigs["Smooth-Turn"], "Description":"Like a first person shooter. Left handed."},
+		MOVE_STYLE.LANCELOT: {"Right_Hand":MoveConfigs["Smooth-Turn"], "Left_Hand":MoveConfigs["Locomotion-Strafe"], "Description":"Like a first person shooter, but with a snap. Right handed."},
+		MOVE_STYLE.GAWAIN: {"Right_Hand":MoveConfigs["Locomotion-Strafe"], "Left_Hand":MoveConfigs["Smooth-Turn"], "Description":"Like a first person shooter, but with a snap. Left handed."}
 	}
 
 func _ready():

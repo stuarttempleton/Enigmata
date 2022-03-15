@@ -78,34 +78,10 @@ margin_bottom = 283.0
 rect_min_size = Vector2( 0, 12 )
 color = Color( 1, 1, 1, 0 )
 
-[node name="RightHand" type="HBoxContainer" parent="Menu"]
+[node name="LeftHand" type="HBoxContainer" parent="Menu"]
 margin_top = 307.0
 margin_right = 512.0
 margin_bottom = 330.0
-custom_constants/separation = 12
-alignment = 1
-
-[node name="Label" type="Label" parent="Menu/RightHand"]
-margin_left = 70.0
-margin_right = 250.0
-margin_bottom = 23.0
-rect_min_size = Vector2( 180, 0 )
-custom_fonts/font = ExtResource( 1 )
-text = "Right Hand:"
-align = 2
-
-[node name="Movement" type="Label" parent="Menu/RightHand"]
-margin_left = 262.0
-margin_right = 442.0
-margin_bottom = 23.0
-rect_min_size = Vector2( 180, 0 )
-custom_fonts/font = ExtResource( 1 )
-text = "Snap-Turn"
-
-[node name="LeftHand" type="HBoxContainer" parent="Menu"]
-margin_top = 354.0
-margin_right = 512.0
-margin_bottom = 377.0
 custom_constants/separation = 12
 alignment = 1
 
@@ -125,6 +101,30 @@ margin_bottom = 23.0
 rect_min_size = Vector2( 180, 0 )
 custom_fonts/font = ExtResource( 1 )
 text = "Teleport"
+
+[node name="RightHand" type="HBoxContainer" parent="Menu"]
+margin_top = 354.0
+margin_right = 512.0
+margin_bottom = 377.0
+custom_constants/separation = 12
+alignment = 1
+
+[node name="Label" type="Label" parent="Menu/RightHand"]
+margin_left = 70.0
+margin_right = 250.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 180, 0 )
+custom_fonts/font = ExtResource( 1 )
+text = "Right Hand:"
+align = 2
+
+[node name="Movement" type="Label" parent="Menu/RightHand"]
+margin_left = 262.0
+margin_right = 442.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 180, 0 )
+custom_fonts/font = ExtResource( 1 )
+text = "Snap-Turn"
 
 [node name="Gap2" type="ColorRect" parent="Menu"]
 margin_top = 401.0

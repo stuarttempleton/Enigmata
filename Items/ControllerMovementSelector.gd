@@ -10,7 +10,7 @@ func _ready():
 		add_item(key, VRConfig.MOVE_STYLE[key])
 	
 	select(VRConfig.controller_config)
-	DoSelection(VRConfig.controller_config)
+	UpdateUI(VRConfig.controller_config)
 
 
 func GetHand(hand):
@@ -39,20 +39,25 @@ func GetHand(hand):
 	
 	return {"base:":hand_node, "locomotion":loco_node, "teleport":tele_node}
 
-
-func DoSelection(style):
+func UpdateUI(style):
 	style = int(style)
 	$'../../RightHand/Movement'.text = VRConfig.Styles[style]["Right_Hand"]["text"]
 	$'../../LeftHand/Movement'.text = VRConfig.Styles[style]["Left_Hand"]["text"]
 	$'../../Description'.text = VRConfig.Styles[style]["Description"]
-	
-	VRConfig.controller_config = style
-	
+
+func ApplyConfig():
 	for hand in Controller.values():
 		var hand_node = GetHand(hand)
 		if hand_node:
 			hand_node["locomotion"].update_player_config()
 			hand_node["teleport"].update_player_config()
+
+func DoSelection(style):
+	style = int(style)
+	UpdateUI(style)
+	VRConfig.controller_config = style
+	ApplyConfig()
+
 
 
 func _on_StyleOptions_item_selected(index):
