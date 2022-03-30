@@ -9,9 +9,6 @@
 margin_right = 192.0
 margin_bottom = 16.0
 color = Color( 0, 0, 0, 0 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Box Info" type="VBoxContainer" parent="."]
 margin_left = 8.0

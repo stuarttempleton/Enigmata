@@ -3,7 +3,7 @@
 [ext_resource path="res://shaders/water.gdshader" type="Shader" id=1]
 [ext_resource path="res://VR_Player/VR_Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://VR_Player/VR_TitleArea.gd" type="Script" id=3]
-[ext_resource path="res://GameBoard/GameBoard_env.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Sky.tscn" type="PackedScene" id=4]
 [ext_resource path="res://MapPieces/test_walls/wall_material.tres" type="Material" id=5]
 [ext_resource path="res://Items/TitleBoard.tscn" type="PackedScene" id=6]
 [ext_resource path="res://MapPieces/test_walls/l_blue_plaster_top_material.tres" type="Material" id=7]
@@ -59,6 +59,8 @@ size = Vector2( 17.5, 17.5 )
 [node name="VR_TitleArea" type="Spatial"]
 script = ExtResource( 3 )
 
+[node name="Sky" parent="." instance=ExtResource( 4 )]
+
 [node name="Boxes" type="Spatial" parent="."]
 
 [node name="Red Box" parent="Boxes" instance=ExtResource( 11 )]
@@ -90,10 +92,9 @@ transform = Transform( 0.975695, 0.211664, -0.0567153, -0.219131, 0.942449, -0.2
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 
-[node name="GameBoard_env" parent="." instance=ExtResource( 4 )]
-
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 0.965926, -0.12941, 0.224144, -0.129409, 0.508518, 0.851271, -0.224144, -0.851271, 0.474444, 0, 3, 0 )
+visible = false
 shadow_enabled = true
 directional_shadow_split_1 = 0.078
 directional_shadow_normal_bias = 0.0

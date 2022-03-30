@@ -359,11 +359,11 @@ gradient = SubResource( 2 )
 [sub_resource type="ShaderMaterial" id=4]
 shader = ExtResource( 5 )
 shader_param/WIND = Vector3( 0.0375, 0, 0 )
-shader_param/SUN_POS = Vector3( 0, -0.889518, 0.456901 )
+shader_param/SUN_POS = Vector3( 0, -0.866025, 0.5 )
 shader_param/SIZE = 1.5313
 shader_param/SOFTNESS = 1.0
 shader_param/COVERAGE = 0.55
-shader_param/HEIGHT = 0.4828
+shader_param/HEIGHT = 0.4525
 shader_param/THICKNESS = 15.0
 shader_param/ABSORPTION = 1.25
 shader_param/STEPS = 100
@@ -382,9 +382,9 @@ viewport_path = NodePath("clouds_viewport")
 resource_local_to_scene = true
 shader = ExtResource( 4 )
 shader_param/SCATERRING = false
-shader_param/SUN_POS = Vector3( 0, 0.889518, -0.456901 )
-shader_param/MOON_POS = Vector3( 0, -0.889518, 0.456901 )
-shader_param/MOON_TEX_POS = Vector3( 0, -0.971987, 0.235034 )
+shader_param/SUN_POS = Vector3( 0, 0.866025, -0.5 )
+shader_param/MOON_POS = Vector3( 0, -0.866025, 0.5 )
+shader_param/MOON_TEX_POS = Vector3( 0, -0.965926, 0.258819 )
 shader_param/MOON_PHASE = -1.0
 shader_param/moon_radius = 0.05
 shader_param/sun_radius = 0.04
@@ -421,11 +421,9 @@ sky_rayleig_coeff = 1.0
 sky_mie_coeff = 0.5156
 anisotropicIntensity = 1.5
 hours = 12
-minutes = 11
-seconds = 15
-time_of_day_setup = 0.507813
+time_of_day_setup = 0.5
 clouds_size = 1.5313
-clouds_height = 0.4828
+clouds_height = 0.4525
 clouds_quality = 100
 moon_radius = 0.05
 moon_phase = -1.0
@@ -437,10 +435,12 @@ lighting_pos = Vector3( 0.57735, 0.57735, 0.57735 )
 environment = ExtResource( 6 )
 
 [node name="Sun_Moon" type="DirectionalLight" parent="."]
-transform = Transform( -1, 7.77643e-08, -3.99433e-08, 0, 0.456902, 0.889512, 8.74228e-08, 0.88952, -0.456898, 0, 0.889518, -0.456901 )
+transform = Transform( -1, 7.57105e-08, -4.37111e-08, 0, 0.500001, 0.86602, 8.74228e-08, 0.866028, -0.499997, 0, 0.866025, -0.5 )
 light_energy = 0.75
 shadow_enabled = true
 shadow_color = Color( 0.3, 0.3, 0.3, 1 )
+directional_shadow_split_1 = 0.077
+directional_shadow_normal_bias = 0.0
 directional_shadow_depth_range = 1
 
 [node name="clouds_viewport" type="Viewport" parent="."]

@@ -8,12 +8,13 @@ var box_container_template = preload("res://UI/Box_UI_Container.tscn")
 var box_template = preload("res://UI/Box_UI.tscn")
 
 func _ready():
-	UpdateBoxUI()
+	Boxes.connect("BoxTurnedIn",self,"UpdateBoxUI")
+	Boxes.connect("BoxesPlaced",self,"UpdateBoxUI")
 
-func _process(delta):
-	if Enabled == true && GameController.score != scoreCache:
-		scoreCache = GameController.score
-		UpdateBoxUI()
+#func _process(delta):
+#	if Enabled == true && GameController.score != scoreCache:
+#		scoreCache = GameController.score
+#		UpdateBoxUI()
 
 func SetEnabled(_enabled):
 	Enabled = _enabled
@@ -23,6 +24,10 @@ func UpdateBoxUI():
 	for b in get_children():
 		remove_child(b)
 		b.queue_free()
+	
+	if !Boxes.Boxes:
+		return
+	
 	for i in Boxes.BOX_TYPE.WHITE + 1:
 		if Boxes.Boxes[i].qty > 0:
 			var bc = box_container_template.instance()

@@ -198,6 +198,12 @@ func _process(delta):
 		LoadWindowSettings()
 		SaveWindowSettings()
 
+func ResetScoreInfo():
+	score = 0
+	total_score = 0
+	endpoints_explored = 0
+	total_endpoints = 0
+
 
 func StartTimer():
 	print("Starting map timer")

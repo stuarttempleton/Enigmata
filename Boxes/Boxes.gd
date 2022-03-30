@@ -20,13 +20,17 @@ class Box:
 		return (marker - remaining) * value
 	func IsComplete():
 		return remaining <= 0
-		
+	func Reset():
+		remaining = qty
 
 var Boxes
 var BoxMaterials
 var BoxWaterMaterials
 var BoxReceptacle
 var BoxColors
+
+signal BoxTurnedIn
+signal BoxesPlaced
 
 func _ready():
 	BoxColors = {
@@ -35,11 +39,6 @@ func _ready():
 		BOX_TYPE.RED: Color(0.764706, 0, 0),
 		BOX_TYPE.WHITE: Color(0.921569, 0.921569, 0.921569)
 	}
-	Boxes = {
-		BOX_TYPE.GOLD: Box.new(load("res://Items/gold_box.tscn"), 3, 1, BOX_TYPE.GOLD),
-		BOX_TYPE.PURPLE: Box.new(load("res://Items/purple_box.tscn"), 2, 1, BOX_TYPE.PURPLE),
-		BOX_TYPE.RED: Box.new(load("res://Items/red_box.tscn"), 2, 1, BOX_TYPE.RED),
-		BOX_TYPE.WHITE: Box.new(load("res://Items/white_box.tscn"), 1, 1, BOX_TYPE.WHITE)}
 	
 	BoxMaterials = {
 		BOX_TYPE.GOLD: load("res://Items/gold_plaster_cube.tres"),
@@ -61,13 +60,21 @@ func IsComplete(_type):
 
 func TurnIn(_type = BOX_TYPE.WHITE):
 	GameController.score += Boxes[_type].TurnIn()
+	emit_signal("BoxTurnedIn")
 
+func PopulateBoxes():
+	Boxes = {
+		BOX_TYPE.GOLD: Box.new(load("res://Items/gold_box.tscn"), 3, 1, BOX_TYPE.GOLD),
+		BOX_TYPE.PURPLE: Box.new(load("res://Items/purple_box.tscn"), 2, 1, BOX_TYPE.PURPLE),
+		BOX_TYPE.RED: Box.new(load("res://Items/red_box.tscn"), 2, 1, BOX_TYPE.RED),
+		BOX_TYPE.WHITE: Box.new(load("res://Items/white_box.tscn"), 1, 1, BOX_TYPE.WHITE)}
 
 func PlaceBoxes(_maze):
 	var maze = _maze
 	var qty_nodes = 0
 	get_tree().call_group("Receivers", "queue_free")
 	get_tree().call_group("Items", "queue_free")
+	PopulateBoxes()
 	
 	for type in Boxes.keys():
 		if Boxes[type].qty > 0:
@@ -92,3 +99,5 @@ func PlaceBoxes(_maze):
 			
 			br.transform.origin = maze.get_node("SceneMap").to_global(nodes.pop_back().transform.origin)
 			br.transform.origin += Vector3(0,0,0)
+	
+	emit_signal("BoxesPlaced")

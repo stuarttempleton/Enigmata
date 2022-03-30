@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://UI/Title_Menu.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Sky.tscn" type="PackedScene" id=2]
 [ext_resource path="res://MapPieces/test_walls/1_1.tscn" type="PackedScene" id=4]
 [ext_resource path="res://MapPieces/test_walls/1_0.tscn" type="PackedScene" id=5]
 [ext_resource path="res://MapPieces/test_walls/1_5.tscn" type="PackedScene" id=6]
-[ext_resource path="res://GameBoard/GameBoard_env.tscn" type="PackedScene" id=7]
 [ext_resource path="res://MapPieces/test_walls/stone_floor.tres" type="Material" id=8]
 [ext_resource path="res://Items/gold_box.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Items/purple_box.tscn" type="PackedScene" id=12]
@@ -12,7 +12,7 @@
 
 [node name="Title" type="Spatial"]
 
-[node name="GameBoard_env" parent="." instance=ExtResource( 7 )]
+[node name="Sky" parent="." instance=ExtResource( 2 )]
 
 [node name="Screen" type="Control" parent="."]
 anchor_right = 1.0
@@ -72,6 +72,7 @@ material = ExtResource( 8 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 0.965926, -0.12941, 0.224144, 0, 0.866025, 0.5, -0.258819, -0.482963, 0.836516, 0, 3, 0 )
+visible = false
 shadow_enabled = true
 directional_shadow_split_1 = 0.078
 directional_shadow_normal_bias = 0.0

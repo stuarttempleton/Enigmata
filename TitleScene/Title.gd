@@ -10,6 +10,7 @@ var MapCodeUI
 func _ready():
 	GameController.Pause(false)
 	GameController.state = GameController.STATE.TITLE
+	GameController.ResetScoreInfo()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	MapCodeUI = $Buttons/Viewer/MapCode/TextBox
 	MapCodeUI.text = GameController.map_code
