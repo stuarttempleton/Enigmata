@@ -70,12 +70,12 @@ func _ready():
 	get_controller_config()
 
 func get_controller_config():
-	if PlayerPrefs.HasPref("controller_config"):
-		controller_config = PlayerPrefs.GetPref("controller_config")
+	if PlayerPrefs.has_pref("controller_config"):
+		controller_config = PlayerPrefs.get_pref("controller_config")
 	return controller_config
 
 func set_controller_config(_config):
 	controller_config = _config
-	PlayerPrefs.SetPref("controller_config", controller_config)
+	PlayerPrefs.set_pref("controller_config", controller_config)
 
 

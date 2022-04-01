@@ -49,24 +49,24 @@ func _init():
 			"--windowed", "-w":
 				match param[1]:
 					"1","true","yes":
-						PlayerPrefs.SetPref("window_fullscreen", false)
-						PlayerPrefs.SetPref("window_size", {"x":1280,"y":720})
+						PlayerPrefs.set_pref("window_fullscreen", false)
+						PlayerPrefs.set_pref("window_size", {"x":1280,"y":720})
 					"0","false","no":
-						PlayerPrefs.SetPref("window_fullscreen", true)
+						PlayerPrefs.set_pref("window_fullscreen", true)
 	LoadWindowSettings()
-	if PlayerPrefs.HasPref("previous_difficulty_code"):
-		default_difficulty = PlayerPrefs.GetPref("previous_difficulty_code")
+	if PlayerPrefs.has_pref("previous_difficulty_code"):
+		default_difficulty = PlayerPrefs.get_pref("previous_difficulty_code", default_difficulty)
 		ApplyDifficultyFromCode(default_difficulty)
 
 func LoadWindowSettings():
-	OS.window_fullscreen = PlayerPrefs.GetPref("window_fullscreen")
+	OS.window_fullscreen = PlayerPrefs.get_pref("window_fullscreen", true)
 	if !OS.window_fullscreen:
-		OS.window_size = Vector2(PlayerPrefs.GetPref("window_size").x,PlayerPrefs.GetPref("window_size").y)
+		OS.window_size = Vector2(PlayerPrefs.get_pref("window_size", 1280).x,PlayerPrefs.get_pref("window_size", 720).y)
 
 func SaveWindowSettings():
-	PlayerPrefs.SetPref("window_fullscreen", OS.window_fullscreen)
+	PlayerPrefs.set_pref("window_fullscreen", OS.window_fullscreen)
 	if !OS.window_fullscreen:
-		PlayerPrefs.SetPref("window_size", {"x":OS.window_size.x,"y":OS.window_size.y})
+		PlayerPrefs.set_pref("window_size", {"x":OS.window_size.x,"y":OS.window_size.y})
 
 func PopulateTables():
 	var i = 1 #index
@@ -81,8 +81,8 @@ func SetCode(_code):
 	map_code = _code
 	main_seed = hash(map_code.replace(" ", ""))
 	ApplyDifficultyFromCode(map_code.substr(map_code.length() - 4))
-	PlayerPrefs.SetPref("previous_map_code",map_code)
-	PlayerPrefs.SetPref("previous_difficulty_code", CreateDifficutlyCode())
+	PlayerPrefs.set_pref("previous_map_code",map_code)
+	PlayerPrefs.set_pref("previous_difficulty_code", CreateDifficutlyCode())
 
 func ChangeGameMode(_mode):
 	mode = _mode
@@ -194,7 +194,7 @@ func _process(delta):
 				state = STATE.COMPLETE
 				PauseOrGOHelper(true)
 	if Input.is_action_just_pressed("fullscreen_mode"):
-		PlayerPrefs.SetPref("window_fullscreen", !OS.window_fullscreen)
+		PlayerPrefs.set_pref("window_fullscreen", !OS.window_fullscreen)
 		LoadWindowSettings()
 		SaveWindowSettings()
 
