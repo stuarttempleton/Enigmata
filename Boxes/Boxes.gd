@@ -61,6 +61,7 @@ func IsComplete(_type):
 func TurnIn(_type = BOX_TYPE.WHITE):
 	GameController.score += Boxes[_type].TurnIn()
 	emit_signal("BoxTurnedIn")
+	AudioPlayer.PlaySFX(AudioPlayer.AUDIO_KEY.ITEM_TURN_IN)
 
 func PopulateBoxes():
 	Boxes = {

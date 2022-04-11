@@ -45,7 +45,7 @@ anchor_bottom = 1.0
 [node name="ColorRect" type="ColorRect" parent="GameComplete"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 0.239216 )
+color = Color( 0, 0, 0, 0.584314 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

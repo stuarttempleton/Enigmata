@@ -48,6 +48,7 @@ func PickUp(new_parent, move_to_parent = false):
 	global_transform = transform_stash
 	if move_to_parent:
 		global_transform.origin = picked_up_by.global_transform.origin
+	AudioPlayer.PlaySFX(AudioPlayer.AUDIO_KEY.ITEM_PICKUP)
 
 
 func LetGo(starting_linear_velocity = Vector3(0.0, 0.0, 0.0)):
@@ -69,4 +70,16 @@ func LetGo(starting_linear_velocity = Vector3(0.0, 0.0, 0.0)):
 		
 		#throwable
 		linear_velocity = starting_linear_velocity
+		AudioPlayer.PlaySFX(AudioPlayer.AUDIO_KEY.ITEM_DROP)
 
+
+var on_enter_ready = true
+
+func _on_body_entered(body):
+	if on_enter_ready:
+		$BoxAudioPlayer.play()
+		on_enter_ready = false
+
+
+func _on_body_exited(body):
+	on_enter_ready = true

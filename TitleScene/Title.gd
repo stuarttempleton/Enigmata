@@ -23,6 +23,7 @@ func HandleLoad():
 	print("Using code: ", MapCodeUI.text)
 	GameController.SetCode(MapCodeUI.text)
 	
+	AudioPlayer.PlayUI(AudioPlayer.AUDIO_KEY.BUTTON_ACCEPT)
 	SceneChanger.LoadScene(LoadScene)
 
 func _on_VR_pressed():

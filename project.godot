@@ -37,6 +37,7 @@ Boxes="*res://Boxes/Boxes.tscn"
 GameController="*res://GameController/GameController.tscn"
 SceneChanger="*res://SceneChanger/SceneChanger.tscn"
 VRConfig="*res://VRConfig/VRConfig.tscn"
+AudioPlayer="*res://AudioPlayer/AudioPlayer.tscn"
 
 [display]
 

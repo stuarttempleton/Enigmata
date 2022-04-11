@@ -5,7 +5,7 @@ var max_index = 1
 var current_index = 0
 export (NodePath) var slider
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
 	slider = get_node(slider)
 	update_ui_info()
@@ -23,6 +23,7 @@ func update_ui_info():
 func update_gamecontroller():
 	GameController.map_complexity = GameController.complexity_table[GameController.complexity_presets[current_index]]
 	update_ui_info()
+	AudioPlayer.PlayUI(AudioPlayer.AUDIO_KEY.OPTION_CHANGE)
 
 
 func _on_Less_pressed():

@@ -36,7 +36,7 @@ If you're building for Windows, you might need to follow the instructions for in
 # Dependencies and such
 Enigmata is using modified versions of [Godot OpenVR](https://github.com/GodotVR/godot_openvr), [Godot XR Tools](https://github.com/GodotVR/godot-xr-tools), [Godot GUI in VR](https://github.com/aaronfranke/godot-GUI-in-VR) and [Godot Scene Map](https://github.com/DarkKilauea/godot-scene-map), all of which are under the MIT License.
 
-We are also using textures from [Kenney Prototype Textures](https://www.kenney.nl/assets/prototype-textures) and [Lennart - AmbientCG](https://ambientcg.com/) which are licensed under [CCO 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/).
+We are also using textures and audio from [Kenney Game Assets All-in-1 ](https://kenney.itch.io/kenney-game-assets), and textures from [Lennart - AmbientCG](https://ambientcg.com/) which are licensed under [CCO 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/).
 
 # Contributing
 Not quite yet, plz.

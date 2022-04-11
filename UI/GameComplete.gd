@@ -12,6 +12,7 @@ func _ready():
 func ShowUI(_visible = true):
 	$GameComplete.visible = _visible
 	$GameComplete/GameCompleteContainer/MenuButtons.visible = GC_parent
+	$GameComplete/Blur.visible = GC_parent
 	if _visible:
 		UpdateUI()
 

@@ -58,4 +58,5 @@ func _on_SizeSlider_value_changed(value):
 		if value % 2 > 0:
 			current_x += 1
 		update_gamecontroller()
+		AudioPlayer.PlayUI(AudioPlayer.AUDIO_KEY.OPTION_CHANGE)
 

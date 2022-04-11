@@ -191,6 +191,7 @@ func _process(delta):
 			pass
 		STATE.PLAYING:
 			if CheckWinState():
+				AudioPlayer.PlaySFX(AudioPlayer.AUDIO_KEY.GAME_COMPLETE)
 				state = STATE.COMPLETE
 				PauseOrGOHelper(true)
 	if Input.is_action_just_pressed("fullscreen_mode"):
