@@ -13,7 +13,7 @@ uniform vec4 edge_color : hint_color;
 //foam
 uniform float edge_scale = 0.25;
 uniform float near = 0.1;
-uniform float far = 100f;
+uniform float far = 100;
 
 //waves
 uniform vec2 wave_strengh = vec2(0.5, 0.25);
@@ -23,7 +23,7 @@ uniform vec2 time_factor = vec2(1.0, 2.0);
 
 
 float rim(float depth){
-	depth = 2f * depth - 1f;
+	depth = 2.0f * depth - 1.0f;
 	return near * far / (far + depth * (near - far));
 }
 
@@ -43,10 +43,10 @@ void fragment(){
 	vec3 n1 = texture(noise1, UV + time).rgb;
 	vec3 n2 = texture(noise2, UV - time * 0.2).rgb;
 	
-	vec2 uv_movement = UV * 4f;
-	uv_movement += TIME * speed * 4f;
+	vec2 uv_movement = UV * 4.0f;
+	uv_movement += TIME * speed * 4.0f;
 	
-	float sum = (n1.r + n2.r) - 1f;
+	float sum = (n1.r + n2.r) - 1.0f;
 	
 	
 	float z_depth = rim(texture(DEPTH_TEXTURE, SCREEN_UV).x);
@@ -54,7 +54,7 @@ void fragment(){
 	float diff = z_depth - z_pos;
 	
 	vec2 displacement = vec2(sum * 0.05);
-	diff += displacement.x * 50f;
+	diff += displacement.x * 50.0f;
 	
 	
 	vec4 col = mix(edge_color, color, step(edge_scale, diff));
@@ -66,11 +66,11 @@ void fragment(){
 	float fin = 0.0;
 	if (sum > 0.0 && sum < 0.4) fin = 0.1;
 	if (sum > 0.4 && sum < 0.8) fin = 0.0;
-	if (sum > 0.8) fin = 1f;
+	if (sum > 0.8) fin = 1.0f;
 	
 	ALBEDO = vec3(fin) + mix(alpha.rgb, col.rgb, color.a);
 	
 	NORMALMAP = texture(normalmap, uv_movement).rgb;
 	ROUGHNESS = 0.1;
-	SPECULAR = 1f;
+	SPECULAR = 1.0f;
 }
