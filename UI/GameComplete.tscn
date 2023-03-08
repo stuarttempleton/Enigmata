@@ -5,7 +5,8 @@
 [ext_resource path="res://UI/Exit.tscn" type="PackedScene" id=3]
 [ext_resource path="res://UI/Resume.tscn" type="PackedScene" id=4]
 [ext_resource path="res://shaders/white.png" type="Texture" id=5]
-[ext_resource path="res://shaders/blur.shader" type="Shader" id=6]
+[ext_resource path="res://shaders/blur.gdshader" type="Shader" id=6]
+
 
 [sub_resource type="ShaderMaterial" id=6]
 shader = ExtResource( 6 )

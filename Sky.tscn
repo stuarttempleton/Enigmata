@@ -3,9 +3,10 @@
 [ext_resource path="res://shaders/noise.png" type="Texture" id=1]
 [ext_resource path="res://shaders/Moon_1k.png" type="Texture" id=2]
 [ext_resource path="res://shaders/lightning.png" type="Texture" id=3]
-[ext_resource path="res://shaders/Sky.shader" type="Shader" id=4]
-[ext_resource path="res://shaders/Clouds.shader" type="Shader" id=5]
+[ext_resource path="res://shaders/Sky.gdshader" type="Shader" id=4]
+[ext_resource path="res://shaders/Clouds.gdshader" type="Shader" id=5]
 [ext_resource path="res://cloudy_skybox.tres" type="Environment" id=6]
+
 
 [sub_resource type="GDScript" id=1]
 script/source = "tool

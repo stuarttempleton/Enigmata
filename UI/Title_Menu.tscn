@@ -6,9 +6,10 @@
 [ext_resource path="res://TitleScene/button_regular_font.tres" type="DynamicFont" id=4]
 [ext_resource path="res://UI/Difficulty_Menu.tscn" type="PackedScene" id=5]
 [ext_resource path="res://TitleScene/Title.gd" type="Script" id=6]
-[ext_resource path="res://shaders/blur.shader" type="Shader" id=7]
+[ext_resource path="res://shaders/blur.gdshader" type="Shader" id=7]
 [ext_resource path="res://shaders/white.png" type="Texture" id=8]
 [ext_resource path="res://UI/Exit.tscn" type="PackedScene" id=9]
+
 
 [sub_resource type="ShaderMaterial" id=3]
 shader = ExtResource( 7 )
